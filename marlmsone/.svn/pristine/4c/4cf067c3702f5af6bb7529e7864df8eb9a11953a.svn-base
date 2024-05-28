@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace: 연결인터페이스 주소 (필수)-->
+<mapper namespace="kr.happyjob.study.qna.dao.QnaDao">
+
+
+	<!-- 전체조회 -->
+	<select id="qnaList" resultType="kr.happyjob.study.qna.model.QnaVo">
+		select 
+		     qna_id
+			,qna_title
+			,DATE_FORMAT(regdate, '%Y-%m-%d') as regdate
+			,hit
+			,loginID 
+		from tb_qna
+ 		<where>
+			<if test="(searchtitle != null) and (!searchtitle.equals(''))">
+				 and qna_title Like CONCAT('%', #{searchtitle}, '%')
+			</if>
+		</where> 
+       order by regdate desc
+       limit #{startpos}, #{pagesize}		
+		
+
+	
+	</select>
+	
+	<!-- 게시물 수 조회 -->
+	<select id="listcnt" resultType="int">
+		select count(*) 
+		from tb_qna
+		<where>
+			<if test="(searchtitle != null) and (!searchtitle.equals(''))">
+				 and qna_title Like CONCAT('%', #{searchtitle}, '%')
+			</if>
+		</where> 
+	</select>
+	
+	<!-- 글등록 -->
+	<insert id="qnaSave">
+		insert into tb_qna (
+							loginId
+							,qna_title
+							,qna_con
+							,regdate
+							,hit
+					)values (
+						#{loginId}
+						,#{qna_title}
+						,#{qna_con}
+						,now()
+						,0
+					)
+	</insert>
+</mapper>
