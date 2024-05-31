@@ -53,7 +53,9 @@ public interface PeopleMngService {
 	
 	// 강사 승인
 	public int apv_tut(Map<String,Object> paramMap);
-	
+	// 강사 승인 거부
+	public int apv_tut1(Map<String, Object> paramMap);
+
 	// 강사 강의 목록 조회
 	public List<PeopleMngModel> tlec_list(Map<String,Object> paramMap);
 	
@@ -72,5 +74,6 @@ public interface PeopleMngService {
 	public List<PeopleMngModel> t_list(Map<String,Object> paramMap);
 	//강사 수 조회
 	public int t_count(Map<String, Object> paramMap);
+
 	
 }

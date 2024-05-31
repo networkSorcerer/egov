@@ -101,6 +101,11 @@ public class PeopleMngServiceImpl implements PeopleMngService {
 	public int apv_tut(Map<String, Object> paramMap) {
 		return peopleMngDao.apv_tut(paramMap);
 	}
+	// 강사 승인
+	@Override
+	public int apv_tut1(Map<String, Object> paramMap) {
+		return peopleMngDao.apv_tut1(paramMap);
+	}
 	
 	// 강사 강의 목록 조회
 	@Override

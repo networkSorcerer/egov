@@ -593,6 +593,28 @@ public class PeopleMngController {
 		
 		return resultMap;
 	}
+	// 강사 승인 거부 
+	@RequestMapping("apv_tut1.do")
+	@ResponseBody
+	public Map<String, Object> apv_tut1(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		
+		logger.info("+ Start " + className + ".apv_tut1");
+		logger.info("   - paramMap : " + paramMap);
+
+		String result = "SUCCESS";
+		String resultMsg = "강사 승인이 취소 되었습니다.";
+		
+		peopleMngService.apv_tut1(paramMap);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", result);
+		resultMap.put("resultMsg", resultMsg);
+		
+		logger.info("+ End " + className + ".apv_tut1");
+		
+		return resultMap;
+	}
 	
 	//강사리스트만 출력하기 위함 
 		@RequestMapping("tutor_list1.do")
