@@ -114,6 +114,30 @@ public class PeopleMngServiceImpl implements PeopleMngService {
 		return peopleMngDao.tut_lec_count(paramMap);
 	}
 	
+	//강사 상세 조회
+	public PeopleMngModel tutorView(Map<String, Object> paramMap) throws Exception{
+		return peopleMngDao.tutorView(paramMap);
+	}
+
+//	@Override
+//	public List<PeopleMngModel> tut_list_json(Map<String, Object> paramMap) {
+//		return peopleMngDao.tut_list_json(paramMap);
+//	}
+	
+	@Override
+	public List<PeopleMngModel> t_list(Map<String, Object> paramMap) {
+		return peopleMngDao.t_list(paramMap);
+	}
+	
+	@Override
+	public List<PeopleMngModel> l_list(Map<String, Object> paramMap) {
+		return peopleMngDao.l_list(paramMap);
+	}
+
+	@Override
+	public int t_count(Map<String, Object> paramMap) {
+		return peopleMngDao.t_count(paramMap);
+	}
 
 
 }

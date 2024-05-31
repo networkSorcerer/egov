@@ -3,6 +3,7 @@ package kr.happyjob.study.adm.dao;
 import java.util.List;
 import java.util.Map;
 
+
 import kr.happyjob.study.adm.model.PeopleMngModel;
 
 public interface PeopleMngDao {
@@ -64,6 +65,15 @@ public interface PeopleMngDao {
 	// 강사 강의 수 조회
 	public int tut_lec_count(Map<String,Object> paramMap);
 	
+	//강사 상세 조회
+	public PeopleMngModel tutorView(Map<String, Object> paramMap) throws Exception;
+	// 강사 만 조회
+//	public List<PeopleMngModel> tut_list_json(Map<String, Object> paramMap);
 	
-
+	//강의 목록 조회
+	public List<PeopleMngModel> l_list(Map<String, Object> paramMap);
+	//강사 리스트 조회
+	public List<PeopleMngModel> t_list(Map<String,Object> paramMap);
+	//강사 수 조회
+	public int t_count(Map<String, Object> paramMap);
 }
