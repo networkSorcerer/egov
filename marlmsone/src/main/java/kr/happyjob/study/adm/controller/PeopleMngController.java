@@ -171,6 +171,7 @@ public class PeopleMngController {
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
+		resultMap.put("list_std", list_std);
 		resultMap.put("totalCnt_std", totalCount);
 		resultMap.put("pageSize_std", pageSize_std);
 		resultMap.put("currentPage_std", currentPage_std);
@@ -271,7 +272,7 @@ public class PeopleMngController {
 	        return resultMap;
 	    }
 	    // 상세정보창 강의목록 가져오기
-	    if (user_type.equals("b")) { // 강사
+	    if (user_type.equals("b") || user_type.equals("e")) { // 강사
 	        List<PeopleMngModel> tlist_lec = peopleMngService.tlec_list(paramMap);
 	        resultMap.put("tlist_lec", tlist_lec);
 	        logger.info("tlec_list: " + tlist_lec);
@@ -279,7 +280,8 @@ public class PeopleMngController {
 	        List<PeopleMngModel> slist_lec = peopleMngService.std_lec_info(paramMap);
 	        resultMap.put("slist_lec", slist_lec);
 	        logger.info("slec_list: " + slist_lec);
-	    } else  {
+	    }
+	    else  {
 	        logger.warn("Invalid user_type: " + user_type);
 	        resultMap.put("error", "Invalid user_type: " + user_type);
 	    } 
@@ -500,32 +502,6 @@ public class PeopleMngController {
 		
 	}
 	
-	//강사리스트만 조회 근데 안씀 
-	@RequestMapping("list_tut_json1.do")
-	@ResponseBody
-	public Map<String, Object> tut_list_json1(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) throws Exception {
-		logger.info("   - paramMap : " + paramMap);
-
-		// 강사 목록 조회
-		List<PeopleMngModel> list_tut = peopleMngService.tut_list(paramMap);
-		//model.addAttribute("list_tut", list_tut);
-		logger.info("   - list_tut : " + list_tut);
-
-		// 강사 목록 카운트 조회
-//		model.addAttribute("totalCnt", totalCount);
-//		model.addAttribute("pageSize", pageSize);
-//		model.addAttribute("currentPage", currentPage);
-		
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("list_tut", list_tut);
-
-		logger.info("+ End " + className + ".list_tut");
-	
-	
-		return resultMap;
-		
-	}
 	
 		//강사의 강의만 조회
 		@RequestMapping("list_lec_json1.do")
@@ -548,6 +524,7 @@ public class PeopleMngController {
 			
 		}
 	
+	//승인강사 디테일을 위해서 쓰임 	
 	@RequestMapping("tutorView.do")
 	@ResponseBody
 	@Transactional
@@ -569,7 +546,8 @@ public class PeopleMngController {
 
 	    return returnMap;
 	}
-
+	
+	
 	
 	// 강사 승인
 	@RequestMapping("apv_tut.do")
@@ -666,6 +644,56 @@ public class PeopleMngController {
 			
 			return resultMap;
 		}
+		@RequestMapping("tutor_list2.do")
+		@ResponseBody
+		public Map<String, Object> tutor_list2(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+				HttpServletResponse response, HttpSession session) throws Exception {
+			logger.info("    -paramMap : " + paramMap);
+			
+			String searchKey = (String) paramMap.get("searchKey");
+			String searchWord = (String) paramMap.get("searchWord");
+			int currentPage = Integer.parseInt((String) paramMap.get("currentPage"));
+			logger.info("  -currentPage : " + currentPage);
+			
+			int pageSize= Integer.parseInt((String) paramMap.get("pageSize")); // 페이지
+			// 사이즈
+			int pageIndex = (currentPage - 1) * pageSize;
+			logger.info("   - pageIndex : " + pageIndex);	
+			logger.info("+ Start " + className + ".list_tut");
+			logger.info("   - paramMap : " + paramMap);
+			
+			paramMap.put("pageIndex", pageIndex);
+			paramMap.put("pageSize", pageSize);
+			paramMap.put("searchWord", searchWord);
+			
+			// 강사 목록 조회
+			List<PeopleMngModel> list_tut = peopleMngService.t_list(paramMap);
+			//model.addAttribute("list_tut", list_tut);
+			logger.info("   - list_tut : " + list_tut);
+			
+			// 강사 목록 카운트 조회
+			int totalCount = peopleMngService.t_count(paramMap);
+			//model.addAttribute("totalCnt", totalCount);
+			//model.addAttribute("pageSize", pageSize);
+			//model.addAttribute("currentPage", currentPage);
+			
+			Map<String, Object> resultMap = new HashMap<String, Object>();
+			
+			resultMap.put("list_tut", list_tut);
+			resultMap.put("totalCnt", totalCount);
+			resultMap.put("pageSize", pageSize);
+			resultMap.put("currentPage", currentPage);
+			
+			logger.info("   - totalCnt : " + totalCount);
+			logger.info("   - pageSize : " + pageSize);
+			logger.info("   - currentPage : " + currentPage);
+			
+			logger.info("+ End " + className + ".list_tut");
+			
+			
+			return resultMap;
+		}
+
 
 
 }

@@ -133,6 +133,11 @@ public class PeopleMngServiceImpl implements PeopleMngService {
 	public List<PeopleMngModel> t_list(Map<String, Object> paramMap) {
 		return peopleMngDao.t_list(paramMap);
 	}
+	//미승인 강사를 출력하기 위함
+	@Override
+	public List<PeopleMngModel> t_list2(Map<String, Object> paramMap) {
+		return peopleMngDao.t_list(paramMap);
+	}
 	
 	@Override
 	public List<PeopleMngModel> l_list(Map<String, Object> paramMap) {
@@ -143,6 +148,8 @@ public class PeopleMngServiceImpl implements PeopleMngService {
 	public int t_count(Map<String, Object> paramMap) {
 		return peopleMngDao.t_count(paramMap);
 	}
+
+	
 
 
 }

@@ -78,4 +78,5 @@ public interface PeopleMngDao {
 	//강사 수 조회
 	public int t_count(Map<String, Object> paramMap);
 	
+	
 }

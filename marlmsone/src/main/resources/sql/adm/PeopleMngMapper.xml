@@ -398,4 +398,13 @@
 	WHERE user_type = 'b'	and use_yn ='Y'
 	</select>
 	
+	<select id="t_list2" resultType="kr.happyjob.study.adm.model.PeopleMngModel">
+	SELECT *
+	FROM tb_userinfo
+	WHERE user_type = 'e' 	and use_yn ='Y'
+	</select>
+	
+	
+	
+
 </mapper>

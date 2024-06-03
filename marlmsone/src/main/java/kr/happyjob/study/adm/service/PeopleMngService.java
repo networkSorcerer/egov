@@ -74,6 +74,9 @@ public interface PeopleMngService {
 	public List<PeopleMngModel> t_list(Map<String,Object> paramMap);
 	//강사 수 조회
 	public int t_count(Map<String, Object> paramMap);
+	//미승인 강사를 출력하기 위함
+	List<PeopleMngModel> t_list2(Map<String, Object> paramMap);
+	
 
 	
 }
