@@ -523,6 +523,50 @@ public class PeopleMngController {
 			return resultMap;
 			
 		}
+		
+		//전체 학생 정보를 출력하고 수정 하기 위함 
+		@RequestMapping("list_stu_json.do")
+		@ResponseBody
+		public Map<String, Object> list_stu_json(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+				HttpServletResponse response, HttpSession session) throws Exception {
+			logger.info("   - paramMap : " + paramMap);
+
+			// 강사의 강의만 조회
+			List<PeopleMngModel> list_stu = peopleMngService.stu_list(paramMap);
+			logger.info("   - list_stu : " + list_stu);
+			
+			Map<String, Object> resultMap = new HashMap<String, Object>();
+			resultMap.put("list_stu", list_stu);
+
+			logger.info("+ End " + className + ".list_stu");
+		
+		
+			return resultMap;
+			
+		}
+		
+		//전체 학생 정보 중에서 새로운 학생을 등록하기 위함 
+		@RequestMapping("new_stu.do")
+		@ResponseBody
+		public Map<String, Object> new_stu(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+				HttpServletResponse response, HttpSession session) throws Exception {
+			
+			logger.info("+ Start " + className + ".new_stu");
+			logger.info("   - paramMap : " + paramMap);
+
+			String result = "SUCCESS";
+			String resultMsg = "뉴비 입성";
+			
+			peopleMngService.new_stu(paramMap, request);
+			
+			Map<String, Object> resultMap = new HashMap<String, Object>();
+			resultMap.put("result", result);
+			resultMap.put("resultMsg", resultMsg);
+			
+			logger.info("+ End " + className + ".new_stu");
+			
+			return resultMap;
+		}
 	
 	//승인강사 디테일을 위해서 쓰임 	
 	@RequestMapping("tutorView.do")

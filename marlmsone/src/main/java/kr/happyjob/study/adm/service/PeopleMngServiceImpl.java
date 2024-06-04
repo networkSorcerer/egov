@@ -3,6 +3,8 @@ package kr.happyjob.study.adm.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -147,6 +149,16 @@ public class PeopleMngServiceImpl implements PeopleMngService {
 	@Override
 	public int t_count(Map<String, Object> paramMap) {
 		return peopleMngDao.t_count(paramMap);
+	}
+
+	@Override
+	public List<PeopleMngModel> stu_list(Map<String, Object> paramMap) throws Exception{
+		return peopleMngDao.stu_list(paramMap);
+	}
+	//뉴비 입성
+	@Override
+	public int new_stu(Map<String, Object> paramMap, HttpServletRequest request)throws Exception {
+		return peopleMngDao.new_stu(paramMap);
 	}
 
 	

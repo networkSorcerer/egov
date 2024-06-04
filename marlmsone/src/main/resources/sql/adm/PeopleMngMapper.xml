@@ -240,8 +240,16 @@
 		SET pre_pnum = pre_pnum-1
 		WHERE lec_id = #{lec_id}
 	</select>
-
-
+	
+	
+	<!-- 탈퇴 작업 수월을 위한 학생 정보 출력 수정  -->
+	<select id="stu_list" resultType="kr.happyjob.study.adm.model.PeopleMngModel">
+		SELECT * 
+		FROM tb_userinfo 
+		WHERE user_type = 'a'
+	</select>
+	<!-- 탈퇴 작업 수월을 위한 학생 정보 입력 -->
+	
 	<!-- 강사 관리 -->
 
 	<!--강사 목록 조회 -->

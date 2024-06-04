@@ -3,6 +3,7 @@ package kr.happyjob.study.adm.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 
 import kr.happyjob.study.adm.model.PeopleMngModel;
 
@@ -40,6 +41,10 @@ public interface PeopleMngDao {
 	
 	// 학생 수강 취소
 	public int std_lec_del(Map<String,Object> paramMap);
+	// 전체 학생 출력 수정
+	public List<PeopleMngModel> stu_list(Map<String, Object> paramMap);
+	// 뉴비 등록
+	int new_stu(Map<String, Object> paramMap) throws Exception;
 	
 	// 수강 인원 증가
 	public void plusPrePnum(Map<String,Object> paramMap);

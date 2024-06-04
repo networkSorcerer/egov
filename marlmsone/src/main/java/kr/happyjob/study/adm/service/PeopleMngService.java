@@ -3,6 +3,8 @@ package kr.happyjob.study.adm.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.happyjob.study.adm.model.PeopleMngModel;
 
 public interface PeopleMngService {
@@ -76,6 +78,13 @@ public interface PeopleMngService {
 	public int t_count(Map<String, Object> paramMap);
 	//미승인 강사를 출력하기 위함
 	List<PeopleMngModel> t_list2(Map<String, Object> paramMap);
+	
+	//전체 학생을 출력하고 수정하기 위함 
+	public List<PeopleMngModel> stu_list(Map<String, Object> paramMap) throws Exception;
+
+	
+	//뉴비 입성을 위한
+	public int new_stu(Map<String, Object> paramMap, HttpServletRequest request) throws Exception;
 	
 
 	
