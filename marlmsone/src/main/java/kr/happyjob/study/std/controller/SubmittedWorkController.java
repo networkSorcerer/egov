@@ -76,6 +76,42 @@ public class SubmittedWorkController {
 		return "/std/submittedWorkList";
 	}
 	
+	/** 과제 목록 출력*/ 
+	@RequestMapping("/submitListJson.do")
+	@ResponseBody
+	public Map<String, Object> submitListJson(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		
+		logger.info("+ Start " + className + ".submitList");
+		logger.info("   - paramMap : " + paramMap);
+		
+		int cpage = Integer.valueOf((String) paramMap.get("cpage"));
+		int pagesize = Integer.valueOf((String) paramMap.get("pagesize"));
+		
+		String loginID = (String)session.getAttribute("loginId");
+		paramMap.put("loginID", loginID);
+		int startpos = (cpage-1) * pagesize;
+		
+		paramMap.put("startpos", startpos);
+		paramMap.put("pagesize", pagesize);
+		
+		List<SubmittedWorkVo> listdata = submittedWorkService.submitList(paramMap);
+		
+		int listcnt = submittedWorkService.submitcnt(paramMap);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("listdata", listdata);
+		resultMap.put("listcnt", listcnt);
+		//model.addAttribute("listdata", listdata);
+		//model.addAttribute("listcnt", listcnt);
+		
+		logger.info("+ End " + className + ".submitList");
+
+		
+		return resultMap;
+	}
+	
+	
 /*	
 	@RequestMapping("/submitList.do")
 	public String submitList (Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,

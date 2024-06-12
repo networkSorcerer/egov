@@ -88,6 +88,35 @@ public class QnaController {
 		return "qna/qnaList";
 	}	
 	
+	@RequestMapping(value="/qnaListJson.do")
+	@ResponseBody// url 이름이랑 메소드 이름 동일하게 setting
+	public Map<String, Object> qnaListJson(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+			
+		logger.info("+ Start " + className + ".qna");
+		logger.info("   - paramMap : " + paramMap);
+		
+		int cpage = Integer.valueOf((String) paramMap.get("cpage"));
+		int pagesize = Integer.valueOf((String) paramMap.get("pagesize"));
+		//네비게이션바 시작번호. 글이 많
+		int startpos = (cpage-1) * pagesize;
+		
+		//검색
+		String searchtitle =(String) paramMap.get("searchtitle");
+		paramMap.put("startpos", startpos);
+		paramMap.put("pagesize", pagesize);
+		
+		List<QnaVo> listData = qnaService.qnaList(paramMap);
+		int listcnt = qnaService.listcnt(paramMap);
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("listData", listData);
+		resultMap.put("listcnt", listcnt);
+		//model.addAttribute("listData", listData);
+		//model.addAttribute("listcnt", listcnt);	
+
+		return resultMap;
+	}	
+	
 	/**등록*/
 	@RequestMapping("/qnaSave.do")
 	@ResponseBody
@@ -160,6 +189,49 @@ public class QnaController {
 		
 		return "qna/commentList";
 	}		
+	
+	
+	/**상세조회*/
+	@RequestMapping("/qnaViewJson.do")
+	@Transactional
+	@ResponseBody
+	public Map<String, Object> qnaViewJson(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		
+		//보낼 값들 > 작성자와 조회자가 동일한가 확인을 위해
+		String loginID = (String) session.getAttribute("loginId");
+		paramMap.put("loginID", loginID);
+		
+		//조회수 증가 
+		qnaService.hit(paramMap);
+		Map<String,Object > returnMap = new HashMap<>();
+		
+		//받을 값 > 게시글 내용
+		QnaVo vo = qnaService.qnaView(paramMap);
+		//vo.setQna_con((vo.getQna_con()).replaceAll("<br>",  "\r\n"));
+		
+		//받을 값 >  작성자와 로그인한 사람이 동일한지 (버튼유무)	
+		int check = qnaService.check(paramMap);
+		
+		if(check==0){//동일한 경우 게시글 정보와 일치여부 확인 결과를 전달
+			QnaVo data = new QnaVo(vo.getQna_id(), vo.getLoginID(),vo.getQna_title(), vo.getQna_con(), vo.getRegdate(), vo.getHit(), true);
+			model.addAttribute("data",data);
+		}else{
+			QnaVo data = new QnaVo(vo.getQna_id(), vo.getLoginID(),vo.getQna_title(), vo.getQna_con(), vo.getRegdate(), vo.getHit(), false);	
+			model.addAttribute("data",data);
+		}
+
+		List<CommentVo> commentData = commentService.commentList(paramMap);
+		
+		Map<String , Object> resultMap = new HashMap<>();
+		resultMap.put("commentData", commentData);
+		//model.addAttribute("commentData", commentData);
+		
+		logger.info(" : " + returnMap);
+		
+		return resultMap;
+	}		
+	
 	
 	/**수정*/
 	@RequestMapping("/qnaModify.do")

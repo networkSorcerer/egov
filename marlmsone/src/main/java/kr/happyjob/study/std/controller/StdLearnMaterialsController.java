@@ -79,6 +79,46 @@ public class StdLearnMaterialsController {
 		return "/std/stdLearnMaterialsList";
 	}
 	
+	// 학습 자료 리스트
+	@RequestMapping("stdLearnMatListJson")
+	@ResponseBody
+	public Map<String, Object> stdLearnMatListJson (Model model, @RequestParam Map<String, Object> paramMap, HttpSession session) throws Exception {
+		
+		logger.info("=====학습 자료 리스트 " + className + ".stdLearnMatList");
+		
+		logger.info("session ID 값 : " + session.getAttribute("loginId"));
+		paramMap.put("loginId", session.getAttribute("loginId"));
+		
+		int currentPage = Integer.parseInt((String) paramMap.get("currentPage")); 
+		int pageSize = Integer.parseInt((String) paramMap.get("pageSize")); 
+		int pageIndex = (currentPage - 1) * pageSize;
+		
+		paramMap.put("pageIndex", pageIndex);
+		paramMap.put("pageSize", pageSize);
+		
+		logger.info("   - putparamMap : " + paramMap);
+		
+		List<StdLearningMaterialsModel> learningMatList = stdLearnMaterialsService.stdLearnMatList(paramMap);
+		int learnMatTotalCount = stdLearnMaterialsService.learnMatTotalCount(paramMap);
+		
+		logger.info("learningMatList TotalCount = " +  learnMatTotalCount);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("learningMatList", learningMatList);
+		resultMap.put("totalCount",learningMatList.size());
+		resultMap.put("pageSize",pageSize );
+		resultMap.put("totalCount",learnMatTotalCount );
+		resultMap.put("currentPage",currentPage );
+		resultMap.put("learningMatList",learningMatList );
+		//model.addAttribute("totalCount", learningMatList.size());
+		//model.addAttribute("pageSize", pageSize);
+		//model.addAttribute("totalCount", learnMatTotalCount);
+		//model.addAttribute("currentPage", currentPage);
+		//model.addAttribute("learningMatList", learningMatList);
+	
+		return resultMap;
+	}
+	
 	// 학습 자료 모달
 	@RequestMapping("stdLearnMatDetail.do")
 	@ResponseBody

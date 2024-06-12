@@ -100,6 +100,51 @@ public class MyLecInfoController {
 	}
 	
 	/**
+	 * 나의 수강목록 목록
+	 */
+	@RequestMapping("myLecListJson.do")
+	@ResponseBody
+	public Map<String, Object> myLecListJson( Model model, 
+						     @RequestParam Map<String, Object> paramMap, 
+						     HttpServletRequest request,
+						     HttpServletResponse response, 
+						     HttpSession session ) throws Exception {
+		
+		logger.info("+ Start " + className + ".myLecList");
+		logger.info("   - paramMap : " + paramMap);
+		
+		// object 타입으로 넘겨 받음 -> String 형변환 -> int 타입으로 변환
+		int currentPage = Integer.valueOf((String)paramMap.get("currentPage"));
+		int pageSize = Integer.valueOf((String)paramMap.get("pageSize"));		
+		int startPos = (currentPage - 1) * pageSize;
+		
+		paramMap.put("startPos", startPos);
+		paramMap.put("pageSize", pageSize);
+		
+		// session 에서 id 가져오기 -> Map 으로 넣기
+		String loginID = (String)session.getAttribute("loginId");
+		paramMap.put("loginID", loginID);		
+		
+		List<MyLecInfoVo> listData = myLecInfoService.myLecList(paramMap);
+		int listCnt = myLecInfoService.myLecListCnt(paramMap);
+		
+		logger.info("listData : " + listData);
+		logger.info("listCnt : " + listCnt);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("listData", listData);
+		resultMap.put("listCnt", listCnt);
+		resultMap.put("currentPage",currentPage);
+		resultMap.put("pageSize",pageSize);
+		resultMap.put("startPos", startPos);
+		//model.addAttribute("listData", listData);
+		//model.addAttribute("listCnt", listCnt);		
+		
+		logger.info("+ End " + className + ".myLecList");
+
+		return resultMap;
+	}
+	
+	/**
 	 * 나의 수강목록 상세보기
 	 */
 	@RequestMapping("myLecDetail.do")
@@ -134,6 +179,46 @@ public class MyLecInfoController {
 	}
 	
 	/**
+	 * 나의 수강목록 상세보기
+	 */
+	@RequestMapping("myLecDetailJson.do")
+	@ResponseBody
+	public Map<String, Object> myLecDetailJson( Model model, 
+							   @RequestParam Map<String, Object> paramMap, 
+						       HttpServletRequest request,
+						       HttpServletResponse response, 
+						       HttpSession session ) throws Exception {
+		
+		logger.info("+ Start " + className + ".myLecDetail");
+		logger.info("   - paramMap : " + paramMap);
+		
+		String result = "SUCCESS";
+		String resultMsg = "조회 되었습니다.";		
+		int lec_id = Integer.valueOf((String)paramMap.get("lec_id"));
+		
+		paramMap.put("lec_id", lec_id);
+		
+		// 나의 수강목록 상세보기
+		List<MyLecInfoVo> listData = myLecInfoService.myLecDetail(paramMap);
+		int listCnt = myLecInfoService.myLecDetailCnt(paramMap);
+		
+		Map<String , Object> resultMap = new HashMap<>();
+		resultMap.put("lec_id", lec_id);
+		resultMap.put("result", result);
+		resultMap.put("resultMsg", resultMsg);
+		resultMap.put("listData", listData);
+		resultMap.put("listCnt", listCnt);
+		//model.addAttribute("result", result);
+		//model.addAttribute("resultMsg", resultMsg);
+
+		//model.addAttribute("listData", listData);
+		//model.addAttribute("listCnt", listCnt);
+		
+		logger.info("+ End " + className + ".myLecDetail");
+
+		return resultMap;
+	}
+	/**
 	 * 설문조사 클릭 시 설문조사 문항 조회
 	 */
 	@RequestMapping("surveyItemList.do")	
@@ -161,6 +246,43 @@ public class MyLecInfoController {
 		logger.info("+ End " + className + ".surveyItemList");
 
 		return "std/surveyItemList";
+	}
+	
+	/**
+	 * 설문조사 클릭 시 설문조사 문항 조회
+	 */
+	@RequestMapping("surveyItemListJson.do")	
+	@ResponseBody
+	public Map<String , Object> surveyItemListJson( Model model, 
+						          @RequestParam Map<String, Object> paramMap, 
+						          HttpServletRequest request,
+						          HttpServletResponse response, 
+						          HttpSession session ) throws Exception {
+		
+		logger.info("+ Start " + className + ".surveyItemList");
+		logger.info("   - paramMap : " + paramMap);
+		
+		List<SurveyInfoVo> listData = myLecInfoService.surveyItemList(paramMap);
+		int listCnt = myLecInfoService.surveyItemListCnt(paramMap);
+		
+		logger.info("listData : " + listData);
+		logger.info("listCnt : " + listCnt);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("lec_id",  paramMap.get("lec_id"));
+		resultMap.put("lec_name", paramMap.get("lec_name"));
+		resultMap.put("tut_name", paramMap.get("tut_name"));
+		resultMap.put("listData",  listData);
+		resultMap.put("listCnt", listCnt);
+		//model.addAttribute("lec_id", paramMap.get("lec_id"));
+		//model.addAttribute("lec_name", paramMap.get("lec_name"));
+		//model.addAttribute("tut_name", paramMap.get("tut_name"));
+		//model.addAttribute("listData", listData);
+		//model.addAttribute("listCnt", listCnt);
+		
+		logger.info("+ End " + className + ".surveyItemList");
+
+		return resultMap;
 	}
 	
 	// 설문조사 제출

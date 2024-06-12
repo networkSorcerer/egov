@@ -94,6 +94,48 @@ public class MyTestInfoController {
 		return "std/myTestList";
 	}
 	
+	
+	/**
+	 * 나의 시험응시 목록 조회
+	 */
+	@RequestMapping("myTestListJson.do")
+	@ResponseBody
+	public Map<String, Object> myTestListJson( Model model, 
+						      @RequestParam Map<String, Object> paramMap, 
+						      HttpServletRequest request,
+						      HttpServletResponse response, 
+						      HttpSession session ) throws Exception {
+		
+		logger.info("+ Start " + className + ".myTestList");
+		logger.info("   - paramMap : " + paramMap);
+		
+		// object 타입으로 넘겨 받음 -> String 형변환 -> int 타입으로 변환
+		int currentPage = Integer.valueOf((String)paramMap.get("currentPage"));
+		int pageSize = Integer.valueOf((String)paramMap.get("pageSize"));		
+		int startPos = (currentPage - 1) * pageSize;
+		
+		paramMap.put("startPos", startPos);
+		paramMap.put("pageSize", pageSize);
+		paramMap.put("loginID", session.getAttribute("loginId"));
+		
+		List<MyTestInfoVo> listData = myTestInfoService.myTestList(paramMap);
+		int listCnt = myTestInfoService.myTestListCnt(paramMap);
+		
+		logger.info("listData : " + listData);
+		logger.info("listCnt : " + listCnt);
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("currentPage",currentPage);
+		resultMap.put("pageSize",pageSize);
+		resultMap.put("listData",listData);
+		resultMap.put("listCnt",listCnt);
+		//model.addAttribute("listData", listData);
+		//model.addAttribute("listCnt", listCnt);		
+		
+		logger.info("+ End " + className + ".myTestList");
+
+		return resultMap;
+	}
+	
 	/**
 	 * 시험응시 클릭 시 시험문제 항목 조회
 	 */

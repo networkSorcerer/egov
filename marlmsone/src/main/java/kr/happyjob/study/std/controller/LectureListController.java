@@ -84,6 +84,53 @@ public class LectureListController {
 		return "std/lectureList";
 	}
 	
+	
+	// 강의 목록 리스트 제이슨 형태
+		@RequestMapping("lecListJson.do")
+		@ResponseBody
+		public Map<String, Object> listLec1(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+				HttpServletResponse response, HttpSession session) throws Exception {
+
+			paramMap.put("std_id", session.getAttribute("loginId"));
+			
+			logger.info("+ Start " + className + ".lecList");
+			logger.info(" - paramMap : " + paramMap);
+
+			// object 타입으로 넘겨 받음 -> String 형변환 -> int 타입으로 변환
+			int currentPage = Integer.valueOf((String) paramMap.get("currentPage"));
+			int pageSize = Integer.valueOf((String) paramMap.get("pageSize"));
+
+			int startpos = (currentPage - 1) * pageSize;
+
+			paramMap.put("startpos", startpos);
+			paramMap.put("pageSize", pageSize);
+
+			// 목록 조회
+			List<LectureModel> lecList = lectureService.lecList(paramMap);
+			logger.info("lecList"+lecList);
+			
+			// 목록 조회 카운트
+			int lecTotal = lectureService.lecTotal(paramMap);
+
+			System.out.println("lecList : " + lecList);
+			System.out.println("lecTotal : " + lecTotal);
+			
+			Map<String, Object> resultMap = new HashMap<String, Object>();
+			resultMap.put("lecList", lecList);
+			resultMap.put("lecTotal", lecTotal);
+			resultMap.put("currentPage", currentPage);
+			resultMap.put("pageSize", pageSize);
+			resultMap.put("startpos", startpos);
+			
+			//model.addAttribute("lecList", lecList);
+			//model.addAttribute("lecTotal", lecTotal);
+
+			logger.info("+ End " + className + ".lecList");
+			logger.info("empInfo : " + lecList);
+
+			return resultMap;
+		}
+	
 	// 모달 강의정보
 	@RequestMapping("lecInfo.do")
 	@ResponseBody
@@ -103,6 +150,7 @@ public class LectureListController {
 		List<LectureModel> week_plan=lectureService.week_plan(paramMap);
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("lecInfo", lecInfo);
 		resultMap.put("result", result);
 		resultMap.put("resultMsg", resultMsg);
 		resultMap.put("lecInfo", lecInfo);
