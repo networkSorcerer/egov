@@ -269,16 +269,8 @@ public class MyLecInfoController {
 		logger.info("listCnt : " + listCnt);
 		
 		Map<String, Object> resultMap = new HashMap<>();
-		resultMap.put("lec_id",  paramMap.get("lec_id"));
-		resultMap.put("lec_name", paramMap.get("lec_name"));
-		resultMap.put("tut_name", paramMap.get("tut_name"));
 		resultMap.put("listData",  listData);
 		resultMap.put("listCnt", listCnt);
-		//model.addAttribute("lec_id", paramMap.get("lec_id"));
-		//model.addAttribute("lec_name", paramMap.get("lec_name"));
-		//model.addAttribute("tut_name", paramMap.get("tut_name"));
-		//model.addAttribute("listData", listData);
-		//model.addAttribute("listCnt", listCnt);
 		
 		logger.info("+ End " + className + ".surveyItemList");
 
