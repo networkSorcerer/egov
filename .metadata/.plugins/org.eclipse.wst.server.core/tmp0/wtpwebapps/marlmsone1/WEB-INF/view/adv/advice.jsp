@@ -245,7 +245,7 @@
 		var param = {
 				action : $("#action").val(),
 				lec_id : $("#mlecList").val(),
-				std_id : $("#mlecStdList").val(),
+				std_id : $("#tmp_std_id").val(),
 				adv_place : $("#advPlace").val(),
 				adv_content : $("#summernote").val(),
 				adv_date : $("#datepicker").val(),				
@@ -298,6 +298,8 @@
 		var param = {
 				action : $("#action").val(),
 				adv_id : $("#tmp_adv_id").val(),
+				lec_id : $("#tmp_lec_id").val(),
+				std_id : $("#tmp_std_id").val(),
 				adv_place : $("#advPlace").val(),
 				adv_date : $("#datepicker").val(),
 				adv_content : $("#summernote").val(),				
@@ -460,6 +462,8 @@
 		} else {
 			
 			$("#tmp_adv_id").val(object.adv_id);
+			$("#tmp_lec_id").val(object.lec_id);
+			$("#tmp_std_id").val(object.std_id);
 			
 			$("#mlecList").hide();
 			$("#mlecStdList").hide();
@@ -504,6 +508,7 @@
 	<input type="hidden" id="action" name="action" value="">
 	<input type="hidden" id="tmp_adv_id" value="">
 	<input type="hidden" id="tmp_lec_id" value="">
+	<input type="hidden" id="tmp_std_id" value="">
 	<input type="hidden" id="tmp_currentPage" value="">
 	
 	<!-- 모달 배경 -->
@@ -599,20 +604,23 @@
 					<tbody>
 						<tr>
 							<th>과정명 </th>
-							<td>
+							<td colspan="3">
 								<select id="mlecList" 
 									class="inputTxt p100" onchange="mfSearch_lecStdList()">
 								</select>
 								<input type="text" class="inputTxt p100" 
 									id="lecName" name="lecName" disabled="disabled"/>
 							</td>			
+						</tr>
+						<tr>
 							<th>학생명 </th>
-							<td>
+							<td colspan="3">
 								<select id="mlecStdList" class="inputTxt p100">									
 								</select>
 								<input type="text" class="inputTxt p100"
 									id="stdName" name="stdName" disabled="disabled"/>
 							</td>
+						
 						</tr>
 						<tr>
 							<th>상담일자 </th>

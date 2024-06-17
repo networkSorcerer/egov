@@ -54,29 +54,29 @@
 			
 	</select>
 	
-	<!-- 파일 o 신규 공지 등록 -->
-	<insert id="noticeSave">
-		/*kr.happyjob.study.notice.dao.NoticeDao.noticeSave*/
-		
-	<!-- 	<selectKey resultType="int" keyProperty="notice_id" order="BEFORE">
-			select IFNULL(max(notice_id),0)+1
-			from tb_adm_notice
-		</selectKey> -->		
-				insert into tb_adm_notice 
-					(	
-						 loginID		
-						, notice_tit	
-						, notice_con	
-						, regdate		
-						, hit
-					) values (
-						 #{loginID}
-						, #{notice_tit}	
-						, #{notice_con}	
-						, now()		
-						, 0
-					)
-		</insert>
+	   <!-- 파일 o 신규 공지 등록 -->
+   <insert id="noticeSave">
+      /*kr.happyjob.study.notice.dao.NoticeDao.noticeSave*/
+      
+   <!--    <selectKey resultType="int" keyProperty="notice_id" order="BEFORE">
+         select IFNULL(max(notice_id),0)+1
+         from tb_adm_notice
+      </selectKey> -->      
+            insert into tb_adm_notice 
+               (   
+                   loginID      
+                  , notice_tit   
+                  , notice_con   
+                  , regdate      
+                  , hit
+               ) values (
+                   #{loginID}
+                  , #{notice_tit}   
+                  , #{notice_con}   
+                  , now()      
+                  , 0
+               )
+      </insert>
 		
 	
 	<!-- 상세조회 -->
@@ -113,16 +113,17 @@
 		/*kr.happyjob.study.notice.dao.NoticeDao.noticeModify*/		
 			UPDATE tb_adm_notice
 			SET
-				 notice_tit =#{notice_tit}	
-			   , notice_con =#{notice_con}
-		    WHERE notice_id=#{notice_id}; 	
+				notice_tit =#{notice_tit}	
+				,notice_con =#{notice_con}
+		    WHERE notice_id=#{noticeNo}; 	
+		
 	</update>
 	
 	<!-- 공지 삭제 -->
 	<delete id="noticeDelete">
 		DELETE
 		FROM tb_adm_notice
-		WHERE notice_id = #{notice_id}
+		WHERE notice_id = #{noticeNo}
 	</delete>
 	
 </mapper>

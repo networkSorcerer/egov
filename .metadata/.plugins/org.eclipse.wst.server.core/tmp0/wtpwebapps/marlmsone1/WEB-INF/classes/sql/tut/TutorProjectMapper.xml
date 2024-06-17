@@ -20,6 +20,8 @@
 		tb_hmk
 	WHERE 
 		lec_id = #{lectureId}
+	ORDER BY hwk_id DESC
+	LIMIT #{pageIndex}, #{pageSize};
 	
 	</select>
 	

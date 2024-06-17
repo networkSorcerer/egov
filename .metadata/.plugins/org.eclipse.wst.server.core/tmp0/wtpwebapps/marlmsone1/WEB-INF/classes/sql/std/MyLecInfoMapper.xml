@@ -17,9 +17,9 @@
               , ls.srvy_yn
               , ls.apv_yn
 		from  tb_lecstd_info ls
-        	join tb_lec_info lec on lec.lec_id = ls.lec_id
-        	join tb_lec_room lr on lr.lecrm_id = lec.lecrm_id
-			join tb_userinfo tut on tut.loginID = lec.tutor_id
+        	left join tb_lec_info lec on lec.lec_id = ls.lec_id
+        	left join tb_lec_room lr on lr.lecrm_id = lec.lecrm_id
+			left join tb_userinfo tut on tut.loginID = lec.tutor_id
 		<where>
  	    	<if test="(loginID != null) and (!loginID.equals(''))">
 		    	and ls.std_id = #{loginID}
@@ -47,10 +47,10 @@
 		/*kr.happyjob.study.std.dao.MyLecInfoDao.myLecListCnt*/
 		select count(*)
 		from tb_lecstd_info ls
-			join tb_lec_info lec on ls.lec_id = lec.lec_id
+			left join tb_lec_info lec on ls.lec_id = lec.lec_id
 		<where>
  	    	<if test="(loginID != null) and (!loginID.equals(''))">
-		    	and ls.std_id = #{loginID} and ls.apv_yn = 'Y'
+		    	and ls.std_id = #{loginID}
 			</if>
 			<if test="(searchKey != null) and (!searchKey.equals(''))">
 				<choose>

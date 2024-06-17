@@ -33,15 +33,13 @@
 			<if test="searchInfo != null and searchInfo != ''">
 				<choose>
 					<when test="searchKey eq 'lec_name'.toString()">
-						and li.lec_name Like CONCAT('%', #{searchInfo},
-						'%')
+						and li.lec_name Like CONCAT('%', #{searchInfo}, '%')
 					</when>
 					<when test="searchKey eq 'test_name'.toString()">
 						and tm.test_name LIKE CONCAT('%', #{searchInfo}, '%')
 					</when>
 					<when test="searchKey eq 'all'.toString()">
-						and li.lec_name Like CONCAT('%', #{searchInfo},
-						'%')
+						and li.lec_name Like CONCAT('%', #{searchInfo}, '%')
 						or tm.test_name LIKE CONCAT('%', #{searchInfo}, '%')
 					</when>
 					<otherwise>

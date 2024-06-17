@@ -56,8 +56,22 @@ public class NoticeServiceImpl implements NoticeService {
 		return totalCount;
 	}
 	
-	/** 신규 공지 등록 */
+	/** 파일 신규 공지 등록 */
 	public int noticeSave(Map<String, Object> paramMap,HttpServletRequest request) throws Exception{
+		//1. 업로드된 파일 정보
+		//MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+											//.separator : OS에서 사용하는 이름 구분자
+	
+		//String itemFilePath = itemPath +File.separator;
+		
+		//FileUtilCho fileup = new FileUtilCho(multipartHttpServletRequest,rootPath,virtualRootPath,itemFilePath);
+		
+		//가져온 정보들로 주소만듦(기존메소드사용)
+		//Map<String, Object> fileinfo = fileup.uploadFiles();
+		
+		//System.out.println("fileinfo: "+ fileinfo);
+		
+		//paramMap.put("fileinfo", fileinfo);
 		
 		return noticeDao.noticeSave(paramMap);
 	};
@@ -80,9 +94,27 @@ public class NoticeServiceImpl implements NoticeService {
 
 
 	/**수정*/
-	public int noticeModify(Map<String, Object> paramMap) throws Exception{
+	public int noticeModify(Map<String, Object> paramMap,HttpServletRequest request) throws Exception{
+		
+//		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+//
+//		String itemFilePath = itemPath +File.separator;
+//
+//		FileUtilCho fileup = new FileUtilCho(multipartHttpServletRequest,rootPath,virtualRootPath,itemFilePath);
+//		
+//		Map<String, Object> fileinfo = fileup.uploadFiles();
+//		
+//		logger.info("파일정보들>>>>> : " + fileinfo);
+//		
+//		paramMap.put("fileinfo", fileinfo);
 		
 		return noticeDao.noticeModify(paramMap);
+	}
+
+	@Override
+	public int noticeModify(Map<String, Object> paramMap) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
 	};
 	
 	

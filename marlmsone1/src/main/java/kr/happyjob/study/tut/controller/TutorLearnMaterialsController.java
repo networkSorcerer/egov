@@ -1,17 +1,13 @@
 package kr.happyjob.study.tut.controller;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.mail.Multipart;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,13 +16,10 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -73,6 +66,26 @@ public class TutorLearnMaterialsController {
 	        return "tut/tutorLearnMaterials";
 		}
 		
+		//강의 목록 관리 메인! (React용)
+		@RequestMapping("t_learningMaterialsReact")
+		@ResponseBody
+		public Map<String, Object> MaterialsMainReact(@RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+				HttpServletResponse response, HttpSession session) throws Exception {
+			logger.info("=====START MaterialsMain");
+			Map<String, Object> result = new HashMap<>();
+
+			Map<String, Object> param = new HashMap<>();
+			param.put("tutorId", session.getAttribute("loginId"));
+			
+			//강의 리스트 불러오기
+			List<TutorLectureDto> lectureList = tutorLearnMaterialsService.getLectureList((String) session.getAttribute("loginId"));
+			result.put("lectureList", lectureList);
+			
+			logger.info("=====END MaterialsMain");
+		
+	        return result;
+		}
+		
 		// 학습 자료 리스트
 		@RequestMapping("tutorLearnMatList")
 		public String getLearnMatList(Model model, @RequestParam Map<String, Object> paramMap, HttpSession session) throws Exception {
@@ -93,6 +106,7 @@ public class TutorLearnMaterialsController {
 			int pageSize = Integer.parseInt((String) paramMap.get("pageSize")); 
 			int pageIndex = (currentPage - 1) * pageSize;
 			
+			paramMap.put("tutorId", session.getAttribute("loginId"));
 			paramMap.put("pageIndex", pageIndex);
 			paramMap.put("pageSize", pageSize);
 			
@@ -111,7 +125,35 @@ public class TutorLearnMaterialsController {
 		
 			return "/tut/tutorLearnMaterialsList";
 		}
+		// 학습 자료 리스트 (리엑트용)
+		@RequestMapping("tutorLearnMatListReact")
+		@ResponseBody
+		public Map<String, Object> getLearnMatListReact(@RequestParam Map<String, Object> paramMap, HttpSession session) throws Exception {
+			Map<String, Object> result = new HashMap<>();
+
+			int currentPage = Integer.parseInt((String) paramMap.get("currentPage")); 
+			int pageSize = Integer.parseInt((String) paramMap.get("pageSize")); 
+			int pageIndex = (currentPage - 1) * pageSize;
+			
+			paramMap.put("tutorId", session.getAttribute("loginId"));
+			paramMap.put("pageIndex", pageIndex);
+			paramMap.put("pageSize", pageSize);
+			
+			logger.info("   - putparamMap : " + paramMap);
+			
+			List<TutorLearningMaterials> learningMatList = tutorLearnMaterialsService.getTutorLearnMatList(paramMap);
+			int learnMatTotalCount = tutorLearnMaterialsService.learnMatTotalCount(paramMap);
+			
+			logger.info("learningMatList TotalCount = " +  learnMatTotalCount);
+			
+			result.put("totalCount", learningMatList.size());
+			result.put("pageSize", pageSize);
+			result.put("totalCount", learnMatTotalCount);
+			result.put("currentPage", currentPage);
+			result.put("learningMatList", learningMatList);
 		
+			return result;
+		}
 		// 학습자료 상세정보
 		@RequestMapping("getDetailLearnMat.do")
 		@ResponseBody
@@ -219,6 +261,32 @@ public class TutorLearnMaterialsController {
 		public void learnMatFileDownLoad(@PathVariable String fileName, HttpServletResponse response) throws IOException {
 			logger.info("=====START learnMatFileDownLoad");
 			logger.info("=====PathVariable : " + fileName);
+			
+			File file = new File("V:\\FileRepository\\tutor\\"+ fileName);
+			
+			String originalFileName = fileName.substring(fileName.lastIndexOf("_") + 1);
+			logger.info("=====originalFileName : " + originalFileName);
+			
+			logger.info("===== file : " + file.getPath());
+			
+			byte fileByte[] = FileUtils.readFileToByteArray(file);
+			
+			response.setContentType("application/octet-stream");
+			response.setContentLength(fileByte.length);
+			response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(originalFileName,"UTF-8")+"\";");
+			response.setHeader("Content-Transfer-Encoding", "binary");
+			response.getOutputStream().write(fileByte); 
+			response.getOutputStream().flush();
+		    response.getOutputStream().close();
+			
+			logger.info("=====END learnMatFileDownLoad");
+		}
+		
+		//학습자료 파일 다운로드
+		@RequestMapping("fileDownloadRes/{fileName:.+}")
+		@ResponseBody
+		public void learnMatFileDownLoadRes(@PathVariable String fileName, HttpServletResponse response) throws IOException {
+			logger.info("=====START learnMatFileDownLoadRes");
 			
 			File file = new File("V:\\FileRepository\\tutor\\"+ fileName);
 			

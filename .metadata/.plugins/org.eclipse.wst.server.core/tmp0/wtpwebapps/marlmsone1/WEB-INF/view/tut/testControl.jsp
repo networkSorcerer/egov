@@ -389,12 +389,12 @@
 			console.log("checkBoxed Value" + i + ":" + checkboxes[i].checked);
 			if (checkboxes[i].checked) {
 				selectedItems += checkboxes[i].getAttribute('data-item-id')
-						+ " ";
+						+ ",";
 			}
 		}
 
 		var data = {
-			selectedItems : selectedItems,
+			que_id : selectedItems,
 			
 		};
 		

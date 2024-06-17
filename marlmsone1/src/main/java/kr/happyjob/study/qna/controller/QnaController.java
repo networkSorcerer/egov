@@ -88,13 +88,17 @@ public class QnaController {
 		return "qna/qnaList";
 	}	
 	
-	@RequestMapping(value="/qnaListJson.do")
-	@ResponseBody// url 이름이랑 메소드 이름 동일하게 setting
-	public Map<String, Object> qnaListJson(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+	/** Q&A 초기화면*/
+	@RequestMapping(value="/qnaListjson.do")
+	@ResponseBody
+	// url 이름이랑 메소드 이름 동일하게 setting
+	public Map<String, Object> qnaListjson(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 			
 		logger.info("+ Start " + className + ".qna");
 		logger.info("   - paramMap : " + paramMap);
+		
+		Map<String, Object> returnmap = new HashMap<String, Object>();
 		
 		int cpage = Integer.valueOf((String) paramMap.get("cpage"));
 		int pagesize = Integer.valueOf((String) paramMap.get("pagesize"));
@@ -102,19 +106,17 @@ public class QnaController {
 		int startpos = (cpage-1) * pagesize;
 		
 		//검색
-		String searchtitle =(String) paramMap.get("searchtitle");
+//		String searchtitle =(String) paramMap.get("searchtitle");
 		paramMap.put("startpos", startpos);
 		paramMap.put("pagesize", pagesize);
 		
 		List<QnaVo> listData = qnaService.qnaList(paramMap);
 		int listcnt = qnaService.listcnt(paramMap);
-		Map<String, Object> resultMap = new HashMap<>();
-		resultMap.put("listData", listData);
-		resultMap.put("listcnt", listcnt);
-		//model.addAttribute("listData", listData);
-		//model.addAttribute("listcnt", listcnt);	
+		
+		returnmap.put("listData", listData);
+		returnmap.put("listcnt", listcnt);	
 
-		return resultMap;
+		return returnmap;
 	}	
 	
 	/**등록*/
@@ -189,8 +191,6 @@ public class QnaController {
 		
 		return "qna/commentList";
 	}		
-	
-	
 	/**상세조회*/
 	@RequestMapping("/qnaViewJson.do")
 	@Transactional
@@ -223,15 +223,17 @@ public class QnaController {
 
 		List<CommentVo> commentData = commentService.commentList(paramMap);
 		
-		Map<String , Object> resultMap = new HashMap<>();
-		resultMap.put("commentData", commentData);
-		//model.addAttribute("commentData", commentData);
+		
+		model.addAttribute("commentData", commentData);
 		
 		logger.info(" : " + returnMap);
 		
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("commentData", commentData);
+		
+		
 		return resultMap;
 	}		
-	
 	
 	/**수정*/
 	@RequestMapping("/qnaModify.do")

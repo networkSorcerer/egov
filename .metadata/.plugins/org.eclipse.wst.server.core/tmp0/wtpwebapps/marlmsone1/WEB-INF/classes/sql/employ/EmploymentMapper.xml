@@ -49,19 +49,17 @@
 			count(*) as emp_Total
 		from tb_employ te
 		join tb_userinfo tu on tu.loginID = te.std_id
-						<where>
+		<where>
 			<if test="searchInfo != null and searchInfo != ''">
 				<choose>
 					<when test="searchKey eq 'name'.toString()">
-						and tu.name Like CONCAT('%', #{searchInfo},
-						'%')
+						and tu.name Like CONCAT('%', #{searchInfo}, '%')
 					</when>
 					<when test="searchKey eq 'comp_name'.toString()">
 						and te.comp_name LIKE CONCAT('%', #{searchInfo}, '%')
 					</when>
 					<when test="searchKey eq 'all'.toString()">
-						and tu.name Like CONCAT('%', #{searchInfo},
-						'%')
+						and tu.name Like CONCAT('%', #{searchInfo}, '%')
 						or te.comp_name LIKE CONCAT('%', #{searchInfo}, '%')
 					</when>
 					<otherwise>
@@ -119,24 +117,26 @@
 	</select>	
 		
 	<select id="std_Total" resultType="int">
-		select
-			count(*) as std_Total	
-		from tb_userinfo tu
-        join tb_lecstd_info ti on ti.std_id = tu.loginID
-        join tb_lec_info tl on tl.lec_id = ti.lec_id
-		        <where>
+		select 
+			Count(*)
+		from (
+			select
+				ti.std_id	
+			from tb_userinfo tu
+	        join tb_lecstd_info ti on ti.std_id = tu.loginID
+	        join tb_lec_info tl on tl.lec_id = ti.lec_id
+	        left join tb_employ te on te.std_id = tu.loginID 
+			where te.employ_day is null
 			<if test="searchInfo1 != null and searchInfo1 != ''">
 				<choose>
 					<when test="searchKey1 eq 't_name'.toString()">
-						and tu.name Like CONCAT('%', #{searchInfo1},
-						'%')
+						and tu.name Like CONCAT('%', #{searchInfo1}, '%')
 					</when>
 					<when test="searchKey1 eq 'lec_nm'.toString()">
 						and tl.lec_name LIKE CONCAT('%', #{searchInfo1}, '%')
 					</when>
 					<when test="searchKey1 eq 'all1'.toString()">
-						and tu.name Like CONCAT('%', #{searchInfo1},
-						'%')
+						and tu.name Like CONCAT('%', #{searchInfo1}, '%')
 						or tl.lec_name LIKE CONCAT('%', #{searchInfo1}, '%')
 					</when>
 					<otherwise>
@@ -144,7 +144,8 @@
 					</otherwise>
 				</choose>
 			</if>
-		</where>
+			group by ti.std_id
+		) as t;
 	</select>
 		
 	<!-- 모달 학생 정보 가져오기 -->
@@ -207,7 +208,8 @@
 			tu.name,
 			tu.tel,
 			te.comp_name,
-			te.employ_day
+			te.employ_day,
+			te.resign_day
        	from tb_userinfo tu
        	left join tb_employ te on tu.loginID = te.std_id
         where user_type = "A" and loginID = #{std_id}
@@ -221,13 +223,15 @@
        	std_id,
        	 comp_name,
       	 employ_day,
-       	 resign_day
+       	 resign_day,
+       	 wp_state
        	)
        VALUES (
        	 #{std_id},
        	 #{comp_name},
        	 #{employ_day},
-       	 #{resign_day}
+       	 null,
+       	 '재직중'
        )
 	</insert>
 	<!-- 취업목록 수정하기 -->
@@ -236,8 +240,11 @@
 		set 
 				comp_name = #{comp_name},
 				employ_day = #{employ_day},
-				resign_day = #{resign_day}
-			
+				resign_day = #{resign_day},
+				wp_state = CASE
+								 	WHEN resign_day IS NOT NULL THEN '퇴사'
+								 	ELSE '재직중'
+								 END
 		where std_id = #{std_id}	
 	</update>
 	

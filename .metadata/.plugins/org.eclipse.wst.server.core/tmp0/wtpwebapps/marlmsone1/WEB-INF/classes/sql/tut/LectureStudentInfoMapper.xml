@@ -49,7 +49,7 @@
 		FROM
 			tb_lec_info li
 		INNER JOIN tb_userinfo ui ON li.tutor_id = ui.loginID
-		INNER JOIN tb_lec_room lr ON li.lecrm_id = lr.lecrm_id
+		LEFT JOIN tb_lec_room lr ON li.lecrm_id = lr.lecrm_id
 		WHERE
 			tutor_id = #{tutorId} AND lec_id = #{lectureId}; 
 	</select>

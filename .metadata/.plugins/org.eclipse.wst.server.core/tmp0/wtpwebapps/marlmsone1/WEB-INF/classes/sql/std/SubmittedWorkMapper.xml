@@ -10,6 +10,8 @@
 		      ,hmk.hwk_id as hwk_id
 		      ,hmk.hwk_name as hwk_name
 		      ,li.std_id as std_id
+	          ,hmk.start
+	          ,hmk.dead
 		 FROM tb_lecstd_info li
 		       INNER JOIN tb_lec_info lei on lei.lec_id = li.lec_id
 		       LEFT OUTER JOIN tb_hmk hmk on hmk.lec_id = li.lec_id 
@@ -81,7 +83,8 @@
 				,submit_url = #{fileinfo.file_loc}	
 				,submit_fsize = #{fileinfo.file_size}	
 				,submit_date = now()
-		WHERE submit_id=#{submit_id}; 	
+		WHERE std_id=#{std_id}
+		AND   hwk_id=#{hwk_id}; 	
 	</update>
 
 	<!-- 개별조회 (업로드 파일 가져오기) -->

@@ -107,6 +107,7 @@
 		SELECT * 
 		  FROM tb_week_plan
 		 WHERE lec_id=#{lec_id}
+		 ORDER BY CAST(SUBSTRING_INDEX(week, '주차', 1) AS UNSIGNED)
 	</select>
 
 	<!--강의계획서 저장 -->

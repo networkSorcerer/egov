@@ -26,6 +26,9 @@
 		INNER JOIN tb_userinfo AS student_info
 				ON st.std_id = student_info.loginID
 		GROUP BY st.lec_id ORDER BY le.end_date DESC
+		<if test="startpos != null and pagesize != null">
+			LIMIT #{startpos}, #{pagesize}
+		</if>
 	</select>
 	
 	<!-- 강사 페이지 목록 조회 -->
@@ -52,7 +55,9 @@
 				ON st.std_id = student_info.loginID
 		WHERE tutor_info.loginID = #{loginId}
 		GROUP BY st.lec_id ORDER BY le.end_date DESC
-	
+		<if test="startpos != null and pagesize != null">
+			LIMIT #{startpos}, #{pagesize}
+		</if>
 	</select>
 	
 	
@@ -70,7 +75,7 @@
 		FROM tb_lecstd_info st
 		INNER JOIN tb_lec_info le
         ON le.lec_id = st.lec_id
-        WHERE le.tutor_id = 'bbb123'
+        WHERE le.tutor_id = #{loginId}
 	</select>
 	
 	<!-- 상세 조회 -->

@@ -3,29 +3,40 @@
 <mapper namespace="kr.happyjob.study.adm.dao.ResumeControlDao">
 
 	<select id="getAllLectureList" resultType="kr.happyjob.study.adm.model.AdmLectureDto">
-		
-		SELECT 
-			li.lec_id,
-    		li.tutor_id,
-    		ui.name AS tutor_name,
-    		li.lec_name,
-    		li.pre_pnum,
-    		li.start_date,
-    		li.end_date
-		FROM 
-			tb_lec_info li
-		INNER JOIN tb_userinfo ui ON li.tutor_id = ui.loginID
-		LIMIT #{pageIndex}, #{pageSize};
-		
+	    SELECT  lin.lec_id
+	            , lin.tutor_id
+	            , ui.name as tutor_name
+	            , lin.lec_name
+	            , IFNULL(COUNT(lsin.lec_id),0) AS pre_pnum
+	            , DATE_FORMAT(lin.start_date, '%Y-%m-%d') as start_date
+	    		    , DATE_FORMAT(lin.end_date, '%Y-%m-%d') as end_date
+	    	     	, CONCAT(DATE_FORMAT(lin.start_date, '%Y-%m-%d'), ' / ', DATE_FORMAT(lin.end_date, '%Y-%m-%d')) as lectureDate
+	     FROM  tb_lec_info lin
+	     LEFT  JOIN  (
+	                    SELECT lec_id
+	                      FROM tb_lecstd_info
+	                     WHERE apv_yn = 'Y'
+	                  ) lsin						ON lin.lec_id = lsin.lec_id
+	     LEFT  JOIN  tb_userinfo ui 				ON ui.loginID = lin.tutor_id
+   		<where>
+			<if test="(searchRoomName != null) and (!searchRoomName.equals(''))">
+				AND lin.lec_name Like CONCAT('%', #{searchRoomName}, '%')
+			</if>
+		</where>
+	 GROUP BY  lin.lec_id , lin.tutor_id , ui.name , lin.lec_name, lin.start_date, lin.end_date
+		LIMIT 	#{pageIndex}, #{pageSize}
 	</select>
 	
-	<select id="lectureListTotalCount" resultType="Integer">
+	<select id="lectureListTotalCount" parameterType="String" resultType="Integer">
 		
-		SELECT
-			count(*) AS count
-		FROM
-			tb_lec_info li
-			INNER JOIN tb_userinfo ui ON li.tutor_id = ui.loginID;
+		SELECT	count(*) AS count
+		FROM	tb_lec_info li
+		JOIN 	tb_userinfo ui ON li.tutor_id = ui.loginID
+		<where>
+			<if test="(value != null) and (!value.equals(''))">
+				AND li.lec_name Like CONCAT('%', #{value}, '%')
+			</if>
+		</where>
 		
 	</select>
 	
@@ -42,8 +53,7 @@
 		FROM
 			tb_lecstd_info li
 		INNER JOIN tb_userinfo ui ON li.std_id = ui.loginID
-		WHERE lec_id = #{lectureId};	
-		
+		WHERE lec_id = #{lectureId}
 	</select>
 	
 	<select id="studentResumeTotalCount" resultType="Integer">
@@ -52,8 +62,59 @@
 		FROM
 			tb_lecstd_info li
 		INNER JOIN tb_userinfo ui ON li.std_id = ui.loginID
-		WHERE lec_id = #{lectureId};	
+		WHERE lec_id = #{lectureId}
+
+	</select>
 	
+	<select id="getStudentResumeListJson" resultType="kr.happyjob.study.adm.model.StudentResumeDto">
+		SELECT
+			li.lec_id AS lectureId,
+			li.std_id AS studentId,
+    		ui.name AS studentName,
+    		ui.tel AS studentTel,
+    		ui.mail AS studentMail,
+    		ui.resume_fname AS resumeFileName,
+    		ui.resume_url AS resumeUrl,
+    		ui.resume_fsize AS resumeFilesize
+		FROM
+			tb_lecstd_info li
+		INNER JOIN tb_userinfo ui ON li.std_id = ui.loginID
+		WHERE 
+			lec_id = #{lectureId}
+		AND 
+			apv_yn = 'Y'
+		<if test="(searchKey != null) and (!searchKey.equals(''))">
+			<if test="searchKey.equals('studentName')">
+				AND ui.name Like CONCAT('%', #{searchValue}, '%')
+			</if>
+			<if test="searchKey.equals('studentId')">
+				AND li.std_id Like CONCAT('%', #{searchValue}, '%')
+			</if>
+			<if test="searchKey.equals('studentTel')">
+				AND ui.tel Like CONCAT('%', #{searchValue}, '%')
+			</if>
+		</if>
+		LIMIT #{pageIndex}, #{pageSize}
+	</select>
+	
+	<select id="studentResumeTotalCountJson" resultType="Integer">
+		SELECT
+			count(*) AS count
+		FROM
+			tb_lecstd_info li
+		INNER JOIN tb_userinfo ui ON li.std_id = ui.loginID
+		WHERE lec_id = #{lectureId}
+		<if test="(searchKey != null) and (!searchKey.equals(''))">
+			<if test="searchKey=='studentName'">
+				AND ui.name Like CONCAT('%', #{searchValue}, '%')
+			</if>
+			<if test="searchKey=='studentId'">
+				AND li.std_id Like CONCAT('%', #{searchValue}, '%')
+			</if>
+			<if test="searchKey=='studentTel'">
+				AND ui.tel Like CONCAT('%', #{searchValue}, '%')
+			</if>
+		</if>	
 	</select>
 	
 		<select id="getStudentResume" parameterType="HashMap" resultType="kr.happyjob.study.adm.model.StudentResumeDto">
