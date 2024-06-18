@@ -54,6 +54,27 @@ public class TestController {
 
 		return "tut/testControl";
 	}
+	/*
+	 * 시험관리 초기화면
+	 */
+	@RequestMapping("testControlJson.do")
+	@ResponseBody
+	public Map<String, Object> testControlJson(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+
+		logger.info("+ Start " + className);
+		logger.info("   - paramMap : " + paramMap);
+
+		Map<String, Object> resultMap = new HashMap<>();
+		// 시험분류 목록 출력
+		List<TestModel> lectureListData = testService.lectureListData(paramMap);
+		resultMap.put("lecList",lectureListData);
+		//model.addAttribute("lecList",lectureListData);
+		
+		logger.info("+ End " + className);
+
+		return resultMap;
+	}
 
 	/*
 	 * 시험관리 목록 가져오기

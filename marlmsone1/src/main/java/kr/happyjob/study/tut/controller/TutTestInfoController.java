@@ -248,6 +248,38 @@ public class TutTestInfoController {
 		return "std/testItemList";
 	}
 
+	@RequestMapping("testItemListJson.do")
+	@ResponseBody
+	public Map<String, Object> testItemListJson(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+
+		logger.info("+ Start " + className + ".testItemList");
+		logger.info("   - paramMap : " + paramMap);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		List<TestDetailVo> listData = myTestInfoService.testItemList(paramMap);
+		int listCnt = myTestInfoService.testItemListCnt(paramMap);
+
+		logger.info("listData : " + listData);
+		logger.info("listCnt : " + listCnt);
+		resultMap.put("lec_id", paramMap.get("lec_id"));
+		resultMap.put("lec_name", paramMap.get("lec_name"));
+		resultMap.put("test_id", paramMap.get("test_id"));
+		resultMap.put("tut_name", paramMap.get("tut_name"));
+		resultMap.put("listData", listData);
+		resultMap.put("listCnt", listCnt);
+		//model.addAttribute("lec_id", paramMap.get("lec_id"));
+		//model.addAttribute("lec_name", paramMap.get("lec_name"));
+		//model.addAttribute("test_id", paramMap.get("test_id"));
+		//model.addAttribute("tut_name", paramMap.get("tut_name"));
+		//model.addAttribute("listData", listData);
+		//model.addAttribute("listCnt", listCnt);
+
+		logger.info("+ End " + className + ".testItemList");
+
+		return resultMap;
+	}
 	// 시험 응시(제출)
 	@RequestMapping("/submitTest.do")
 	@ResponseBody
