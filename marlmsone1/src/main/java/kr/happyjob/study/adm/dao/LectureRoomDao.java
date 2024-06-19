@@ -64,6 +64,8 @@ public interface LectureRoomDao {
 	/** 장비 관리 개수 조회 */
 	public int equManagementCnt(Map<String, Object> paramMap)throws Exception;
 
-
+	
+	
+	public List<LectureRoomVO> lectureRoomList1(Map<String, Object> paramMap)throws Exception;
 	
 }

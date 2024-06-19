@@ -78,6 +78,7 @@ public class LectureRoomController {
 
 		return "adm/lectureRoomList";
 	}
+	
 
 	/**
 	 * 강의실 리스트
@@ -107,6 +108,30 @@ public class LectureRoomController {
 		
 		returnmap.put("listdata", listdata);
 		returnmap.put("listcnt", listcnt);
+		
+		logger.info("+ End " + className + ".lectureRoomListjson");
+
+		return returnmap;
+	}
+	
+	
+	/**
+	 * 강의실 리스트
+	 */
+	@RequestMapping("lectureRoomListjson1.do")
+	@ResponseBody
+	public Map<String,Object> lectureRoomListjson1(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		
+		logger.info("+ Start " + className + ".lectureRoomListjson");
+		logger.info("   - paramMap : " + paramMap);
+
+		Map<String,Object> returnmap = new HashMap<String,Object>();
+		
+		List<LectureRoomVO> listdata = lectureRoomService.lectureRoomList1(paramMap);
+	
+		
+		returnmap.put("listdata", listdata);
 		
 		logger.info("+ End " + className + ".lectureRoomListjson");
 

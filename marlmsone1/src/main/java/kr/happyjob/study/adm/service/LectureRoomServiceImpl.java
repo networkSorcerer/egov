@@ -131,8 +131,14 @@ public class LectureRoomServiceImpl implements LectureRoomService {
 	public int equManagementCnt(Map<String, Object> paramMap)throws Exception{
 		int cnt = lectureRoomDao.equManagementCnt(paramMap);
 		return cnt;
+	}
+
+	@Override
+	public List<LectureRoomVO> lectureRoomList1(Map<String, Object> paramMap) throws Exception {
+		List<LectureRoomVO> list1 = lectureRoomDao.lectureRoomList(paramMap);
+		return list1;
 	};
 	
-	
+
 }
 
