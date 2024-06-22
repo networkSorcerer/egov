@@ -90,7 +90,11 @@
 		
 	</select><!-- 리스트 출력-->
 	
-	
+	<!-- 강의 리스트만 출력하기 위함  -->
+	<select id="lecList1" resultType="kr.happyjob.study.adv.model.AdviceVo">
+		select lec_id , lec_name 
+		from tb_lec_info
+	</select>
 	<!-- 상담 목록 총 갯수 조회(리액트) -->
 	<select id="advListCntR" resultType="int">
 		/*kr.happyjob.study.adv.dao.AdviceDao.advListCnt*/

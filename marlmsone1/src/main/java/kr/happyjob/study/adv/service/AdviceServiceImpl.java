@@ -108,4 +108,10 @@ public class AdviceServiceImpl implements AdviceService {
 	public AdviceVo advDetailR(Map<String, Object> paramMap) throws Exception {
 		return adviceDao.advDetailR(paramMap);		
 	}
+//강의 리스트만 출력하기 위함 
+	@Override
+	public List<LecInfoVo> lecList1(Map<String, Object> paramMap) throws Exception {
+		
+		return adviceDao.lecList1(paramMap);
+	}
 }

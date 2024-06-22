@@ -141,7 +141,28 @@ public class AdviceController {
 
 	      return returnmap;
 	   }
+	   
+//	   강의 목록 만 한 번 뽑아 보자 ㅇㅋ?????
+	   @RequestMapping("lecList3.do")
+	   @ResponseBody
+	   public Map<String, Object> lecList3( Model model, 
+	                     @RequestParam Map<String, Object> paramMap, 
+	                     HttpServletRequest request,
+	                     HttpServletResponse response, 
+	                     HttpSession session ) throws Exception {
+	      
+		   Map<String, Object> resultMap = new HashMap<String,Object>();
+	     
+	      
+	      // 강의목록 조회
+	      List<LecInfoVo> listData = adviceService.lecList1(paramMap);
+	   
+	      resultMap.put("listData", listData);
+	     
+	      
 
+	      return resultMap;
+	   }
 	
 	   /**
 	    * 상담 목록(JSP)

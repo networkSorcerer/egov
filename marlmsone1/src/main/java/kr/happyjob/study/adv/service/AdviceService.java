@@ -50,5 +50,7 @@ public interface AdviceService {
 	
 	/** 상담 상세보기(리액트) */
 	public AdviceVo advDetailR(Map<String, Object> paramMap) throws Exception;
+//강의 리스트 만 출력하기 위함
+	public List<LecInfoVo> lecList1(Map<String, Object> paramMap) throws Exception;
 
 }

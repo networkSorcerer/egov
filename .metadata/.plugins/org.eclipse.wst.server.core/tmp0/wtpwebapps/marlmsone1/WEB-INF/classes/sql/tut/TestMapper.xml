@@ -23,7 +23,8 @@
 					tq.que_ex1,
 					tq.que_ex2,
 					tq.que_ex3,
-					tq.que_ex4
+					tq.que_ex4,
+					tq.use_yn
 		FROM  	tb_test_que tq
 				inner join tb_lec_type lt on tq.lec_type_id = lt.lec_type_id
 		WHERE tq.use_yn = ifnull(#{use_yn},'Y')
