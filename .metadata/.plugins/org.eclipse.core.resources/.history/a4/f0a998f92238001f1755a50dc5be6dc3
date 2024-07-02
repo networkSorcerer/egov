@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.happyjob.study.system.dao.NoticeDao">
+	<select id="noticeList" resultType="kr.happyjob.study.system.model.NoticeModel">
+		select 
+			noti_seq,
+			loginID,
+			noti_title ,
+			noti_content ,
+			noti_date 
+		from tb_noti_info
+		<where>
+			<if test="(searchTitle != null) and (!''.equals(searchTitle))">
+				and noti_title Like CONCAT('%',#{seachTitle},'%')
+			</if>
+			<if test="searchStDate != null) and (!''.equals(searchStDate))">
+				and noti_date= #{searchTitle}
+			</if>
+			<if test="(searchEdDate != null) and (!''.equals(searchEdDate))">
+				and noti_date= #{searchTitle}
+			</if>
+		</where>
+		ORDER BY noti_seq DESC
+		LIMIT #{startSeq},#{pageSize}
+	</select>
+	
+	<select id="noticeListCnt" resultType="int">
+		select
+		 count(*) 
+		 from tb_noti_info
+	</select>
+	
+	<insert id="noticeSave">
+    <selectKey resultType="int" keyProperty="noticeSeq" order="BEFORE">
+        select max(noti_seq) + 1 from tb_noti_info
+    </selectKey>
+    insert into tb_noti_info
+    (
+        noti_seq,
+        loginID,
+        noti_title,
+        noti_content,
+        noti_date
+    ) values (
+        #{noticeSeq},
+        #{loginId},
+        #{title},
+        #{content},
+        now()
+    )
+</insert>
+
+<select id="noticeDetail" resultType="kr.happyjob.study.system.model.NoticeModel">
+   /* kr.happyjob.study.system.dao.NoticeDao.noticeDetail */
+      SELECT 
+         noti_seq ,
+         loginID ,
+         noti_title ,
+         noti_content 
+      FROM tb_noti_info
+      WHERE noti_seq = #{noticeSeq}
+   </select>
+<update id="noticeUpdate" >
+    <!-- kr.happyjob.study.system.dao.NoticeDao.noticeUpdate -->
+    update tb_noti_info
+    set
+        noti_title = #{title},
+        noti_content = #{content}
+    where noti_seq = #{notiSeq}
+</update>
+
+<delete id="noticeDelete" >
+    <!-- kr.happyjob.study.system.dao.NoticeDao.deleteNotice -->
+    delete from tb_noti_info
+    where noti_seq = #{notiSeq}
+</delete>
+
+
+
+</mapper>
