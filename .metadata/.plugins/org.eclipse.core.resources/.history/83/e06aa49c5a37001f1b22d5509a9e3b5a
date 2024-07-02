@@ -1,0 +1,20 @@
+package kr.happyjob.study.system.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import kr.happyjob.study.system.dao.NoticeDao;
+import kr.happyjob.study.system.model.NoticeModel;
+
+public class NoticeServiceImpl implements NoticeService {
+	@Autowired
+	NoticeDao noticeDao;
+	@Override
+	public List<NoticeModel> noticeList() throws Exception {
+		// TODO Auto-generated method stub
+		return noticeDao.noticeList();
+	}
+
+
+}

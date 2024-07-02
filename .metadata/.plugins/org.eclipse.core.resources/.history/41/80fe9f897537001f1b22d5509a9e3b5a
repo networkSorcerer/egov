@@ -1,0 +1,13 @@
+package kr.happyjob.study.system.service;
+
+import java.util.List;
+
+import kr.happyjob.study.system.model.NoticeModel;
+
+public interface NoticeService {
+	public List<NoticeModel> noticeList() throws Exception;
+	
+	public int noticeListCnt() throws Exception;
+	
+	public int noticeSave() throws Exception;
+}
