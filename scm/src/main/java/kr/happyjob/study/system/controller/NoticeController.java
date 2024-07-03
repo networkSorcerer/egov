@@ -1,5 +1,9 @@
 package kr.happyjob.study.system.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +50,7 @@ public class NoticeController {
 		return "system/notice";
 	}
 	
+	
 	@RequestMapping("noticeList.do")
 	public String getNoticeList(Model model, @RequestParam Map<String, Object> paramMap,
 	                            HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -68,6 +74,7 @@ public class NoticeController {
         
         return "system/noticeList";
 	}
+	
 	
 	@RequestMapping("noticeSave.do")
 	@ResponseBody
@@ -187,6 +194,52 @@ public class NoticeController {
 
 	      return resultMap;
 
-	   }
+	}
+		
+	
+	@RequestMapping("noticeDownload.do")
+	public void downLoadNotice(@RequestParam Map<String, Object> paramMap, 
+	        HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+	    NoticeModel getFileData = noticeService.noticeDetail(paramMap);
+	    String file = getFileData.getPhsycal_path();
 
+	    byte[] fileByte = FileUtils.readFileToByteArray(new File(file));
+	    
+	    response.setContentType("application/octet-stream");
+	    response.setContentLength(fileByte.length);
+	    response.setHeader("Content-Disposition", 
+	    		"attachment; filename=\"" + URLEncoder.encode(getFileData.getFile_name(), "UTF-8") + "\";");
+	    response.setHeader("Content-Transfer-Encoding", "binary");
+	    response.getOutputStream().write(fileByte);
+	    response.getOutputStream().flush();
+	    response.getOutputStream().close();
+	    
+	    
+	    return;
+	}
+
+	@RequestMapping("noticeUpdateFile.do")
+	@ResponseBody
+	public Map<String, Object> noticeUpdateFile(@RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		 Map<String , Object> resultMap = new HashMap<String, Object>();
+		 
+		 String loginId = (String) session.getAttribute("loginId");
+		 paramMap.put("loginId", loginId);
+		 
+		 int result = 0;
+		 String returnMsg ="";
+		 
+		 result = noticeService.noticeUpdateFile(paramMap, request);
+		 
+		 if(result > 0) {
+			 returnMsg = "SUCCESS";
+		 } else {
+			 returnMsg = "fail";
+		 }
+		 
+		 resultMap.put("result", returnMsg);
+		 
+		 return resultMap;
+	}
 }

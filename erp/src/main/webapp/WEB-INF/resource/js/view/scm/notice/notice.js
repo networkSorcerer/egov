@@ -347,7 +347,7 @@
 
 		var resultCallback3 = function(data) {
 			fSaveNoticeResult(data);
-		};
+		};f
 
 		$("#action").val("I"); // insert
 		var frm = document.getElementById("myNotice");

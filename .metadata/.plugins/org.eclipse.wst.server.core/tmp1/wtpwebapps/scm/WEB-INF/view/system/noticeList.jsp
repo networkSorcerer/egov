@@ -18,7 +18,8 @@
 			<c:forEach items="${noticeList}" var="list">
 				<tr>
 					    <td>${list.noti_seq}</a></td>
-						<td><a href="javascript:noticeDetailModal(${list.noti_seq});">${list.noti_title}</a></td>
+						<%-- <td><a href="javascript:noticeDetailModal(${list.noti_seq});">${list.noti_title}</a></td> --%>
+						<td><a href="javascript:noticeDetailFileModal(${list.noti_seq});">${list.noti_title}</a></td>
 						
 						<td>${list.noti_date}</td>
 						<td>${list.loginID}</td>
