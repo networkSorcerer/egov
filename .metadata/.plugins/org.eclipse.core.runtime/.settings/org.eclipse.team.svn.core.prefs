@@ -3,4 +3,4 @@ externalMigrateFromAuthorizationDatabase/isMigrated=true
 migrateFromAuthorizationDatabase/isMigrated=true
 repositories/20ef53434537001f1286967d20d754d5=20ef53434537001f1286967d20d754d5;https\://DESKTOP-40KHJBQ\:8443/svn/junerp;https\://DESKTOP-40KHJBQ\:8443/svn/junerp;branches;tags;trunk;true;0ee386a1-dbfd-134b-8102-b80f649d4c4f;https\://desktop-40khjbq\:8443/svn/junerp;;false;;;0
 repositories/507d154bed2a001f17bf875a49aed0f4=507d154bed2a001f17bf875a49aed0f4;https\://desktop-40khjbq\:8443/svn/marlmsone/marlmsone;https\://desktop-40khjbq\:8443/svn/marlmsone/marlmsone;branches;tags;trunk;true;7a0f3837-e2ce-464c-a1fe-f775fd2ce4d4;https\://desktop-40khjbq\:8443/svn/marlmsone;;false;;;0
-repositories/601cac2d4537001f1286967d20d754d5=601cac2d4537001f1286967d20d754d5;https\://DESKTOP-40KHJBQ\:8443/svn/junscm;https\://DESKTOP-40KHJBQ\:8443/svn/junscm;branches;tags;trunk;true;;;;false;;;0
+repositories/601cac2d4537001f1286967d20d754d5=601cac2d4537001f1286967d20d754d5;https\://DESKTOP-40KHJBQ\:8443/svn/junscm;https\://DESKTOP-40KHJBQ\:8443/svn/junscm;branches;tags;trunk;true;74d4ee1b-45fa-fc43-b651-bc113327718a;https\://desktop-40khjbq\:8443/svn/junscm;;false;;;0

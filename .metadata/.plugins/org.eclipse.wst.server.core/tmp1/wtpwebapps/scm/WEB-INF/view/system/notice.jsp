@@ -58,7 +58,7 @@
 			
 		})
 	}
-	
+	//페이지, 검색기능, 리스트 출력 
 	function noticeSearch(cpage){
 		cpage = cpage || 1;
 		
@@ -81,7 +81,7 @@
 		
 		callAjax("/system/noticeList.do", "post", "text", false, param, callBackFunction);
 	}
-	
+	/* <!-- ----------------------------------------------------------------------------------------------------- --> */
 	function insertModal(){
 		// 모달 열어주는 함수
 		$("#loginId").val("");

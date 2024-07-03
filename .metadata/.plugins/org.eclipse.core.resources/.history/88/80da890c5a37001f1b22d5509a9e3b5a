@@ -1,9 +1,0 @@
-package kr.happyjob.study.system.dao;
-
-import java.util.List;
-
-import kr.happyjob.study.system.model.NoticeModel;
-
-public interface NoticeDao {
-	public List<NoticeModeldel> noticeList()throws Exception;
-}

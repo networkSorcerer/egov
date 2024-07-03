@@ -1,9 +1,0 @@
-package kr.happyjob.study.system.service;
-
-import java.util.List;
-
-import kr.happyjob.study.system.model.NoticeModel;
-
-public interface NoticeService {
-	public List<NoticeModel> noticeList() throws Exception;
-}
