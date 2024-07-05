@@ -1,0 +1,17 @@
+package kr.happyjob.study.system.service;
+
+import java.util.List;
+import java.util.Map;
+
+import kr.happyjob.study.system.model.nModel;
+
+public interface nService {
+
+	static List<nModel> nList(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	int nListCnt(Map<String, Object> paramMap);
+
+}

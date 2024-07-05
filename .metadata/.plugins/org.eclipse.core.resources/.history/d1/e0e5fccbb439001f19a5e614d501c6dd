@@ -1,0 +1,5 @@
+package kr.happyjob.study.system.dao;
+
+public interface nDAO {
+
+}
