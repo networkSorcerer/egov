@@ -125,112 +125,112 @@ $("input[v-model=chkbox]:checked").each(function(){
 	var chk = $(this).val();
 	chk_arr.push(chk);
 })
+$(document).ready(function() {
+    // 회원 유형 변경 시 이벤트 핸들러
+  
+    // 기업회원 버튼 클릭 시 이벤트 핸들러
+    $("#register_outstaff").click(function() {
+        showCompanyFields();
+    });
 
-/*일반 회원가입 폼 초기화*/
-function instaffRegister(){
-	
-	$("#user_type").val("");
-	$("#div_cd").val("CommonMember");
-	$("#user_type_li").hide();
-	$("#registerId").val("");
-	$("#registerPwd").val("");
-	$("#registerPwdOk").val("");
-	$("#rggender_th").show();
-	$("#rggender_td").show();
-	$("#rgcompany_th").hide();
-	$("#rgcompany_td").hide();
-	$("#registerName").show();
-	$("#registerName_th").show();
- 	$("#gender").val("");
-	$("#user_company_li").hide("");
-	$("#user_company").val("");
-	$("#registerEmail").val("");
-	$("#detailaddr").val("");
-	$("#loginaddr").val("");
-	$("#loginaddr1").val("");
-	$("#tel1").val("");
-	$("#tel2").val("");
-	$("#tel3").val("");
-	$("#del_cd").val("n");
-	$("#approval_cd").val("n");
-	$("#ckIdcheckreg").val("0");
-	$("#birthday1").show();
-	$("#email_cop2").hide();
-	$("#consult_yn").show();
-	$("#user_describe").show();
-	$("#user_contents1").show();		
-	$("#salary").val("");
-	$("#user_hope_work").val("");
-	$("#user_describe").val("");
-	$("#grade").val("");
- 	$("#area1").val("");
-	$("#area2").val("");
-	$("#area3").val(""); 
-	$("#user_contents").val("");
-	$("#singular_facts").val("");
-	$("#item.dtl_cod").val("");
-	$("#dept_code").val("");
-	
-	//체크리스트출력
-	checklistResult(); 
-		
+    // 일반회원 버튼 클릭 시 이벤트 핸들러
+    $("#register_instaff").click(function() {
+        hideCompanyFields();
+    });
+});
+
+// 기업 회원 폼을 보이도록 설정하는 함수
+function showCompanyFields() {
+ 	$("#user_type").val("B");
+ 	$("#companyFields").show();
+    $("#email_cop2").show();
+    $("#userType").hide();
+    // 기업 회원 폼 초기화
+    $("#div_cd").val("CommonMember");
+    $("#registerId").val("");
+    $("#registerPwd").val("");
+    $("#registerPwdOk").val("");
+    $("#registerName").val("");
+    $("#gender").val("");
+    $("#user_company").val("");
+    $("#registerEmail").val("");
+    $("#detailaddr").val("");
+    $("#loginaddr").val("");
+    $("#loginaddr1").val("");
+    $("#tel1").val("");
+    $("#tel2").val("");
+    $("#tel3").val("");
+    $("#del_cd").val("n");
+    $("#approval_cd").val("n");
+    $("#ckIdcheckreg").val("0");
+    $("#birthday1").show();
+    $("#consult_yn").show();
+    $("#user_describe").show();
+    $("#user_contents1").show();
+    $("#salary").val("");
+    $("#user_hope_work").val("");
+    $("#user_describe").val("");
+    $("#grade").val("");
+    $("#area1").val("");
+    $("#area2").val("");
+    $("#area3").val("");
+    $("#user_contents").val("");
+    $("#singular_facts").val("");
+    $("#item.dtl_cod").val("");
+    $("#dept_code").val("");
+
+    // 전화번호 합치기
+  
+    // 체크리스트 출력
+    checklistResult();
 }
 
-/*기업 고객 회원가입 폼 초기화*/
-function instaffRegister(){
-	
-	$("#user_type").val("");
-	$("#div_cd").val("CommonMember");
-	$("#user_type_li").hide();
-	$("#registerId").val("");
-	$("#registerPwd").val("");
-	$("#registerPwdOk").val("");
-	$("#rggender_th").show();
-	$("#rggender_td").show();
-	$("#rgcompany_th").hide();
-	$("#rgcompany_td").hide();
-	$("#registerName").show();
-	$("#registerName_th").show();
- 	$("#gender").val("");
-	$("#user_company_li").hide("");
-	$("#user_company").val("");
-	$("#registerEmail").val("");
-	$("#detailaddr").val("");
-	$("#loginaddr").val("");
-	$("#loginaddr1").val("");
-	$("#tel1").val("");
-	$("#tel2").val("");
-	$("#tel3").val("");
-	$("#del_cd").val("n");
-	$("#approval_cd").val("n");
-	$("#ckIdcheckreg").val("0");
-	$("#birthday1").show();
-	$("#email_cop2").hide();
-	$("#consult_yn").show();
-	$("#user_describe").show();
-	$("#user_contents1").show();		
-	$("#salary").val("");
-	$("#user_hope_work").val("");
-	$("#user_describe").val("");
-	$("#grade").val("");
- 	$("#area1").val("");
-	$("#area2").val("");
-	$("#area3").val(""); 
-	$("#user_contents").val("");
-	$("#singular_facts").val("");
-	$("#item.dtl_cod").val("");
-	$("#dept_code").val("");
-	
-	// 전화번호 합치기
-	var tel1 = $("#tel1").val();
-	var tel2 = $("#tel2").val();
-	var tel3 = $("#tel3").val();
-	
-	
-	//체크리스트출력
-	checklistResult(); 
-		
+// 일반 회원 폼을 보이도록 설정하는 함수
+function hideCompanyFields() {
+    $("#companyFields").hide();
+    $("#email_cop2").hide();
+    $("#userType").show();
+
+
+    // 일반 회원 폼 초기화
+    $("#div_cd").val("CommonMember");
+    $("#registerId").val("");
+    $("#registerPwd").val("");
+    $("#registerPwdOk").val("");
+    $("#registerName").val("");
+    $("#gender").val("");
+    $("#registerEmail").val("");
+    $("#detailaddr").val("");
+    $("#loginaddr").val("");
+    $("#loginaddr1").val("");
+    $("#tel1").val("");
+    $("#tel2").val("");
+    $("#tel3").val("");
+    $("#del_cd").val("n");
+    $("#approval_cd").val("n");
+    $("#ckIdcheckreg").val("0");
+    $("#birthday1").show();
+    $("#consult_yn").show();
+    $("#user_describe").show();
+    $("#user_contents1").show();
+    $("#salary").val("");
+    $("#user_hope_work").val("");
+    $("#user_describe").val("");
+    $("#grade").val("");
+    $("#area1").val("");
+    $("#area2").val("");
+    $("#area3").val("");
+    $("#user_contents").val("");
+    $("#singular_facts").val("");
+    $("#item.dtl_cod").val("");
+    $("#dept_code").val("");
+
+    // 전화번호 합치기
+   
+    // 체크리스트 출력
+    checklistResult();
 }
+
 
 
 
@@ -1087,8 +1087,8 @@ function fSaveDataResult(data) {
 			</dt>
 			<dd class="content">
 				<div class="btn_areaC">
-					<a href="javascript:instaffRegister();" class="btnType blue" id="register_instaff"><span>일반회원</span></a>
-					<a href="javascript:outstaffRegister();" class="btnType " id="register_outstaff"><span>기업회원</span></a>
+					<a href="#" class="btnType blue" id="register_instaff"><span>일반회원</span></a>
+					<a href="#" class="btnType " id="register_outstaff"><span>기업회원</span></a>
 					<br>
 					<br>
 				</div>
@@ -1132,7 +1132,14 @@ function fSaveDataResult(data) {
 								<td colspan="3"><input type="password"
 									class="inputTxt p100" name="password1" id="registerPwdOk" /></td>
 							</tr>
-							
+							<tr id="companyFields" style="display: none;">
+							    <th scope="row" id="rgcompany_th">회사명<span class="font_red">*</span></th>
+							    <td id="rgcompany_td"><input type="text" class="inputTxt p100" name="user_company" id="user_company" /></td>
+							</tr>
+							<tr id="email_cop2" style="display: none;">
+							    <th scope="row">기업도메인<span class="font_red">*</span></th>
+							    <td colspan="3"><input type="text" class="inputTxt p100" name="email_cop" id="email_cop" /></td>
+							</tr>
 							<tr>
 								<th scope="row" id="registerName_th">이름 <span class="font_red">*</span></th>
 								<td><input type="text" class="inputTxt p100" name="name"
@@ -1147,11 +1154,7 @@ function fSaveDataResult(data) {
 								</select></td>
 							</tr>
 							
-							<tr>
-								<th scope="row" id="rgcompany_th">회사명<span class="font_red">*</span></th>
-								<td id="rgcompany_td"><input type="text"
-									class="inputTxt p100" name="user_company" id="user_company" /></td>
-							</tr>
+							
 
 
 							<tr id="birthday1">
@@ -1170,13 +1173,6 @@ function fSaveDataResult(data) {
 									
 							</tr>
 
-
-
-							<tr id="email_cop2">
-								<th scope="row">기업도메인<span class="font_red">*</span></th>
-								<td colspan="3"><input type="text" class="inputTxt p100"
-									name="email_cop" id="email_cop" /></td>
-							</tr>
 							<tr>
 								<th scope="row">우편번호<span class="font_red">*</span></th>
 								<td colspan="2"><input type="text" class="inputTxt p100"
@@ -1207,17 +1203,19 @@ function fSaveDataResult(data) {
 									style="width: 118px" maxlength="4" type="text" id="tel3"
 									name="user_tel3"></td>
 							</tr>
-							<tr>
-								<th scope="row">회원 유형<span class="font_red">*</span></th>
-								<td colspan="3"><select name="user_type" id="user_type"
-									style="width: 400px; height: 28px;">
-									<option value="A">임직원</option>
-									<option value="C">관리 사원</option>
-									<option value="E">구매 담당</option>
-									<option value="D">배송 담당</option>
-									
-								</select></td>
+							<tr id="userType">
+							    <th scope="row">회원 유형<span class="font_red">*</span></th>
+							    <td colspan="3">
+							        <select name="user_type" id="user_type" style="width: 400px; height: 28px;" onchange="toggleCompanyFields()">
+							            <option value="A">임직원</option>
+							            <option value="C">관리 사원</option>
+							            <option value="E">구매 담당</option>
+							            <option value="D">배송 담당</option>
+							        </select>
+							    </td>
 							</tr>
+							
+				
 						</tbody>
 					</table>
 				

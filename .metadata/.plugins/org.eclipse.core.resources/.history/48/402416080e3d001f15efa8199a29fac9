@@ -127,7 +127,18 @@ $("input[v-model=chkbox]:checked").each(function(){
 })
 $(document).ready(function() {
     // 회원 유형 변경 시 이벤트 핸들러
-  
+    $("#user_type").change(function() {
+        var selectedUserType = $(this).val();
+
+        if (selectedUserType === "B") {
+            $("#companyFields").show();
+            $("#email_cop2").show();
+        } else {
+            $("#companyFields").hide();
+            $("#email_cop2").hide();
+        }
+    });
+
     // 기업회원 버튼 클릭 시 이벤트 핸들러
     $("#register_outstaff").click(function() {
         showCompanyFields();
@@ -144,7 +155,6 @@ function showCompanyFields() {
  	$("#user_type").val("B");
  	$("#companyFields").show();
     $("#email_cop2").show();
-    $("#userType").hide();
     // 기업 회원 폼 초기화
     $("#div_cd").val("CommonMember");
     $("#registerId").val("");
@@ -187,10 +197,10 @@ function showCompanyFields() {
 
 // 일반 회원 폼을 보이도록 설정하는 함수
 function hideCompanyFields() {
-    $("#companyFields").hide();
+    $("#rgcompany_th").hide();
+    $("#rgcompany_td").hide();
+    $("#user_company_li").hide();
     $("#email_cop2").hide();
-    $("#userType").show();
-
 
     // 일반 회원 폼 초기화
     $("#div_cd").val("CommonMember");
@@ -1132,14 +1142,7 @@ function fSaveDataResult(data) {
 								<td colspan="3"><input type="password"
 									class="inputTxt p100" name="password1" id="registerPwdOk" /></td>
 							</tr>
-							<tr id="companyFields" style="display: none;">
-							    <th scope="row" id="rgcompany_th">회사명<span class="font_red">*</span></th>
-							    <td id="rgcompany_td"><input type="text" class="inputTxt p100" name="user_company" id="user_company" /></td>
-							</tr>
-							<tr id="email_cop2" style="display: none;">
-							    <th scope="row">기업도메인<span class="font_red">*</span></th>
-							    <td colspan="3"><input type="text" class="inputTxt p100" name="email_cop" id="email_cop" /></td>
-							</tr>
+							
 							<tr>
 								<th scope="row" id="registerName_th">이름 <span class="font_red">*</span></th>
 								<td><input type="text" class="inputTxt p100" name="name"
@@ -1203,7 +1206,7 @@ function fSaveDataResult(data) {
 									style="width: 118px" maxlength="4" type="text" id="tel3"
 									name="user_tel3"></td>
 							</tr>
-							<tr id="userType">
+							<tr>
 							    <th scope="row">회원 유형<span class="font_red">*</span></th>
 							    <td colspan="3">
 							        <select name="user_type" id="user_type" style="width: 400px; height: 28px;" onchange="toggleCompanyFields()">
@@ -1211,10 +1214,18 @@ function fSaveDataResult(data) {
 							            <option value="C">관리 사원</option>
 							            <option value="E">구매 담당</option>
 							            <option value="D">배송 담당</option>
+							            <option value="B">고객</option>
 							        </select>
 							    </td>
 							</tr>
-							
+							<tr id="companyFields" style="display: none;">
+							    <th scope="row" id="rgcompany_th">회사명<span class="font_red">*</span></th>
+							    <td id="rgcompany_td"><input type="text" class="inputTxt p100" name="user_company" id="user_company" /></td>
+							</tr>
+							<tr id="email_cop2" style="display: none;">
+							    <th scope="row">기업도메인<span class="font_red">*</span></th>
+							    <td colspan="3"><input type="text" class="inputTxt p100" name="email_cop" id="email_cop" /></td>
+							</tr>
 				
 						</tbody>
 					</table>

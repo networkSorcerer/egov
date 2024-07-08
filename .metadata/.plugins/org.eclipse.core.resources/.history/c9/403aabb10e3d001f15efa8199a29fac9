@@ -1132,14 +1132,7 @@ function fSaveDataResult(data) {
 								<td colspan="3"><input type="password"
 									class="inputTxt p100" name="password1" id="registerPwdOk" /></td>
 							</tr>
-							<tr id="companyFields" style="display: none;">
-							    <th scope="row" id="rgcompany_th">회사명<span class="font_red">*</span></th>
-							    <td id="rgcompany_td"><input type="text" class="inputTxt p100" name="user_company" id="user_company" /></td>
-							</tr>
-							<tr id="email_cop2" style="display: none;">
-							    <th scope="row">기업도메인<span class="font_red">*</span></th>
-							    <td colspan="3"><input type="text" class="inputTxt p100" name="email_cop" id="email_cop" /></td>
-							</tr>
+							
 							<tr>
 								<th scope="row" id="registerName_th">이름 <span class="font_red">*</span></th>
 								<td><input type="text" class="inputTxt p100" name="name"
@@ -1211,10 +1204,18 @@ function fSaveDataResult(data) {
 							            <option value="C">관리 사원</option>
 							            <option value="E">구매 담당</option>
 							            <option value="D">배송 담당</option>
+							            <option value="B">고객</option>
 							        </select>
 							    </td>
 							</tr>
-							
+							<tr id="companyFields" style="display: none;">
+							    <th scope="row" id="rgcompany_th">회사명<span class="font_red">*</span></th>
+							    <td id="rgcompany_td"><input type="text" class="inputTxt p100" name="user_company" id="user_company" /></td>
+							</tr>
+							<tr id="email_cop2" style="display: none;">
+							    <th scope="row">기업도메인<span class="font_red">*</span></th>
+							    <td colspan="3"><input type="text" class="inputTxt p100" name="email_cop" id="email_cop" /></td>
+							</tr>
 				
 						</tbody>
 					</table>
