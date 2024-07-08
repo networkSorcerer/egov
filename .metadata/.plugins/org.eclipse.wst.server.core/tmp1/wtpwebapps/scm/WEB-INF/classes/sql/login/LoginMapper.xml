@@ -76,42 +76,67 @@
      </select>
      <!-- 회원가입 -->
 <insert id="registerUser" parameterType="java.util.Map">
-    /*kr.happy.study.login.dao.LoginDao.registerUser*/
-    
-    INSERT INTO tb_userinfo (
-        loginID,
-        user_type,
-        name,
-        password,
-        birthday,
-        sex,
-        hp,
-        zip_code,
-        addr,
-        addr_detail,
-        email
-          <if test="user_type == 'B'">
-            , co_name,
+    <!-- kr.happy.study.login.dao.LoginDao.registerUser -->
+    <if test="user_type == 'B'">
+        INSERT INTO tb_userinfo (
+            loginID,
+            user_type,
+            name,
+            password,
+            birthday,
+            sex,
+            hp,
+            zip_code,
+            addr,
+            addr_detail,
+            email,
+            co_name,
             email_cop2
-        </if>
-    ) VALUES (
-        #{loginID},
-        #{user_type},
-        #{name},
-        #{password},
-        #{birthday},
-        #{gender_cd},
-		CONCAT(#{user_tel1}, '-', #{user_tel2}, '-', #{user_tel3}),
-		#{user_zipcode},
-        #{user_address},
-        #{user_dt_address},
-        #{user_email}
-         <if test="user_type == 'B'">
-            , #{co_name},
+        ) VALUES (
+            #{loginID},
+            #{user_type},
+            #{name},
+            #{password},
+            #{birthday},
+            #{gender_cd},
+            CONCAT(#{user_tel1}, '-', #{user_tel2}, '-', #{user_tel3}),
+            #{user_zipcode},
+            #{user_address},
+            #{user_dt_address},
+            #{user_email},
+            #{co_name},
             #{email_cop2}
-        </if>
-    )
+        )
+    </if>
+    <if test="user_type != 'B'">
+        INSERT INTO tb_userinfo (
+            loginID,
+            user_type,
+            name,
+            password,
+            birthday,
+            sex,
+            hp,
+            zip_code,
+            addr,
+            addr_detail,
+            email
+        ) VALUES (
+            #{loginID},
+            #{user_type},
+            #{name},
+            #{password},
+            #{birthday},
+            #{gender_cd},
+            CONCAT(#{user_tel1}, '-', #{user_tel2}, '-', #{user_tel3}),
+            #{user_zipcode},
+            #{user_address},
+            #{user_dt_address},
+            #{user_email}
+        )
+    </if>
 </insert>
+
 
      
      <!-- 유저전문기술(tb_userskill 테이블에 따로 저장) -->

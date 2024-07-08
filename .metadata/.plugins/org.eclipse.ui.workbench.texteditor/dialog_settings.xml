@@ -8,23 +8,24 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="favicon"/>
-			<item value="totcnt"/>
-			<item value="e);"/>
-			<item value="cpage"/>
-			<item value="getPaginationHtml"/>
-			<item value="pagieNavigateHtml"/>
-			<item value="(cpage);"/>
-			<item value="noticeSeq"/>
+			<item value="toggleCompanyFields "/>
+			<item value="instaffRegister "/>
+			<item value="rgcompany_th"/>
+			<item value="email_cop2"/>
+			<item value="companyFields"/>
+			<item value="checklist"/>
+			<item value="u.user_email"/>
+			<item value="registerName"/>
 		</list>
 		<list key="replacehistory">
+			<item value="outstaffRegister"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="309" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
-		<item value="443" key="DIALOG_HEIGHT"/>
-		<item value="1555" key="DIALOG_X_ORIGIN"/>
-		<item value="596" key="DIALOG_Y_ORIGIN"/>
+		<item value="444" key="DIALOG_HEIGHT"/>
+		<item value="1545" key="DIALOG_X_ORIGIN"/>
+		<item value="456" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

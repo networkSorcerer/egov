@@ -130,17 +130,20 @@ $(document).ready(function() {
   
     // 기업회원 버튼 클릭 시 이벤트 핸들러
     $("#register_outstaff").click(function() {
-        showCompanyFields();
+    	outstaffRegister();
     });
+    console.log($("#user_type").val());
 
     // 일반회원 버튼 클릭 시 이벤트 핸들러
     $("#register_instaff").click(function() {
-        hideCompanyFields();
+    	instaffRegister();
     });
+	console.log($("#user_type").val());
+
 });
 
 // 기업 회원 폼을 보이도록 설정하는 함수
-function showCompanyFields() {
+function outstaffRegister() {
  	$("#user_type").val("B");
  	$("#companyFields").show();
     $("#email_cop2").show();
@@ -180,13 +183,13 @@ function showCompanyFields() {
     $("#dept_code").val("");
 
     // 전화번호 합치기
-  
+  	console.log($("#user_type").val());
+
     // 체크리스트 출력
     checklistResult();
 }
-
 // 일반 회원 폼을 보이도록 설정하는 함수
-function hideCompanyFields() {
+function instaffRegister() {
     $("#companyFields").hide();
     $("#email_cop2").hide();
     $("#userType").show();
@@ -224,7 +227,7 @@ function hideCompanyFields() {
     $("#singular_facts").val("");
     $("#item.dtl_cod").val("");
     $("#dept_code").val("");
-
+	$("#user_type").val("");
     // 전화번호 합치기
    
     // 체크리스트 출력
@@ -262,8 +265,6 @@ function RegisterVal(){
 	var tel2 = $('#tel2').val();
 	var tel3 = $('#tel3').val();
 	
-	var fullPhoneNumber =  $("#fullPhoneNumber").val();
-
 
 /* 	var bank_cd = $('#bank_nm').val();
 	var bank_account = $('#bank_account').val(); */
@@ -1087,8 +1088,8 @@ function fSaveDataResult(data) {
 			</dt>
 			<dd class="content">
 				<div class="btn_areaC">
-					<a href="#" class="btnType blue" id="register_instaff"><span>일반회원</span></a>
-					<a href="#" class="btnType " id="register_outstaff"><span>기업회원</span></a>
+					<a class="btnType blue" id="register_instaff"><span>일반회원</span></a>
+					<a class="btnType " id="register_outstaff"><span>기업회원</span></a>
 					<br>
 					<br>
 				</div>
