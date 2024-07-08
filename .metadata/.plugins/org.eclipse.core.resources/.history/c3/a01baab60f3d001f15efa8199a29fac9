@@ -77,7 +77,6 @@
      <!-- 회원가입 -->
 <insert id="registerUser" parameterType="java.util.Map">
     /*kr.happy.study.login.dao.LoginDao.registerUser*/
-    
     INSERT INTO tb_userinfo (
         loginID,
         user_type,
@@ -90,10 +89,6 @@
         addr,
         addr_detail,
         email
-          <if test="user_type == 'B'">
-            , co_name,
-            email_cop2
-        </if>
     ) VALUES (
         #{loginID},
         #{user_type},
@@ -106,10 +101,6 @@
         #{user_address},
         #{user_dt_address},
         #{user_email}
-         <if test="user_type == 'B'">
-            , #{co_name},
-            #{email_cop2}
-        </if>
     )
 </insert>
 

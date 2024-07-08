@@ -92,7 +92,7 @@
         email
           <if test="user_type == 'B'">
             , co_name,
-            email_cop2
+            email_cop
         </if>
     ) VALUES (
         #{loginID},
@@ -106,10 +106,6 @@
         #{user_address},
         #{user_dt_address},
         #{user_email}
-         <if test="user_type == 'B'">
-            , #{co_name},
-            #{email_cop2}
-        </if>
     )
 </insert>
 
