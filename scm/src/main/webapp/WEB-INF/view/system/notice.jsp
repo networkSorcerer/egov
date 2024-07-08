@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+d<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -58,7 +58,7 @@
 			
 		})
 	}
-	//페이지, 검색기능, 리스트 출력 
+	//페이지, 검색기능, 리스트 
 	function noticeSearch(cpage){
 		cpage = cpage || 1;
 		
@@ -79,7 +79,7 @@
 			$("#currentPage").val(cpage);
 		}
 		
-		callAjax("/system/noticeList.do", "post", "text", false, param, callBackFunction);
+		callAjax("/board/noticeList.do", "post", "text", false, param, callBackFunction);
 	}
 	/* <!-- ----------------------------------------------------------------------------------------------------- --> */
 	function insertModal(){
@@ -113,7 +113,7 @@
 			}
 		}
 		
-		callAjax("/system/noticeSave.do", "post", "json", false, param, callBackFunction);
+		callAjax("/board/noticeSave.do", "post", "json", false, param, callBackFunction);
 	}
 	
 	function updateNotice(){
@@ -135,7 +135,7 @@
 			}
 		}
 		
-		callAjax("/system/noticeUpdate.do", "post", "json", false, param, callBackFunction);
+		callAjax("/board/noticeUpdate.do", "post", "json", false, param, callBackFunction);
 	}
 	
 	function noticeDetailModal(seq){
@@ -151,7 +151,6 @@
 			$("#noticeContent").val(detail.noti_content);
 			$("#noticeSeq").val(detail.noti_seq);
 			$("#noticeContent").val(detail.noti_content);
-			$("#noticeSeq").val(detail.noti_seq);
 			$("#btnUpdateNotice").show();
 			$("#btnSaveNotice").hide();
 			$("#btnDeleteNotice").show();
@@ -159,7 +158,7 @@
 			gfModalPop("#noticeInsertModal");
 		}
 		
-		callAjax("/system/noticeDetail.do", "post", "json", false, param, callBackFunction);
+		callAjax("/board/noticeDetail.do", "post", "json", false, param, callBackFunction);
 	}
 	
 
@@ -177,7 +176,7 @@
 			}
 		}
 		
-		callAjax("/system/noticeDelete.do", "post", "json", false, param, callBackFunction);
+		callAjax("/board/noticeDelete.do", "post", "json", false, param, callBackFunction);
 	}
 	
 	function fValidate() {
@@ -268,7 +267,7 @@
 			}
 		}
 		
-		callAjaxFileUploadSetFormData("/system/noticeSaveFile.do", "post", "json", false, fileData, callBackFunction);
+		callAjaxFileUploadSetFormData("/board/noticeSaveFile.do", "post", "json", false, fileData, callBackFunction);
 	}
 	
 	function noticeDetailFileModal(noticeSeq){
@@ -282,7 +281,7 @@
 			gfModalPop("#filePopUp");
 		}
 		
-		callAjax("/system/noticeDetail.do", "post", "json", false, param, callBackFunction);
+		callAjax("/board/noticeDetail.do", "post", "json", false, param, callBackFunction);
 	}
 	
 	function detailModalSetting(detail){
@@ -321,7 +320,7 @@
 	function updateFileNotice(){
 		if(!fValidatefile()){
 			return;
-		}
+		}getForm
 		
 		var getForm = document.getElementById("noticeForm");
 		getForm.entype = 'multipart/form-data';
@@ -335,7 +334,7 @@
 			}
 		};
 		
-		callAjaxFileUploadSetFormData("/system/noticeUpdateFile.do", "post", "json", false, fileData, callBackFunction);
+		callAjaxFileUploadSetFormData("/board/noticeUpdateFile.do", "post", "json", false, fileData, callBackFunction);
 	}
 	
 	function deleteFileNotice(){
@@ -351,7 +350,7 @@
 			}
 		}
 		
-		callAjax("/system/noticeDelete.do", "post", "json", false, param, callBackFunction);
+		callAjax("/board/noticeDelete.do", "post", "json", false, param, callBackFunction);
 	}
 	
 	// 파일 다운로드

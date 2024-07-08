@@ -26,7 +26,7 @@ import kr.happyjob.study.system.model.NoticeModel;
 import kr.happyjob.study.system.service.NoticeService;
 
 @Controller
-@RequestMapping("/system/")
+@RequestMapping("/board/")
 public class NoticeController {
 	@Autowired
 	NoticeService noticeService;

@@ -74,76 +74,36 @@
             AND hir_mnu_id = #{hir_mnu_id}
          ORDER BY ta.odr
      </select>
-     
      <!-- 회원가입 -->
-     <insert id="registerUser" parameterType="java.util.Map">
-     /*kr.happy.study.login.dao.LoginDao.registerUser*/
-     INSERT INTO tb_userinfo (
-     							loginID
-     						,	user_type
-     						,	name
-     						,	password
-     						,	email_cop
-     						,	birthday
-     						,	gender_cd
-     						,	user_tel1
-     						,	user_tel2
-     						,	user_tel3
-     						,	user_zipcode
-     						,	user_address
-     						,	user_dt_address
-							,	consult_yn
-     						,	del_cd
-     						,	div_cd
-     						,	user_email
-     						,	user_company
-     						,	approval_cd
-     						,	salary
-     						,	career_yn
-     						,	career_mm
-     						,	singular_facts
-     						,	user_describe
-     						,	user_grade
-     						,	user_hope_area1
-     						,	user_hope_area2
-     						,	user_hope_area3
-     						,	user_contents
-     						,	user_hope_work
-     						) VALUES (
-     								#{loginID}
-								,	#{user_type}
-								,	#{name}  
-								,	#{password}  
-								,	#{email_cop}
-								,	#{birthday}    
-								,	#{gender_cd}  
-								,	#{user_tel1}  
-								,	#{user_tel2}  
-								,	#{user_tel3}  
-								,	#{user_zipcode}  
-								,	#{user_address}  
-								,	#{user_dt_address}
-								,	#{consult_yn}					
-								,	#{del_cd}
-								,	#{div_cd}    	
-								,	#{user_email}  
-								,	#{user_company}		
-								,	#{approval_cd}			
-     							,	#{salary}								
-								,	#{career_yn}								
-								,	#{career_mm}
-	     						,	#{singular_facts}
-								,	#{user_describe}
-	     						,	#{grade}
-	     						,	#{area1}
-	     						,	#{area2}
-	     						,	#{area3}
-	     						,	#{user_contents}
-	     						,	#{user_hope_work}
-     						)
-     
-     
-     </insert>
+<insert id="registerUser" parameterType="java.util.Map">
+    /*kr.happy.study.login.dao.LoginDao.registerUser*/
+    INSERT INTO tb_userinfo (
+        loginID,
+        user_type,
+        name,
+        password,
+        birthday,
+        sex,
+        hp,
+        zip_code,
+        addr,
+        addr_detail,
+        email
+    ) VALUES (
+        #{loginID},
+        #{user_type},
+        #{name},
+        #{password},
+        #{birthday},
+        #{gender_cd},
+		CONCAT(#{user_tel1}, '-', #{user_tel2}, '-', #{user_tel3}),
+		#{user_zipcode},
+        #{user_address},
+        #{user_dt_address},
+        #{user_email}
+    )
+</insert>
+
      
      <!-- 유저전문기술(tb_userskill 테이블에 따로 저장) -->
 <!--      <insert id="registerUserSkill" parameterType="java.util.Map">
@@ -171,7 +131,7 @@
 	<select id="check_email" parameterType="String" resultType="int">
 		SELECT count(*)
 		FROM tb_userinfo
-		WHERE user_email = #{user_email}
+		WHERE email = #{user_email}
 	</select>
 	
      <!-- 사용자 ID 찾기 -->

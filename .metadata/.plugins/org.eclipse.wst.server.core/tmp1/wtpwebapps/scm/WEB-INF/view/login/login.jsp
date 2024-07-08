@@ -129,7 +129,7 @@ $("input[v-model=chkbox]:checked").each(function(){
 /*일반 회원가입 폼 초기화*/
 function instaffRegister(){
 	
-	$("#user_type").val("C");
+	$("#user_type").val("");
 	$("#div_cd").val("CommonMember");
 	$("#user_type_li").hide();
 	$("#registerId").val("");
@@ -169,8 +169,7 @@ function instaffRegister(){
 	$("#user_contents").val("");
 	$("#singular_facts").val("");
 	$("#item.dtl_cod").val("");
-
-	console.log($("#div_cd").val());
+	$("#dept_code").val("");
 	
 	//체크리스트출력
 	checklistResult(); 
@@ -178,25 +177,25 @@ function instaffRegister(){
 }
 
 /*기업 고객 회원가입 폼 초기화*/
-function outstaffRegister(){
-
-	$("#user_type").val("B");
-	$("#div_cd").val("BusinessMember");
+function instaffRegister(){
+	
+	$("#user_type").val("");
+	$("#div_cd").val("CommonMember");
 	$("#user_type_li").hide();
 	$("#registerId").val("");
 	$("#registerPwd").val("");
 	$("#registerPwdOk").val("");
-	$("#rggender_th").hide();
-	$("#rggender_td").hide();
-	$("#rgcompany_th").show();
-	$("#rgcompany_td").show();
-	$("#registerName").hide();
-	$("#registerName_th").hide();
+	$("#rggender_th").show();
+	$("#rggender_td").show();
+	$("#rgcompany_th").hide();
+	$("#rgcompany_td").hide();
+	$("#registerName").show();
+	$("#registerName_th").show();
+ 	$("#gender").val("");
+	$("#user_company_li").hide("");
 	$("#user_company").val("");
-	$("#gender_li").hide();
 	$("#registerEmail").val("");
 	$("#detailaddr").val("");
-	$("#gender").val("");
 	$("#loginaddr").val("");
 	$("#loginaddr1").val("");
 	$("#tel1").val("");
@@ -205,24 +204,34 @@ function outstaffRegister(){
 	$("#del_cd").val("n");
 	$("#approval_cd").val("n");
 	$("#ckIdcheckreg").val("0");
-	$("#birthday1").hide();
-	$("#email_cop2").show();
-	$("#salary").hide();
-	$("#consult_yn").hide();
-	$("#describe1").hide();
-	$("#user_contents1").hide();
-	$("#career_yn").hide();
-	$("#salary").hide();
-	$("#checktable").hide();	
-	$("#salary").hide();
-	$("#career_yn").hide();
-	$("#career_mm").hide();
+	$("#birthday1").show();
+	$("#email_cop2").hide();
+	$("#consult_yn").show();
+	$("#user_describe").show();
+	$("#user_contents1").show();		
+	$("#salary").val("");
+	$("#user_hope_work").val("");
+	$("#user_describe").val("");
+	$("#grade").val("");
+ 	$("#area1").val("");
+	$("#area2").val("");
+	$("#area3").val(""); 
+	$("#user_contents").val("");
+	$("#singular_facts").val("");
+	$("#item.dtl_cod").val("");
+	$("#dept_code").val("");
 	
-	checklistResult(hide); 
-
-	/* console.log($("#user_type").val());
-	console.log($("#div_cd").val()); */
+	// 전화번호 합치기
+	var tel1 = $("#tel1").val();
+	var tel2 = $("#tel2").val();
+	var tel3 = $("#tel3").val();
+	
+	
+	//체크리스트출력
+	checklistResult(); 
+		
 }
+
 
 
 
@@ -252,15 +261,14 @@ function RegisterVal(){
 	var tel1 = $('#tel1').val();
 	var tel2 = $('#tel2').val();
 	var tel3 = $('#tel3').val();
+	
+	var fullPhoneNumber =  $("#fullPhoneNumber").val();
+
+
 /* 	var bank_cd = $('#bank_nm').val();
 	var bank_account = $('#bank_account').val(); */
 
-	if(user_type == ""){
-		swal("타입을 입력해주세요.").then(function() {
-			$("#user_type").focus();
-		  });
-		return false;
-	}
+	
 
 	
 	if(rgid.length < 1){
@@ -353,7 +361,12 @@ function RegisterVal(){
 		  });
 		return false;
 	}
-	
+	if(user_type == ""){
+		swal("타입을 입력해주세요.").then(function() {
+			$("#user_type").focus();
+		  });
+		return false;
+	}
 /* 	if(div_cd == 'outstaff' && bank_cd == "" ){
 		swal("은행을 선택하세요.").then(function() {
 			$('#bank_nm').focus();
@@ -476,6 +489,8 @@ function emailCheck(){
 			
 		}
 	});
+	console.log( $("#registerEmail").val());
+	console.log(data)
 }
 
 /* 회원가입  완료*/
@@ -497,12 +512,16 @@ function CompleteRegister() {
 	var tel1 = $("#tel1").val();
 	var tel2 = $("#tel2").val();
 	var tel3 = $("#tel3").val();
+	
+	
 	//console.log(div_cd);
 	/* validation 체크 */
 	if(!RegisterVal()){
 		return;
 	}
-		
+	console.log($("#RegisterForm"));
+	console.log($("#RegisterForm").val());	
+
 	loginIdCheckComplete();
 	emailCheck();
 			 
@@ -521,7 +540,6 @@ function CompleteRegister() {
 		  });
 	} else if(RegisterForm.ckEmailcheckreg.value =="0"){
 		swal("중복된 이메일이 존재합니다. 다시 입력해주세요.").then(function() {
-			$("#registerEmail").focus();
 		  });
 	} else if(!tel1Rules.test($("#tel1").val())){
 		swal("전화번호를 확인해주세요.").then(function() {
@@ -539,6 +557,8 @@ function CompleteRegister() {
 	else{
 	
 		var resultCallback = function(data) {
+        console.log("서버 응답:", data); // 서버 응답 콘솔 출력
+	
 		fSaveRegister(data);
 		}
 	
@@ -647,7 +667,7 @@ function fLoginProcResult(data) {
 	var lhost = data.serverName;
 
 	if (data.result == "SUCCESS") {
-		location.href = "${CTX_PATH}/dashboard/dashboard.do";
+		location.href = "${CTX_PATH}/dashboard/dashboard.do";//로그인 결과 
 	} else {
 
 		$("<div style='text-align:center;'>" + data.resultMsg + "</div>")
@@ -997,7 +1017,7 @@ function fSaveDataResult(data) {
 	}
 }
 
-	
+
 </script>
 </head>
 <body>
@@ -1086,8 +1106,9 @@ function fSaveDataResult(data) {
 							<tr class="hidden">
 								<td><input type="text" name="div_cd" id="div_cd" /></td>
 								<td><input type="text" name="del_cd" id="del_cd" /></td>
-						 		<td><input type="text" name="user_type" id="user_type" /></td> 
 								<td><input type="text" name="approval_cd" id="approval_cd" /></td>
+								<td><input type="hidden" id="fullPhoneNumber" name="fullPhoneNumber" /></td>   
+								
 							</tr>
 
 							<tr>
@@ -1186,249 +1207,20 @@ function fSaveDataResult(data) {
 									style="width: 118px" maxlength="4" type="text" id="tel3"
 									name="user_tel3"></td>
 							</tr>
-<!-- 							<tr id="user_type_li">
-								<th scope="row"><span class="font_red">*</span></th>
+							<tr>
+								<th scope="row">회원 유형<span class="font_red">*</span></th>
 								<td colspan="3"><select name="user_type" id="user_type"
 									style="width: 400px; height: 28px;">
-								</select></td>
-							</tr> -->
-							
-							<tr>
-								<th scope="row">선호직무분야<span class="font_red">*</span></th>
-								<td colspan="3"><select name="user_hope_work" id="user_hope_work"
-									style="width: 400px; height: 28px;">
-										<option value="" selected="selected">선택</option>
-										<option>웹프로그래머</option>
-										<option>응용프로그래머</option>
-										<option>시스템프로그래머</option>
-										<option>DBA·데이터베이스</option>
-										<option>네트워크·서버·보안</option>
-										<option>HTML·퍼블리싱·UI개발</option>
-										<option>ERP·시스템분석</option>
-										<option>빅데이터·AI(인공지능)</option>
-										<option>소프트웨어·하드웨어</option>
-								</select></td>
-							</tr>
-							
-							<tr>
-								<th scope="row">경력기간<span class="font_red">*</span></th>
-								<td>
-								<select id="career_yn" name="career_yn" >
-								  <option value="">선택</option>
-								  <option>1년미만</option>
-								  <option>1</option>
-								  <option>2</option>
-								  <option>3</option>
-								  <option>4</option>
-								  <option>5</option>
-								  <option>6</option>
-								  <option>7</option>
-								  <option>8</option>
-								  <option>9</option>
-								  <option>10</option>
-								  <option>11</option>
-								  <option>12</option>
-								  <option>13</option>
-								  <option>14</option>
-								  <option>15</option>
-								  <option>16</option>
-								  <option>17</option>
-								  <option>18</option>
-								  <option>19</option>
-								  <option>20이상</option>
-								</select>
-								<span>년</span>
-							</td>
-							</tr>
-							<tr class="row" id="career_mm">
-								<th scope="row"></th>
-								<td>
-								<select name="career_mm" id="career_mm">
-								  <option value="">선택</option>
-								  <option value="1">1</option>
-								  <option>2</option>
-								  <option>3</option>
-								  <option>4</option>
-								  <option>5</option>
-								  <option>6</option>
-								  <option>7</option>
-								  <option>8</option>
-								  <option>9</option>
-								  <option>10</option>
-								  <option>11</option>
-								  <option>12</option>
-								</select>
-								<span>월</span>
-							</td>
-							
-							<tr class="row">
-							<th scope="row" scope="row">희망연봉<span class="font_red">*</span></th>
-								<td><input type="text" class="inputTxt p100"
-									name="salary" id="salary" />만원</td>
-							
-								<th scope="row">협의가능여부</th>
-								<td id="consult_yn"><select name="consult_yn"
-									id="consult_yn" style="width: 128px; height: 28px;">
-										<option value="" selected="selected">선택</option>
-										<option value="yes">가능</option>
-										<option value="no">불가능</option>
-								</select></td>
-							</tr>
-			
-				</table>
-				
-				<!-- 경력정보 ---------------------------------------------------------------------->
-				<div>
-					<br>
-					<br>
-					<strong style="font-size:120%">&nbsp;&nbsp;&nbsp;&nbsp;경력정보</strong>
-					<br>
-					<br>
-				</div>
-				
-					<!-- 추가기술 -->
-					<table class="row" id="describe1">
-					<tr>
-						<th scope="row">제목<span class="font_red">*</span></th>
-							<td colspan=3>
-								<input type="text" class="inputTxt p100" name="user_describe" id="user_describe" />
-							</td>
-					</tr>
-					
-					<!-- 체크리스트 -->
-
- 						<tr>
-								<th scope="row">Language<span class="font_red">*</span></th>
-									<td colspan="2">
-									    <table>
-									      <template v-for="(row, index) in langitems" v-if="langitems.length" v-model="chkbox"> 
-									      <tr>
-									        <td><input type="checkbox" :id="row.dtl_cod" :name="row.dtl_cod" style="width: 15px; height: 15px;" ></td>								
-										    <td>{{ row.dtl_cod }}</td>
-										  </tr>  
-										  </template>
-									    </table>
-                                   </td>
-                                  
-								<th scope="row">web<span class="font_red">*</span></th>
-									<td colspan="2">
-									    <table>
-									      <template v-for="(row, index) in langitems1" v-if="langitems1.length" v-model="chkbox"> 
-									      <tr>
-									          <td><input type="checkbox"  :id="row.dtl_cod" :name="row.dtl_cod"  style="width: 15px; height: 15px;" ></td>								
-										      <td>{{ row.dtl_cod }}</td>
-										  </tr>    
-										  </template>
-									    </table>
-								    </td>	    
-						</tr>
-						<tr>
-								<th scope="row">DB<span class="font_red">*</span></th>
-								<td colspan="2">
-								      <table>
-								       <template v-for="(row, index) in langitems2" v-if="langitems2.length" v-model="chkbox"> 
-								         <tr>
-								             <td><input type="checkbox" :id="row.dtl_cod" :name="row.dtl_cod" style="width: 15px; height: 15px;" ></td>								
-									         <td>{{ row.dtl_cod_nm }}</td>
-									     </tr>
-									    </template> 
-								     </table>
-                                </td>
-								<th scope="row">WS<span class="font_red">*</span></th>
-								<td colspan="2">
-								    <table>
-								      <template v-for="(row, index) in langitems3" v-if="langitems3.length" v-model="chkbox"> 
-								       <tr>
-								          <td><input type="checkbox" :id="row.dtl_cod" :name="row.dtl_cod" style="width: 15px; height: 15px;" ></td>								
-									      <td>{{ row.dtl_cod }}</td>
-									   </tr>   
-									   </template>
-								    </table>
-						        </td>
-						        
-						       
-						</tr>
-					</table> 
-				
-					<table class="row">
-					<!-- 등급 -->
-				
-						<tr>
-							<th scope="row">등급<span class="font_red">*</span></th>			
-								<td>			
-									<select type="selectbox" id="grade" name="grade">
-									<template v-for="(item,index) in langitemss"  v-model="langitemss">
-										<option :value="item.dtl_cod">{{ item.dtl_cod_nm }}</option>
-									</template>
-									</select>
-								</td>
-						</tr>
-						
-												
-				
-					<!-- 희망 근무지 -->				
-						<tr>
-							<th scope="row">희망근무지역<span class="font_red">*</span></th>								
-								<td>
-									<span>1순위</span>					
-									<select type="selectbox" style="width:100px; height:25px;" id="area1" name="area1">
-									<template v-for="(item,index) in langitemarea1"  v-model="langitemarea1">
-										<option :value="item.dtl_cod">{{ item.dtl_cod_nm }}</option>
-									</template>
-									</select>
-								
-									<span>2순위</span>			
-									<select type="selectbox" style="width:100px; height:25px;" id="area2" name="area2">
-									<template v-for="(item,index) in langitemarea2"  v-model="langitemarea2">
-										<option :value="item.dtl_cod">{{ item.dtl_cod_nm }}</option>
-									</template>
-									</select>
-								
-									<span>3순위</span>		
-									<select type="selectbox" style="width:100px; height:25px;" id="area3" name="area3">
-									<template v-for="(item,index) in langitemarea3"  v-model="langitemarea3">
-										<option :value="item.dtl_cod">{{ item.dtl_cod_nm }}</option>
-									</template>
-									</select>
-								</td>
-						</tr>					
-					</table>
-					
-					<table class="row">
-						<tr>
-							<th scope="row">경력내용<span class="font_red">*</span></th>
-								<td>
-									<textarea class="inputTxt p100" name="user_contents" id="user_contents" laceholder="경력사항을 입력하세요." /></textarea>
-								</td>
-						</tr>					
-					</table>
-					
-					<table class="row">
-						<tr>
-							<th scope="row">특이사항<span class="font_red">*</span></th>
-								<td>
-									<textarea class="inputTxt p100" name="singular_facts" id="singular_facts" laceholder="특이사항을 입력하세요." /></textarea>
-								</td>
-						</tr>					
-					</table>
-					
-					<table class="row">
-						<tr>
-							<th scope="row" >파일<span class="font_red">*</span></th>
-								<td colspan="5">
-									<!--multiple="multiple" -->
-									<input type="file" name="file_nm" id="wfile_nm"  ></input>
-									<!-- <img v-if="file_nm !='' "src="/images/treeview/minus.gif" @click="minusClickEvent"> -->
+									<option value="A">임직원</option>
+									<option value="C">관리 사원</option>
+									<option value="E">구매 담당</option>
+									<option value="D">배송 담당</option>
 									
-								</td>
-						</tr>	
+								</select></td>
+							</tr>
+						</tbody>
 					</table>
 				
-				
-				
-
-							
-					
 				<div class="btn_areaC mt30">
 					<a href="javascript:CompleteRegister();" class="btnType blue"
 						id="RegisterCom" name="btn"> <span>회원가입 완료</span></a> <a 
