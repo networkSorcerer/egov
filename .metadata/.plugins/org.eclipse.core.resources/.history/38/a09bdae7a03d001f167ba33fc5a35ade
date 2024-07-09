@@ -1,0 +1,5 @@
+package kr.happyjob.study.cust.vo;
+
+public class CustVO {
+
+}

@@ -1,0 +1,18 @@
+package kr.happyjob.study.cust.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.happyjob.study.cust.service.CustService;
+
+@Controller
+@RequestMapping("/cust/")
+public class CustController {
+	@Autowired
+	CustServicee cService;
+	
+	
+	
+	
+}

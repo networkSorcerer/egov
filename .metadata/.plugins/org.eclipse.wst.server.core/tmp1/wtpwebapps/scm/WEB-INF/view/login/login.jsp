@@ -31,6 +31,8 @@
 <script type="text/javascript" src="${CTX_PATH}/js/login_pub.js"></script>
 <script type="text/javascript">
 
+
+
 var check;
 
 /* OnLoad Event */
@@ -66,6 +68,31 @@ function fRegister() {
 	instaffRegister();
 }
 
+/*기업 회원 가입 모달창 실행 */
+function CustRegister() {
+	var div_cd;
+	$("#action").val("I");
+	// 모달 팝업
+	gfModalPop("#layer1");
+	outstaffRegister();
+}
+
+/*기업가입 모달창 실행 */
+function CRegister() {
+	var div_cd;
+	$("#action").val("I");
+	// 모달 팝업
+	gfModalPop("#layer3");
+
+}
+/*신규 기업 등록 모달창 실행 */
+function CCRegister() {
+	var div_cd;
+	$("#action").val("I");
+	// 모달 팝업
+	gfModalPop("#layer4");
+
+}
 
  function init() {
 	check = new Vue({
@@ -91,6 +118,7 @@ function fRegister() {
 		}
 	})
  }
+
 
  /*체크리스트 콜백함수*/
  function checklistResult(data){ 	
@@ -568,6 +596,59 @@ function CompleteRegister() {
 
 }
 
+
+/*신규 기업 등록 */
+ 
+/* 회원가입  완료*/
+function CCCRegister() {
+	
+	var param = $("#RegisterForm4").serialize();
+	/*패스워드 정규식*/
+
+	/*전화번호 정규식*/
+	var tel1Rules = /^\d{2,3}$/;
+	var tel2Rules = /^\d{3,4}$/;
+	var tel3Rules = /^\d{4}$/;
+	
+	var tel1 = $("#tel1").val();
+	var tel2 = $("#tel2").val();
+	var tel3 = $("#tel3").val();
+	
+	
+	//console.log(div_cd);
+	/* validation 체크 */
+	if(!RegisterVal()){
+		return;
+	}
+	
+
+
+	if(!tel1Rules.test($("#tel1").val())){
+		swal("전화번호를 확인해주세요.").then(function() {
+			$("#tel1").focus();
+		  });
+	} else if(!tel2Rules.test($("#tel2").val())){
+		swal("전화번호를 확인해주세요.").then(function() {
+			$("#tel2").focus();
+		  });
+	} else if(!tel3Rules.test($("#tel3").val())){
+		swal("전화번호를 확인해주세요.").then(function() {
+			$("#tel3").focus();
+		  });
+	}
+	else{
+	
+		var resultCallback = function(data) {
+        console.log("서버 응답:", data); // 서버 응답 콘솔 출력
+	
+		fSaveRegister(data);
+		}
+	
+	callAjax("/cust/CustSave.do", "post", "json", true, param, resultCallback);
+	}
+
+}
+
 /* 회원 가입 저장 콜백함수 */
 function fSaveRegister(data) {
 
@@ -869,6 +950,8 @@ function SendPwdEmail() {
 	});
 }
 
+
+
 /*비밀번호 찾기 이메일 전송*/
 function findMailSendPwd(){
 	var data = {
@@ -1063,7 +1146,9 @@ function fSaveDataResult(data) {
 				<a class="btn_login" href="javascript:fLoginProc();" id="btn_login"><strong>Login</strong></a>
 				<br>
 				<a href="javascript:fRegister();" id="RegisterBtn"
-					name="modal"><strong>[회원가입]</strong></a> 
+					name="modal"><strong>[일반회원가입]</strong></a> 
+				<a href="javascript:CRegister();" id="CRegisterBtn"
+					name="modal"><strong>[기업회원가입]</strong></a> 
 					<a href="javascript:findIdPwd();"><strong>[아이디/비밀번호 찾기]</strong></a>
 			</fieldset>
 			</div>
@@ -1147,10 +1232,6 @@ function fSaveDataResult(data) {
 										<option value="female">여자</option>
 								</select></td>
 							</tr>
-							
-							
-
-
 							<tr id="birthday1">
 								<th scope="row">생년월일 <span class="font_red"></span></th>
 								<td><input type="date" class="inputTxt p100"
@@ -1161,10 +1242,8 @@ function fSaveDataResult(data) {
 									<td colspan="3"><input type="text" class="inputTxt p100"
 									name="user_email" id="registerEmail" /> 
 									
-								<td colspan="3">	
-									
-								</td>
-									
+								<td colspan="3">							
+								</td>				
 							</tr>
 
 							<tr>
@@ -1222,8 +1301,8 @@ function fSaveDataResult(data) {
 				
 				<div class="btn_areaC mt30">
 					<a href="javascript:CompleteRegister();" class="btnType blue"
-						id="RegisterCom" name="btn"> <span>회원가입 완료</span></a> <a 
-						href="javascript:fcancleModal()" class="btnType gray" id="btnCloseLsmCod" name="btn"><span>취소</span></a>
+						id="RegisterCom" name="btn"> <span>회원가입 완료</span></a> 
+						<a href="javascript:fcancleModal()" class="btnType gray" id="btnCloseLsmCod" name="btn"><span>취소</span></a>
 				</div>
 			</dd>
 		</dl>
@@ -1293,5 +1372,154 @@ function fSaveDataResult(data) {
 		<a href="" class="closePop"><span class="hidden">닫기</span></a>
 	</div>
 </form>
+<%-- 기업 가입 전 기업 검색  --%>
+<div id="layer3" class="layerPosition layerPop layerType2" style="width: 600px; height: 600px">
+      <form id="RegisterForm3" action="" method="post"><%-- form id 안전상 변경  --%>
+	      <input type="hidden" name="action" id="action" value="">
+	   		<dl>
+			<dt>
+				<strong style="font-size:120%">&nbsp;&nbsp;&nbsp;&nbsp;기업 검색</strong>
+				<br>
+			</dt>
+			<dd>
+				<div>
+					<c:if  test="${not empty cList }">
+						<select id="custSelect">
+					    <c:forEach var="list" items="${cList}">
+					        <option value="${list.cust_id}">${list.cust_name}</option>
+					    </c:forEach>
+					</select>
+					</c:if>
+				</div>
+				<div>
+					<a href="javascript:CustRegister();" id="register_outstaff" >선택</a>
+				</div>
+				<div>
+					<a href="javascript:CCRegister();" ><span>신규 기업 등록</span></a>
+				</div>
+				<br>
+				<a href="" class="closePop"><span>닫기</span></a>
+			</dd>
+		</dl>
+		
+	</form>	
+	</div>
+	
+<%-- 신규로 기업을 등록 테이블은 cust_info 아예 저장하는 테이블 다름   --%>
+
+<div id="layer4" class="layerPosition layerPop layerType2" style="width: 600px;">
+      <form id="RegisterForm4" action="" method="post">
+	      <input type="hidden" name="action" id="action" value="">
+	      <input type="hidden" name="ckIdcheckreg" id="ckIdcheckreg" value="0"/>
+	      <input type="hidden" name="ckEmailcheckreg" id="ckEmailcheckreg" value="0"/>	
+		<dl>
+			<dt>
+					<br>
+					<br>
+					<strong style="font-size:120%">&nbsp;&nbsp;&nbsp;&nbsp;신규 기업</strong>
+					<br>
+			</dt>
+			<dd class="content">
+				
+				<!-- s : 여기에 내용입력 -->
+				<table class="row">
+					<caption>caption</caption>
+					<colgroup>
+						<col width="120px">
+						<col width="*">
+						<col width="120px">
+						<col width="*">
+						<col width="120px">					
+					</colgroup>
+						<tbody>
+							<tr class="hidden">
+								<td><input type="text" name="div_cd" id="div_cd" /></td>
+								<td><input type="text" name="del_cd" id="del_cd" /></td>
+								<td><input type="text" name="approval_cd" id="approval_cd" /></td>	
+								<td><input type="text" name="cust_id" id="cust_id" /></td>								</tr>
+
+							<tr>
+								<th scope="row">기업명<span class="font_red">*</span></th><%-- 기존에 있는 기업인지 확인 가능 ????? 무리면 통과 --%>
+								<td colspan="2"><input type="text" class="inputTxt p100"
+									name="cust_name" placeholder="기업명을 입력하세요"
+									id="cust_name" /></td>
+							</tr>
+							<tr>
+								<th scope="row">사업자 번호 <span class="font_red">*</span></th><%--사업자 번호도 비교 가능????? 무리면 통과 --%>
+								<td colspan="3"><input type="password"
+									placeholder="" class="inputTxt p100"
+									name="biz_num" id="biz_num" /></td>
+							</tr>
+
+							<tr>
+								<th scope="row" style="padding: 0 0">회사 연락처<span
+									class="font_red">*</span></th>
+								<td ><input type="password"
+									class="inputTxt p100" name="cust_ph" id="cust_ph" /></td>
+								<th scope="row" id="">fax 번호<span class="font_red">*</span></th>
+								<td><input type="text" class="inputTxt p100" name="cust_fax"
+									id="cust_fax" /></td>
+							</tr>
+						
+							
+							<tr>
+								<th scope="row">산업군 입력<span class="font_red">*</span></th>
+									<td colspan="3"><input type="text" class="inputTxt p100"
+									name="industry_code" id="industry_code" /> 
+									
+								<td colspan="3">							
+								</td>				
+							</tr>
+
+							<tr>
+								<th scope="row">우편번호<span class="font_red">*</span></th>
+								<td colspan="2"><input type="text" class="inputTxt p100"
+									name="cust_zip" id="detailaddr" /></td>
+
+								<td><input type="button" value="우편번호 찾기"
+									onclick="execDaumPostcode()"
+									style="width: 130px; height: 20px;" /></td>
+							</tr>
+							<tr>
+								<th scope="row">주소<span class="font_red">*</span></th>
+								<td colspan="3"><input type="text" class="inputTxt p100"
+									name="cust_addr" id="loginaddr" /></td>
+							</tr>
+							<tr>
+								<th scope="row">상세주소</th>
+								<td colspan="3"><input type="text" class="inputTxt p100"
+									name="cust_detail_addr" id="loginaddr1" /></td>
+							</tr>
+							<tr>
+								<th scope="row" id="cust_person_ph">담당자 명 </th>
+								
+								<td colspan="3"><input type="text" class="inputTxt p100"
+									name="cust_person_ph" id="cust_person_ph" /></td>
+							</tr>
+							<tr>
+
+								<th scope="row"> 담당자 전화번호<span class="font_red">*</span></th>
+								<td colspan="3"><input class="inputTxt"
+									style="width: 118px" maxlength="3" type="text" id="tel1"
+									name="user_tel1"> - <input class="inputTxt"
+									style="width: 118px" maxlength="4" type="text" id="tel2"
+									name="user_tel2"> - <input class="inputTxt"
+									style="width: 118px" maxlength="4" type="text" id="tel3"
+									name="user_tel3"></td>
+							</tr>
+				
+						</tbody>
+					</table>
+				
+				<div class="btn_areaC mt30"><%--기업 회원가입에 필요한 다른 함수 필요  --%>
+					<a href="javascript:CCCRegister();" class="btnType blue"
+						id="RegisterCom" name="btn"> <span>회원가입 완료</span></a> 
+						<a href="javascript:fcancleModal()" class="btnType gray" id="btnCloseLsmCod" name="btn"><span>취소</span></a>
+				</div>
+			</dd>
+		</dl>
+		<a href="" class="closePop"><span class="hidden">닫기</span></a>
+	</form>	
+	</div>
 </body>
 </html>

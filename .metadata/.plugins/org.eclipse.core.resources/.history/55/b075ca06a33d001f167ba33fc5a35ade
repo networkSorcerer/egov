@@ -1,0 +1,22 @@
+package kr.happyjob.study.cust.service;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kr.happyjob.study.cust.dao.CustDAO;
+import kr.happyjob.study.cust.vo.CustVO;
+
+@Service
+public class CustServiceImpl {
+	
+	@Autowired
+	CustDAO cdao;
+	
+	@Override
+	public List<CustVO> cList(Map<String , Object> paramMap)throws Exception {
+		return cdao.custList(paramMap);
+	}
+}
