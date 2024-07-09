@@ -24,8 +24,9 @@ import kr.happyjob.study.cust.vo.CustVO;
 @RequestMapping("/cust/")
 public class CustController {
 	@Autowired
-	CustService cService;
 	
+	CustService cService;
+	  private final Logger logger = LogManager.getLogger(this.getClass());
 	
 	
 	@RequestMapping("custList.do")
@@ -35,7 +36,7 @@ public class CustController {
 		List<CustVO> cList = cService.custList(paramMap);
 		
 		model.addAttribute("cList", cList);
-		System.out.println("cList: " + cList);
+		 logger.info("cList: " + cList);
 
 		return "login/login";
 	}

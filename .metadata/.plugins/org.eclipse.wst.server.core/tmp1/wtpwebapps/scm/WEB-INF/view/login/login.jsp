@@ -68,7 +68,7 @@ function fRegister() {
 	instaffRegister();
 }
 
-/*기업 회원 가입 모달창 실행 */
+/* 기업회원 가입 모달창에서 자신의 기업이 있을 때 선택한 후 기업 회원 가입 모달창 실행 */
 function CustRegister() {
 	var div_cd;
 	$("#action").val("I");
@@ -77,7 +77,7 @@ function CustRegister() {
 	outstaffRegister();
 }
 
-/*기업가입 모달창 실행 */
+/* 초기 로그인 화면에서 기업가입 모달창 실행 */
 function CRegister() {
 	var div_cd;
 	$("#action").val("I");
@@ -91,12 +91,13 @@ function CCRegister() {
 	$("#action").val("I");
 	// 모달 팝업
 	gfModalPop("#layer4");
-
+	customerCo();
 }
 
  function init() {
 	check = new Vue({
 		el: '#layer1',
+		el: '#layer4',
 		data : {
 			langitems: [],
 			langitems1: [],
@@ -153,22 +154,24 @@ $("input[v-model=chkbox]:checked").each(function(){
 	var chk = $(this).val();
 	chk_arr.push(chk);
 })
-$(document).ready(function() {
+
+<%--얘들 없어도 될수 도 있다  --%>
+/* $(document).ready(function() {
     // 회원 유형 변경 시 이벤트 핸들러
   
     // 기업회원 버튼 클릭 시 이벤트 핸들러
     $("#register_outstaff").click(function() {
     	outstaffRegister();
     });
-    console.log($("#user_type").val());
 
     // 일반회원 버튼 클릭 시 이벤트 핸들러
     $("#register_instaff").click(function() {
     	instaffRegister();
     });
-	console.log($("#user_type").val());
+    
+   
 
-});
+}); */
 
 // 기업 회원 폼을 보이도록 설정하는 함수
 function outstaffRegister() {
@@ -195,24 +198,11 @@ function outstaffRegister() {
     $("#approval_cd").val("n");
     $("#ckIdcheckreg").val("0");
     $("#birthday1").show();
-    $("#consult_yn").show();
-    $("#user_describe").show();
-    $("#user_contents1").show();
-    $("#salary").val("");
-    $("#user_hope_work").val("");
-    $("#user_describe").val("");
-    $("#grade").val("");
-    $("#area1").val("");
-    $("#area2").val("");
-    $("#area3").val("");
-    $("#user_contents").val("");
-    $("#singular_facts").val("");
+ 
     $("#item.dtl_cod").val("");
     $("#dept_code").val("");
 
     // 전화번호 합치기
-  	console.log($("#user_type").val());
-
     // 체크리스트 출력
     checklistResult();
 }
@@ -241,26 +231,14 @@ function instaffRegister() {
     $("#approval_cd").val("n");
     $("#ckIdcheckreg").val("0");
     $("#birthday1").show();
-    $("#consult_yn").show();
-    $("#user_describe").show();
-    $("#user_contents1").show();
-    $("#salary").val("");
-    $("#user_hope_work").val("");
-    $("#user_describe").val("");
-    $("#grade").val("");
-    $("#area1").val("");
-    $("#area2").val("");
-    $("#area3").val("");
-    $("#user_contents").val("");
-    $("#singular_facts").val("");
-    $("#item.dtl_cod").val("");
-    $("#dept_code").val("");
-	$("#user_type").val("");
+
     // 전화번호 합치기
    
     // 체크리스트 출력
     checklistResult();
 }
+
+
 
 
 
@@ -597,7 +575,159 @@ function CompleteRegister() {
 }
 
 
+//신규 기업을 등록할 때 폼 변수 초기화 
+
+function customerCo() {
+	$("#cust_name").val("");
+	$("#biz_num").val("");
+	$("#cust_ph").val("");
+	$("#cust_fax").val("");
+	$("#industry_code").val("");
+	$("#cust_zip").val("");
+	$("#cust_addr").val("");
+	$("#cust_detail_addr").val("");
+	$("#cust_person").val("");
+	$("#tel4").val("");
+	$("#tel5").val("");
+	$("#tel6").val("");
+	$("#del_cd").val("n");
+	$("#approval_cd").val("n");
+	$("#ckIdcheckreg").val("0");
+    checklistResult();
+
+}
+
 /*신규 기업 등록 */
+ 
+ function CRegisterVal(){
+	  
+	var div_cd = $('#div_cd').val();
+	var cust_name = $('#cust_name').val();
+	var biz_num = $('#biz_num').val();
+	var cust_ph =$('#cust_ph').val();
+	var cust_fax = $('#cust_fax').val();
+	var industry_code = $('#industry_code').val();
+	var cust_person = $('#cust_person').val();
+	var dtadr = $('#cust_zip').val();
+	var lgadr = $('#cust_addr').val();
+	var lgadr1 = $('#cust_detail_addr').val();
+	var tel4 = $('#tel4').val();
+	var tel5 = $('#tel5').val();
+	var tel6 = $('#tel6').val();
+	
+
+/* 	var bank_cd = $('#bank_nm').val();
+	var bank_account = $('#bank_account').val(); */
+
+	
+	if(cust_name.length < 1){
+		swal("기업명을 입력하세요.").then(function() {
+			$('#cust_name').focus();
+		  });
+		return false;
+	}
+	
+	if(biz_num.length < 1){
+		swal("사업자 번호를 입력하세요.").then(function() {
+			$('#biz_num').focus();
+		  });
+		return false;
+	}
+	
+	if(cust_ph.length < 1){
+		swal("회사 연락처를 입력하세요.").then(function() {
+			$('#cust_ph').focus();
+		  });
+		return false;
+	}
+	
+
+	
+	
+	if(cust_fax.length < 1){
+		swal("팩스 번호를 입력하세요.").then(function() {
+			$('#cust_fax').focus();
+		  });
+		return false;
+	}
+	
+	
+	if(industry_code.length < 1){
+		swal("산업군을 입력해주세요.").then(function() {
+			$('#industry_code').focus();
+		  });
+		return false;
+	}
+	
+
+	if(dtadr.length < 1){
+		swal("우편번호를 입력하세요.").then(function() {
+			$('#detailaddr').focus();
+		  });
+		return false;
+	}
+	
+	if(lgadr.length < 1){
+		swal("주소를 입력하세요.").then(function() {
+			$('#loginaddr').focus();
+		  });
+		return false;
+	}
+	
+	if(cust_person.length < 1){
+		swal("담당자명을 입력하세요.").then(function() {
+			$('#cust_person').focus();
+		  });
+		return false;
+	}
+	
+	
+/* 	if(lgadr1.length < 1){
+		alert("상세주소를 입력하세요.");
+		$('#loginaddr1').focus();
+		return false;
+	} */
+	
+	if(tel4.length < 1){
+		swal("전화번호를 입력하세요.").then(function() {
+			$('#tel4').focus();
+		  });
+		return false;
+	}
+	
+	if(tel5.length < 1){
+		swal("전화번호를 입력하세요.").then(function() {
+			$('#tel5').focus();
+		  });
+		return false;
+	}
+	
+	if(tel6.length < 1){
+		swal("전화번호를 입력하세요.").then(function() {
+			$('#tel6').focus();
+		  });
+		return false;
+	}
+	
+/* 	if(div_cd == 'outstaff' && bank_cd == "" ){
+		swal("은행을 선택하세요.").then(function() {
+			$('#bank_nm').focus();
+		  });
+		return false;
+	}
+	
+	if(div_cd == 'outstaff' && bank_account.length <1 ){
+		swal("계좌번호를 입력하세요.").then(function() {
+			$('#bank_account').focus();
+		  });
+		return false;
+	} */
+	
+	
+	
+	return true;
+	
+}
  
 /* 회원가입  완료*/
 function CCCRegister() {
@@ -606,34 +736,34 @@ function CCCRegister() {
 	/*패스워드 정규식*/
 
 	/*전화번호 정규식*/
-	var tel1Rules = /^\d{2,3}$/;
-	var tel2Rules = /^\d{3,4}$/;
-	var tel3Rules = /^\d{4}$/;
+	var tel4Rules = /^\d{2,3}$/;
+	var tel5Rules = /^\d{3,4}$/;
+	var tel6Rules = /^\d{4}$/;
 	
-	var tel1 = $("#tel1").val();
-	var tel2 = $("#tel2").val();
-	var tel3 = $("#tel3").val();
+	var tel4 = $("#tel4").val();
+	var tel5 = $("#tel5").val();
+	var tel6 = $("#tel6").val();
 	
 	
 	//console.log(div_cd);
 	/* validation 체크 */
-	if(!RegisterVal()){
+	if(!CRegisterVal()){
 		return;
 	}
 	
 
 
-	if(!tel1Rules.test($("#tel1").val())){
+	if(!tel4Rules.test($("#tel4").val())){
 		swal("전화번호를 확인해주세요.").then(function() {
-			$("#tel1").focus();
+			$("#tel4").focus();
 		  });
-	} else if(!tel2Rules.test($("#tel2").val())){
+	} else if(!tel5Rules.test($("#tel5").val())){
 		swal("전화번호를 확인해주세요.").then(function() {
-			$("#tel2").focus();
+			$("#tel5").focus();
 		  });
-	} else if(!tel3Rules.test($("#tel3").val())){
+	} else if(!tel6Rules.test($("#tel6").val())){
 		swal("전화번호를 확인해주세요.").then(function() {
-			$("#tel3").focus();
+			$("#tel6").focus();
 		  });
 	}
 	else{
@@ -693,7 +823,7 @@ function execDaumPostcode(q) {
 							+ data.buildingName : data.buildingName);
 				}
 			}
-
+			console.log(data)
 			// 우편번호와 주소 정보를 해당 필드에 넣는다.
 			document.getElementById('detailaddr').value = data.zonecode;
 			document.getElementById("loginaddr").value = addr;
@@ -705,6 +835,48 @@ function execDaumPostcode(q) {
 	});
 }
 
+//우편번호 api
+function execDaumPostcode1(q) {
+	new daum.Postcode({
+		oncomplete : function(data) {
+			// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+			// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+			// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+			var addr = ''; // 주소 변수
+			var extraAddr = ''; // 참고항목 변수
+
+			//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+			if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+				addr = data.roadAddress;
+			} else { // 사용자가 지번 주소를 선택했을 경우(J)
+				addr = data.jibunAddress;
+			}
+
+			// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+			if (data.userSelectedType === 'R') {
+				// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+				// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+					extraAddr += data.bname;
+				}
+				// 건물명이 있고, 공동주택일 경우 추가한다.
+				if (data.buildingName !== '' && data.apartment === 'Y') {
+					extraAddr += (extraAddr !== '' ? ', '
+							+ data.buildingName : data.buildingName);
+				}
+			}
+			console.log(data)
+			// 우편번호와 주소 정보를 해당 필드에 넣는다.
+			document.getElementById('cust_zip').value = data.zonecode;
+			document.getElementById("cust_addr").value = addr;
+			// 커서를 상세주소 필드로 이동한다.
+			document.getElementById("cust_detail_addr").focus();
+		}
+	}).open({
+		q : q
+	});
+}
 
 /* 로그인 validation */
 function fValidateLogin() {
@@ -919,8 +1091,6 @@ function SendPwdEmail() {
 /* 		"data-code" : $("#emailPwdText").attr("data-code") */
 
 	};
-	
-	console.log(data);
 	
 	
 	
@@ -1172,12 +1342,12 @@ function fSaveDataResult(data) {
 					<br>
 			</dt>
 			<dd class="content">
-				<div class="btn_areaC">
+				<!-- <div class="btn_areaC">
 					<a class="btnType blue" id="register_instaff"><span>일반회원</span></a>
 					<a class="btnType " id="register_outstaff"><span>기업회원</span></a>
 					<br>
 					<br>
-				</div>
+				</div> -->
 				<!-- s : 여기에 내용입력 -->
 				<table class="row">
 					<caption>caption</caption>
@@ -1383,13 +1553,13 @@ function fSaveDataResult(data) {
 			</dt>
 			<dd>
 				<div>
-					<c:if  test="${not empty cList }">
-						<select id="custSelect">
+					
+					<select id="custSelect">
 					    <c:forEach var="list" items="${cList}">
 					        <option value="${list.cust_id}">${list.cust_name}</option>
 					    </c:forEach>
 					</select>
-					</c:if>
+					
 				</div>
 				<div>
 					<a href="javascript:CustRegister();" id="register_outstaff" >선택</a>
@@ -1446,7 +1616,7 @@ function fSaveDataResult(data) {
 							</tr>
 							<tr>
 								<th scope="row">사업자 번호 <span class="font_red">*</span></th><%--사업자 번호도 비교 가능????? 무리면 통과 --%>
-								<td colspan="3"><input type="password"
+								<td colspan="3"><input type="text"
 									placeholder="" class="inputTxt p100"
 									name="biz_num" id="biz_num" /></td>
 							</tr>
@@ -1454,7 +1624,7 @@ function fSaveDataResult(data) {
 							<tr>
 								<th scope="row" style="padding: 0 0">회사 연락처<span
 									class="font_red">*</span></th>
-								<td ><input type="password"
+								<td ><input type="text"
 									class="inputTxt p100" name="cust_ph" id="cust_ph" /></td>
 								<th scope="row" id="">fax 번호<span class="font_red">*</span></th>
 								<td><input type="text" class="inputTxt p100" name="cust_fax"
@@ -1474,37 +1644,37 @@ function fSaveDataResult(data) {
 							<tr>
 								<th scope="row">우편번호<span class="font_red">*</span></th>
 								<td colspan="2"><input type="text" class="inputTxt p100"
-									name="cust_zip" id="detailaddr" /></td>
+									name="cust_zip" id="cust_zip" /></td>
 
 								<td><input type="button" value="우편번호 찾기"
-									onclick="execDaumPostcode()"
+									onclick="execDaumPostcode1()"
 									style="width: 130px; height: 20px;" /></td>
 							</tr>
 							<tr>
 								<th scope="row">주소<span class="font_red">*</span></th>
 								<td colspan="3"><input type="text" class="inputTxt p100"
-									name="cust_addr" id="loginaddr" /></td>
+									name="cust_addr" id="cust_addr" /></td>
 							</tr>
 							<tr>
 								<th scope="row">상세주소</th>
 								<td colspan="3"><input type="text" class="inputTxt p100"
-									name="cust_detail_addr" id="loginaddr1" /></td>
+									name="cust_detail_addr" id="cust_detail_addr" /></td>
 							</tr>
 							<tr>
 								<th scope="row" id="cust_person_ph">담당자 명 </th>
 								
 								<td colspan="3"><input type="text" class="inputTxt p100"
-									name="cust_person_ph" id="cust_person_ph" /></td>
+									name="cust_person" id="cust_person" /></td>
 							</tr>
 							<tr>
 
 								<th scope="row"> 담당자 전화번호<span class="font_red">*</span></th>
 								<td colspan="3"><input class="inputTxt"
-									style="width: 118px" maxlength="3" type="text" id="tel1"
+									style="width: 118px" maxlength="3" type="text" id="tel4"
 									name="user_tel1"> - <input class="inputTxt"
-									style="width: 118px" maxlength="4" type="text" id="tel2"
+									style="width: 118px" maxlength="4" type="text" id="tel5"
 									name="user_tel2"> - <input class="inputTxt"
-									style="width: 118px" maxlength="4" type="text" id="tel3"
+									style="width: 118px" maxlength="4" type="text" id="tel6"
 									name="user_tel3"></td>
 							</tr>
 				

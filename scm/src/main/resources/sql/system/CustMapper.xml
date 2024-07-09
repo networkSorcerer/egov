@@ -18,7 +18,6 @@
 			cust_addr,
 			cust_detail_addr,
 			biz_num,
-			cust_email,
 			industry_code,
 		) VALUES (
 			#{cust_id},
@@ -31,7 +30,6 @@
 			#{cust_addr},
 			#{cust_detail_addr},
 			#{biz_num},
-			#{cust_email},
 			#{industry_code}
 		)
 	</insert>
