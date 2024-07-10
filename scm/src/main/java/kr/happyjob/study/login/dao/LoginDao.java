@@ -3,6 +3,7 @@ package kr.happyjob.study.login.dao;
 import java.util.List;
 import java.util.Map;
 
+import kr.happyjob.study.cust.vo.CustVO;
 import kr.happyjob.study.login.model.LgnInfoModel;
 import kr.happyjob.study.login.model.UsrMnuAtrtModel;
 import kr.happyjob.study.login.model.UsrMnuChildAtrtModel;
@@ -54,7 +55,8 @@ public interface LoginDao {
 		return null;
 	} 
 	
-	
+	public List<CustVO> custList(Map<String, String> paramMap)throws Exception;
+
 /*	*//**select박스 은행 목록*//*
 	public List<LgnInfoModel> selectBankList();*/
 	

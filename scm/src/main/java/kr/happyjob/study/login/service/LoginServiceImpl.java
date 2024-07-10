@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import kr.happyjob.study.common.comnUtils.AESCryptoHelper;
 import kr.happyjob.study.common.comnUtils.ComnUtil;
 import kr.happyjob.study.common.comnUtils.FileUtilCho;
+import kr.happyjob.study.cust.vo.CustVO;
 /*import kr.happyjob.study.common.comnUtils.AESCryptoHelper;
 import kr.happyjob.study.common.comnUtils.ComnUtil;*/
 import kr.happyjob.study.login.dao.LoginDao;
@@ -149,6 +150,11 @@ public class LoginServiceImpl implements LoginService {
 	public void insertResume(Map<String, Object> paramMap) {
 		LoginDao.insertResume(paramMap);
 		
+	}
+
+	@Override
+	public List<CustVO> custList(Map<String, String> paramMap) throws Exception{
+		return loginDao.custList(paramMap);
 	}
 
 	

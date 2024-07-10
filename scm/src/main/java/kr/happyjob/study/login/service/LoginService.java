@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import kr.happyjob.study.cust.vo.CustVO;
 import kr.happyjob.study.login.model.LgnInfoModel;
 import kr.happyjob.study.login.model.UsrMnuAtrtModel;
 import kr.happyjob.study.login.model.UsrMnuChildAtrtModel;
@@ -47,6 +48,8 @@ public interface LoginService {
 	void insertFile(Map<String, Object> paramMap, HttpServletRequest request) throws Exception;
 	
 	void insertResume(Map<String, Object> paramMap);
+
+	public List<CustVO> custList(Map<String, String> paramMap) throws Exception;
 	
 /*	*//** select 박스 은행 목록*//*
 	List<LgnInfoModel> selectBankList();*/

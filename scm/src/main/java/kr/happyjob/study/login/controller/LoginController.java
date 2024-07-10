@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.happyjob.study.common.comnUtils.ComnCodUtil;
+import kr.happyjob.study.cust.vo.CustVO;
 import kr.happyjob.study.login.model.LgnInfoModel;
 import kr.happyjob.study.login.model.UsrMnuAtrtModel;
 import kr.happyjob.study.login.service.LoginService;
@@ -72,7 +73,10 @@ public class LoginController {
   logger.info("+ Start LoginController.login.do");
   List<ComnCodUtilModel> listOfcDvsCod = ComnCodUtil.getComnCod("OFC_DVS_COD","M");   // 오피스 구분 코드 (M제외)
   Collections.reverse(listOfcDvsCod); // 오피스 구분 역순으로
-
+  List<CustVO> cList = loginService.custList(paramMap);
+	
+  	result.addAttribute("cList", cList);
+	 logger.info("cList: " + cList);
 /*  List<LgnInfoModel> cdList = loginService.selectBankList();	//select박스 은행 목록
   request.setAttribute("cdListobj", cdList);					//select박스 은행 목록
 */  result.addAttribute("listOfcDvsCod", listOfcDvsCod);   // 오피스 구분 코드

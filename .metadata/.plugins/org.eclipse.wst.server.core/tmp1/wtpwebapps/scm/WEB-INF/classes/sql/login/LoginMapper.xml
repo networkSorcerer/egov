@@ -3,6 +3,12 @@
 
 <mapper namespace="kr.happyjob.study.login.dao.LoginDao">
    
+   
+   <!-- 기업 리스트 출력  -->
+   <select id="custList" resultType="kr.happyjob.study.cust.vo.CustVO">
+		select cust_name , cust_id
+		from tb_cust_info
+	</select>
    <!-- 사용자 로그인 체크 -->
    <select id="checkLogin" resultType="String">
       /*kr.happy.study.login.dao.LoginDao.checkLogin*/
@@ -89,7 +95,8 @@
             zip_code,
             addr,
             addr_detail,
-            email
+            email,
+            cust_id
         ) VALUES (
             #{loginID},
             #{user_type},
@@ -101,7 +108,8 @@
             #{user_zipcode},
             #{user_address},
             #{user_dt_address},
-            #{user_email}
+            #{user_email},
+            #{hidden_cust_id}
         )
 </insert>
 

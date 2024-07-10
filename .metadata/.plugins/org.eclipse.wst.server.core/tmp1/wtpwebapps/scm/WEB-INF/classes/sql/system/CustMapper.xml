@@ -8,7 +8,6 @@
 	
 	<insert id="custSave">
 		insert into tb_cust_info (
-			cust_id,
 			cust_name,
 			cust_ph,
 			cust_fax,
@@ -18,9 +17,8 @@
 			cust_addr,
 			cust_detail_addr,
 			biz_num,
-			industry_code,
+			industry_code
 		) VALUES (
-			#{cust_id},
 			#{cust_name},
 			#{cust_ph},
 			#{cust_fax},

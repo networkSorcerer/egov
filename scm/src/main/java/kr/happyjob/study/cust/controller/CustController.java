@@ -13,6 +13,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,8 +31,8 @@ public class CustController {
 	  private final Logger logger = LogManager.getLogger(this.getClass());
 	
 	
-	@RequestMapping("custList.do")
-	public String custList (Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+	@GetMapping("custList.do")
+	public String custList (@ModelAttribute CustVO cvo, Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 		
 		List<CustVO> cList = cService.custList(paramMap);
