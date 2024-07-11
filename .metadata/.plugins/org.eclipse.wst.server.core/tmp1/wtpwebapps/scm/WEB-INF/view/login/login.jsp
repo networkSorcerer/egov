@@ -87,7 +87,12 @@ function CRegister() {
 	// 모달 팝업
 	gfModalPop("#layer3");
 	show();
+	selectCO();
 
+}
+
+function selectCO() {
+	$("#custSelect").val("");
 }
 
 function show() {
@@ -201,7 +206,14 @@ $(document).ready(function() {
         $("#choose").hide();
     });
 });
-
+$(document).ready(function() {
+	$("#custSelect").change(function() {
+		var selectUserType = $(this).val();
+		console.log("타입" + selectUserType);
+		
+		
+	})
+})
  
 // 기업 회원 폼을 보이도록 설정하는 함수
 function outstaffRegister() {
@@ -233,18 +245,18 @@ function outstaffRegister() {
     $("#item.dtl_cod").val("");
     $("#dept_code").val("");
 	
-
-    checklistResult();
 }
 // 일반 회원 폼을 보이도록 설정하는 함수
 function instaffRegister() {
     $("#companyFields").hide();
     $("#email_cop2").hide();
     $("#userType").show();
-	
+	$("#user_type").val("");
 	$("#cust").hide();
     // 일반 회원 폼 초기화
-    $("#div_cd").val("CommonMember");
+    $("#hidden_cust_id").val("0");//초기화를 해줘야 다른 곳에서 기업을 선택해도 사내 회원 가입에 다른 값이 들어가지 않음 "" 도 넣자
+    //사내 회원의 기업 id 는 0으로 넣어보자 
+   	$("#birthday1").show();
     $("#registerId").val("");
     $("#registerPwd").val("");
     $("#registerPwdOk").val("");
@@ -260,9 +272,8 @@ function instaffRegister() {
     $("#del_cd").val("n");
     $("#approval_cd").val("n");
     $("#ckIdcheckreg").val("0");
-    $("#birthday1").show();
-
-    checklistResult();
+    
+    $("#div_cd").val("CommonMember");
 }
 
 
@@ -303,7 +314,7 @@ function RegisterVal(){
 	var bank_account = $('#bank_account').val(); */
 
 	
-
+	
 	
 	if(rgid.length < 1){
 		swal("아이디를 입력하세요.").then(function() {
@@ -615,9 +626,10 @@ function customerCo() {
 	$("#tel5").val("");
 	$("#tel6").val("");
 	$("#del_cd").val("n");
-	$("#approval_cd").val("n");
-	$("#ckIdcheckreg").val("0");
-    checklistResult();
+    $("#approval_cd").val("n");
+    $("#ckIdcheckreg").val("0");
+    
+    $("#div_cd").val("CommonMember");
 
 }
 
@@ -798,9 +810,19 @@ function CCCRegister() {
 		fSaveRegister(data);
 		}
 	
-	callAjax("/cust/CustSave.do", "post", "json", true, param, resultCallback);
+	$.ajax({
+		url : "/cust/CustSave.do",
+		type: "post",
+		dataType : "json",
+		async : true,
+		data: param,
+		success : resultCallback
+		
+	})
+	
+	/*callAjax("/cust/CustSave.do", "post", "json", true, param, resultCallback);*/
 	}
-	gfModalPop("#layer3");
+	
 
 }
 
@@ -810,6 +832,7 @@ function fSaveRegister(data) {
 	if (data.result == "SUCCESS") {
 		alert(data.resultMsg);
 		//gfCloseModal();
+		//gfModalPop("#layer3");
 	} else {
 		alert(data.resultMsg);
 		return false;
@@ -1392,7 +1415,7 @@ $(document).ready(function() {
         <form id="RegisterForm" action="" method="post">
             <input type="hidden" name="action" id="action" value="">
             <input type="hidden" name="ckIdcheckreg" id="ckIdcheckreg" value="0"/>
-            <input type="hidden" name="ckEmailcheckreg" id="ckEmailcheckreg" value="0"/>	
+            <input type="hidden" name="ckEmailcheckreg" id="ckEmailcheckreg" value="0"/>
             <dl>
                 <dt>
                     <br>
@@ -1408,7 +1431,6 @@ $(document).ready(function() {
                                 <td><input type="text" name="del_cd" id="del_cd" /></td>
                                 <td><input type="text" name="approval_cd" id="approval_cd" /></td>
                                 <td><input type="hidden" id="hidden_cust_id" name="hidden_cust_id"/></td>
-                                <td><input type="hidden" id="user_type" name="user_type"/></td>
                             </tr>
                             <tr id="companyFields" style="display: none;">
                                 <th scope="row" id="rgcompany_th">회사명<span class="font_red">*</span></th>
@@ -1493,8 +1515,8 @@ $(document).ready(function() {
                             <tr id="userType">
                                 <th scope="row">회원 유형<span class="font_red">*</span></th>
                                 <td colspan="3">
-                                    <select name="user_type" id="user_type" class="form-control" onchange="toggleCompanyFields()">
-                                        <option value="A">임직원</option>
+                                    <select name="user_type" id="user_type" class="form-control">
+                                        <option value="A"  selected="selected">임직원</option>
                                         <option value="C">관리 사원</option>
                                         <option value="E">구매 담당</option>
                                         <option value="D">배송 담당</option>

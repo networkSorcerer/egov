@@ -51,16 +51,16 @@ public class CustController {
 
 		
 		int result = 0;
-		String returnMsg="";
+		String resultMsg="";
 		
 		 result = cService.custSave(paramMap);
 		  if(result > 0) {
-			  returnMsg = "SUCCESS";
+			  resultMsg = "SUCCESS";
 		  } else {
-			  returnMsg = "fail";
+			  resultMsg = "fail";
 		  }
 		  
-		  resultMap.put("result", returnMsg);
+		  resultMap.put("resultMsg", resultMsg);
 		  return resultMap;
 		
 	}

@@ -383,7 +383,7 @@ d<%@ page language="java" contentType="text/html; charset=UTF-8"
 					<h3 class="hidden">contents 영역</h3> <!-- content -->
 					<div class="content">
 						<p class="Location">
-							<a href="#" class="btn_set home">메인으로</a> 
+							<a href="/WEB-INF/view/dashboard/dashboardMgr.jsp" class="btn_set home">메인으로</a> 
 							<a href="#" class="btn_nav bold">시스템 관리</a> 
 							<span class="btn_nav bold">공지 사항</span> 
 							<a href="#" class="btn_set refresh">새로고침</a>

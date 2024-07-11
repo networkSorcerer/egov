@@ -47,6 +47,7 @@ click-able rows
 						<!-- lnb 영역 --> <jsp:include
 							page="/WEB-INF/view/common/lnbMenu.jsp"></jsp:include> <!--// lnb 영역 -->
 					</li>
+					
 					<li class="contents">
 						<!-- contents -->
 						<h3 class="hidden">contents 영역</h3> <!-- content -->
@@ -58,9 +59,23 @@ click-able rows
 								<span class="btn_nav bold">메인</span> <a
 									href="../dashboard/dashboard.do" class="btn_set refresh">새로고침</a>
 							</p>
+							<%@ include file="/WEB-INF/view/dashboard/Notice.jsp" %>
+							<%@ include file="/WEB-INF/view/dashboard/Order.jsp" %>
+							<%@ include file="/WEB-INF/view/dashboard/Sale.jsp" %>
+							<%@ include file="/WEB-INF/view/dashboard/Product.jsp" %>
+							<%@ include file="/WEB-INF/view/dashboard/Customer.jsp" %>
+							
+							
 						</div>
+							
+ 					</li>
+					<li>
+						
 					</li>
 				</ul>
+					<%-- <ul>
+					
+				</ul> --%>
 			</div>
 		</div>
 	</form>
