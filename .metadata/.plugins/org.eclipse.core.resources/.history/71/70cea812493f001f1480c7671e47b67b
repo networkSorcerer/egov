@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>공지 사항</title>
+    <jsp:include page="/WEB-INF/view/common/common_include.jsp"></jsp:include>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        function NoticeList() {
+            var param = {}; // 필요에 따라 파라미터를 설정할 수 있습니다.
+
+            var callBackFunction = function(response) {
+                // 데이터를 받아와서 각 필드에 설정합니다.
+              $("#noticeList").empty().append(response)
+            };
+
+            $.ajax({
+                url: "/board/noticeList1.do", // 서버에서 데이터를 제공하는 URL로 수정해야 합니다.
+                type: "post",
+                dataType: "json", // JSON 형식으로 데이터를 받아옵니다.
+                async: false,
+                success: callBackFunction,
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                }
+            });
+        }
+
+        // 페이지 로드 시 NoticeList 함수를 호출하여 데이터를 가져옵니다.
+        NoticeList();
+    });
+    </script>
+</head>
+<body>
+    <h1>공지 사항</h1>
+    <div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>공지 번호</th>
+                    <th>공지 제목</th>
+                    <th>공지 날짜</th>
+                    <th>작성자</th>
+                </tr>
+            </thead>
+            <tbody id="noticeList">
+            <c:if test="${noticeCnt >0 }">
+            	<c:forEach var="list" items="${noticeList }">
+            		 <tr>
+                    <td id="noticeId">${list.noti_seq}</td>
+                    <td id="noticeTitle">${list.noti_title }</td>
+                    <td id="noticeDate">${list.noti_date }</td>
+                    <td id="noticeWriter">${list.noti_loginID }</td>
+                	</tr>
+            	</c:forEach>
+            </c:if>
+            	
+            <input type="hidden" id="totcnt" name="totcnt" value="${noticeCnt}"/>
+               
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

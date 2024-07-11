@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,12 +21,12 @@ import kr.happyjob.study.system.service.NoticeService;
 import kr.happyjob.study.system.service.nService;
 
 @Controller
-@RequestMapping("/system/")
+@RequestMapping("/main/")
 public class nController {
 	@Autowired
 	nService nservice;
 	
-	@RequestMapping("n.do")
+	/*@RequestMapping("n.do")
 	public String init(Model model, @RequestParam Map<String , Object> paramMap, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 		String loginID = (String) session.getAttribute("loginId");
@@ -53,6 +54,23 @@ public class nController {
 		model.addAttribute("nCnt",nCnt);
 		
 		return "system/nList";
+	}*/
+	
+	@RequestMapping("nList1.do")
+	@ResponseBody
+	public Map<String, Object> getNList1(Model model, @RequestParam Map<String , Object> paramMap,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String , Object> resultMap = new HashMap<>();
+	
+		
+		List<nModel>nList = nservice.n1List(paramMap);
+		int nCnt = nservice.nListCnt(paramMap);
+		
+		resultMap.put("nList",nList);
+		resultMap.put("nCnt", nCnt);
+
+		
+		return resultMap;
 	}
 	
 	@RequestMapping("nSave.do")

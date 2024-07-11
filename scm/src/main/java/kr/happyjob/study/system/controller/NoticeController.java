@@ -77,27 +77,29 @@ public class NoticeController {
 	
 	@RequestMapping("noticeList1.do")
 	@ResponseBody
-	public String getNoticeList1(Model model, @RequestParam Map<String, Object> paramMap,
+	public Map<String , Object> getNoticeList1(Model model, @RequestParam Map<String, Object> paramMap,
 	                            HttpServletRequest request, HttpServletResponse response) throws Exception {
 			
-	    logger.info("+ Start " + className + ".getNoticeList");
+		logger.info("+ Start " + className + ".getNoticeList");
 	    logger.info("   - paramMap : " + paramMap);
-	    
-	    int cpage = Integer.valueOf((String) paramMap.get("currentPage"));
+	    Map<String , Object> resultMap = new HashMap<>();
+	    /*int cpage = Integer.valueOf((String) paramMap.get("currentPage"));
 	    int pageSize =Integer.valueOf((String ) paramMap.get("pageSize"));
 	    
 	    int startSeq = (cpage -1) * pageSize;
 	    
 	    paramMap.put("startSeq", startSeq);
-	    paramMap.put("pageSize", pageSize);
+	    paramMap.put("pageSize", pageSize);*/
 	    // Add your business logic here
 	    List<NoticeModel> noticeList = noticeService.noticeList(paramMap); // Example method call from noticeService
 	    int noticeCnt = noticeService.noticeListCnt(paramMap);
-        // Example of adding data to the model to be used in the view
-        model.addAttribute("noticeList", noticeList);
-        model.addAttribute("noticeCnt", noticeCnt);
+        resultMap.put("noticeList", noticeList);
+        resultMap.put("noticeCnt", noticeCnt);
+	    // Example of adding data to the model to be used in the view
+        //model.addAttribute("noticeList", noticeList);
+        //model.addAttribute("noticeCnt", noticeCnt);
         
-        return "system/noticeList";
+        return resultMap;
 	}
 	
 	@RequestMapping("noticeSave.do")

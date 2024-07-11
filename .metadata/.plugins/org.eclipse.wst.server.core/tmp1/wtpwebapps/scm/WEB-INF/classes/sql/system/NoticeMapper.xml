@@ -27,6 +27,7 @@
 		LIMIT #{startSeq}, #{pageSize}
 	</select>
 	
+	
 	<select id="noticeListCnt" resultType="int">
 	/* kr.happyjob.study.system.dao.NoticeDao.noticeListCnt */
 		SELECT 
@@ -152,5 +153,18 @@
     </set>
     where noti_seq = #{noticeSeq}
 </update>
+<select id="MainNoticeList"  resultType="kr.happyjob.study.system.model.NoticeModel">
+SELECT 
+    noti_seq,
+    loginID,
+    noti_title,
+    noti_content,
+    noti_date
+FROM 
+    tb_noti_info
+ORDER BY 
+    noti_date DESC
+LIMIT 5;
 
+</select>
 </mapper>

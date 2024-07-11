@@ -3,7 +3,8 @@
 
 
 <mapper namespace="kr.happyjob.study.system.dao.nDAO">
-	<select id="nList" resultType="kr.happyjob.study.system.model.nModel">
+	
+	<select id="n1List" resultType="kr.happyjob.study.system.model.nModel">
 		SELECT 
 			noti_seq ,
 			loginID ,

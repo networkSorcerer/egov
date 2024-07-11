@@ -23,4 +23,6 @@ public interface NoticeService {
 	public int noticeSaveFile(Map<String, Object> paramMap, HttpServletRequest request) throws Exception;
 
 	public int noticeUpdateFile(Map<String, Object> paramMap, HttpServletRequest request) throws Exception;
+
+	public List<NoticeModel> MainNoticeList(Map<String, Object> paramMap);
 }

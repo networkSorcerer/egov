@@ -122,4 +122,10 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDao.noticeUpdateFile(paramMap);
 	}
 
+	@Override
+	public List<NoticeModel> MainNoticeList(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return noticeDao.MainNoticeList(paramMap);
+	}
+
 }

@@ -15,8 +15,8 @@ public class nServiceImpl implements nService {
 	nDAO ndao;
 	
 	@Override
-	public List<nModel> nList(Map<String, Object> paramMap)throws Exception {
-		return ndao.nList(paramMap);
+	public List<nModel> n1List(Map<String, Object> paramMap)throws Exception {
+		return ndao.n1List(paramMap);
 	}
 
 	@Override

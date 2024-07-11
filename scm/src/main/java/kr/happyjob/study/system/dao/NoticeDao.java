@@ -21,4 +21,7 @@ public interface NoticeDao {
 	public int noticeSaveFile(Map<String, Object> paramMap);
 
 	public int  noticeUpdateFile(Map<String, Object> paramMap);
+	
+	public List<NoticeModel> MainNoticeList(Map<String, Object> paramMap);
+
 }
