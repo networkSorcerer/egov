@@ -1,5 +1,0 @@
-package kr.happyjob.study.cust.dao;
-
-public interface CustDAO {
-
-}

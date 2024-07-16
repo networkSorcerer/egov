@@ -14,7 +14,7 @@ $(document).ready(function(){
         type: "post",
         dataType: "json",
         success: function(response) {
-            var orderList = response.orderList;
+            var orderList = response.orderList1;
             var html = "";
             
             orderList.forEach(function(item){
@@ -28,7 +28,7 @@ $(document).ready(function(){
         }
        
     });
-    console.log("order", orderList);
+    
 });
 </script>
 </head>

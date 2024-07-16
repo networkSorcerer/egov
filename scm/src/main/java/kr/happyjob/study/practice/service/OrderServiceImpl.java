@@ -10,15 +10,14 @@ import kr.happyjob.study.practice.dao.OrderDAO;
 import kr.happyjob.study.practice.vo.OrderVO;
 
 @Service
-public class OrderServiceImpl implements OrderService{
-	
-	@Autowired
-	OrderDAO odao;
-	
-	@Override
-	public List<OrderVO> orderList(Map<String, Object> paramMap) throws Exception {
-		// TODO Auto-generated method stub
-		return odao.orderList(paramMap);
-	}
+public class OrderServiceImpl implements OrderService {
+    
+    @Autowired
+    OrderDAO odao;
+    
+    @Override
+    public List<OrderVO> orderList(Map<String, Object> paramMap) throws Exception {
+        return odao.orderList(paramMap);
+    }
 
 }
