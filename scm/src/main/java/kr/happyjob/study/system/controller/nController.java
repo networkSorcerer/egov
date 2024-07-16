@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.happyjob.study.system.model.nModel;
-import kr.happyjob.study.system.service.NoticeService;
+import kr.happyjob.study.system.service.NoticeService1;
 import kr.happyjob.study.system.service.nService;
 
 @Controller

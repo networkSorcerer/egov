@@ -6,6 +6,7 @@
     <title>공지 사항</title>
     <jsp:include page="/WEB-INF/view/common/common_include.jsp"></jsp:include>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script>
    /*   $(document).ready(function() {
         function loadNoticeList() {
@@ -31,30 +32,32 @@
     </script>
 </head>
 <body>
-    <h1>공지 사항</h1>
-    <div>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>공지 번호</th>
-                    <th>공지 제목</th>
-                    <th>공지 날짜</th>
-                    <th>작성자</th>
-                </tr>
-            </thead>
-            <tbody id="noticeList">
-                <!-- AJAX를 통해 동적으로 데이터가 추가됩니다 -->
-                <c:forEach var="list" items="${nList }">
-                <tr>
-                	<td>${list.noti_seq }</td>
-                	<td>${list.noti_title }</td>
-                	<td>${list.noti_date }</td>
-                	<td>${list.loginID }</td>
-                </tr>
-                </c:forEach>
-               
-            </tbody>
-        </table>
+     <div>
+        <h1 class="mb-4">공지 사항</h1>
+        <div >
+            <table class="col">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">공지 번호</th>
+                        <th scope="col">공지 제목</th>
+                        <th scope="col">공지 날짜</th>
+                        <th scope="col">작성자</th>
+                    </tr>
+                </thead>
+                <tbody id="noticeList">
+                    <!-- AJAX를 통해 동적으로 데이터가 추가됩니다 -->
+                    <c:forEach var="list" items="${nList}">
+                        <tr>
+                            <td>${list.noti_seq}</td>
+                            <td>${list.noti_title}</td>
+                            <td>${list.noti_date}</td>
+                            <td>${list.loginID}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </div>
+
 </body>
 </html>

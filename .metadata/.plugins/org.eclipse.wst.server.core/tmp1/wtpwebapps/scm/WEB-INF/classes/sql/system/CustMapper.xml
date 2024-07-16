@@ -31,4 +31,35 @@
 			#{industry_code}
 		)
 	</insert>
+	
+	<select id="customerList" resultType="kr.happyjob.study.cust.vo.CustVO"> 
+		select
+		cust_id,
+		cust_name,
+		cust_ph,
+		cust_person,
+		cust_person_ph,
+		cust_zip,
+		cust_addr,
+		cust_detail_addr
+		from tb_cust_info
+	</select>
+	<select id="customerCnt" resultType="int">
+		select count(*)
+		from tb_cust_info
+	</select>
+	
+	<select id="cDetail" resultType="kr.happyjob.study.cust.vo.CustVO" >
+		select
+		cust_id,
+		cust_name,
+		cust_ph,
+		cust_person,
+		cust_person_ph,
+		cust_zip,
+		cust_addr,
+		cust_detail_addr
+		from tb_cust_info
+		where cust_id = #{cust_id}
+	</select>
 </mapper>

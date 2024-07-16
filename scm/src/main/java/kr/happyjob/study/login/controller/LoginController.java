@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.happyjob.study.common.comnUtils.ComnCodUtil;
+import kr.happyjob.study.cust.service.CustService;
 import kr.happyjob.study.cust.vo.CustVO;
 import kr.happyjob.study.login.model.LgnInfoModel;
 import kr.happyjob.study.login.model.UsrMnuAtrtModel;
@@ -50,7 +51,8 @@ public class LoginController {
    @Autowired
    MailSendService mailSendService;
 
-
+   @Autowired
+   CustService custService;
    /**
 * index 접속 시 로그인 페이지로 이동한다.
 * 
@@ -67,16 +69,20 @@ public class LoginController {
    
    
    @RequestMapping("login.do")
-   public String index(Model result, @RequestParam Map<String, String> paramMap, HttpServletRequest request,
+   public String index(Model result, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
          HttpServletResponse response, HttpSession session) throws Exception {
 
   logger.info("+ Start LoginController.login.do");
   List<ComnCodUtilModel> listOfcDvsCod = ComnCodUtil.getComnCod("OFC_DVS_COD","M");   // 오피스 구분 코드 (M제외)
   Collections.reverse(listOfcDvsCod); // 오피스 구분 역순으로
-  List<CustVO> cList = loginService.custList(paramMap);
+  
+  List<CustVO> cList = custService.custList(paramMap);
 	
   	result.addAttribute("cList", cList);
 	 logger.info("cList: " + cList);
+	 List<CustVO> custList = custService.customerList(paramMap);// 만약에 얘를 지우고 진짜로 ajax를 통해서 가져와서 박으면 어떻게 될까? //
+	 result.addAttribute("custList",custList);
+	 
 /*  List<LgnInfoModel> cdList = loginService.selectBankList();	//select박스 은행 목록
   request.setAttribute("cdListobj", cdList);					//select박스 은행 목록
 */  result.addAttribute("listOfcDvsCod", listOfcDvsCod);   // 오피스 구분 코드

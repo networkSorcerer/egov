@@ -36,11 +36,34 @@ public class CustController {
 			HttpServletResponse response, HttpSession session) throws Exception {
 		
 		List<CustVO> cList = cService.custList(paramMap);
-		
+		List<CustVO> custList = cService.customerList(paramMap);
 		model.addAttribute("cList", cList);
+		model.addAttribute("custList",custList );
 		 logger.info("cList: " + cList);
 
 		return "login/login";
+	}
+	
+	@RequestMapping("custList1.do")
+	@ResponseBody
+	public Map<String, Object> custList1 (@ModelAttribute CustVO cvo, Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		Map<String , Object> resultMap = new HashMap<>();
+		List<CustVO> custList = cService.customerList(paramMap);
+		resultMap.put("custList", custList);
+
+		return resultMap;
+	}
+	
+	@RequestMapping("custDetail.do")
+	@ResponseBody
+	public Map<String , Object> custDetail (@ModelAttribute CustVO cvo, Model model, @RequestParam Map<String, Object>paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		Map<String, Object> resultMap = new HashMap<>();
+		List<CustVO> custDetail = cService.cDetail(paramMap);
+		resultMap.put("custDetail",custDetail );
+		
+		return resultMap;
 	}
 	
 	@RequestMapping("CustSave.do")

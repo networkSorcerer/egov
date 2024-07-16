@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.happyjob.study.cust.dao.CustDAO;
 import kr.happyjob.study.cust.vo.CustVO;
+import kr.happyjob.study.practice.vo.CustomerVO;
 
 @Service
 public class CustServiceImpl implements CustService {
@@ -27,4 +28,30 @@ public class CustServiceImpl implements CustService {
 		// TODO Auto-generated method stub
 		return cdao.custSave(paramMap);
 	}
+
+
+	@Override
+	public int customerCnt(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return cdao.customerCnt(paramMap);
+	}
+
+
+	@Override
+	public List<CustVO> customerList(Map<String, Object> paramMap) throws Exception {
+		// TODO Auto-generated method stub
+		return cdao.customerList(paramMap);
+	}
+
+
+	@Override
+	public List<CustVO> cDetail(Map<String, Object> paramMap) throws Exception {
+		// TODO Auto-generated method stub
+		return cdao.cDetail(paramMap);
+	}
+
+
+	
+
+
 }

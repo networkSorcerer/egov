@@ -1,8 +1,0 @@
-package kr.happyjob.study.system.service;
-
-import org.springframework.stereotype.Service;
-
-@Service
-public class nServiceImpl {
-
-}

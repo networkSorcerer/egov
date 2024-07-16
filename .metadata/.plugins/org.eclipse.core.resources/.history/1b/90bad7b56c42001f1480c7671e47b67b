@@ -1,0 +1,12 @@
+package kr.happyjob.study.practice.vo;
+
+public class CustomerVO {
+	private int cust_id;
+	private String cust_name;
+	private String cust_ph;
+	private String cust_person;
+	private String cust_person_ph;
+	private String cust_zip;
+	private String cust_addr;
+	private String cust_detail_addr;
+}

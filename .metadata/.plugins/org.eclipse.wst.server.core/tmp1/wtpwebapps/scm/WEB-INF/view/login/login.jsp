@@ -21,11 +21,14 @@
 	href="${CTX_PATH}/css/admin/login.css" />
 
 <!-- 우편번호 조회 -->
-
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="${CTX_PATH}/js/popFindZipCode.js"></script>
+<style>
+	  a:link, a:visited, a:hover, a:active, a:focus {
+            color: inherit; /* 링크 색상을 부모 요소의 색상과 동일하게 설정 */
+            text-decoration: none; /* 밑줄 제거 */
+        }
+</style>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" charset="utf-8" src="${CTX_PATH}/js/popFindZipCode.js"></script>
 	<!-- sweet alert import -->
 <script src='${CTX_PATH}/js/sweetalert/sweetalert.min.js'></script>
 
@@ -43,7 +46,7 @@ $(document).ready(function() {
 	$("#loginRegister").hide();
 	$("#loginEmail").hide();
 	$("#loginPwd").hide();
-
+	$("#menu").hide();
 	var cookie_user_id = getCookie('EMP_ID');
 	if (cookie_user_id != "") {
 		$("#EMP_ID").val(cookie_user_id);
@@ -53,9 +56,21 @@ $(document).ready(function() {
 	$("#EMP_ID").focus();
 	
 	init();
+
 	
 });
 
+
+function secret() {
+    $("#menu").toggle();
+}
+
+window.onload = function() {
+    document.getElementById("secret-link").addEventListener("click", function(event) {
+        event.preventDefault();
+        secret();
+    });
+}
 
 function fcancleModal(){
 	gfCloseModal();
@@ -290,6 +305,9 @@ function findIdPwd() {
 	
 }
 
+function menu(){
+	gfModalPop("#layer5");
+}
 
 /* 회원가입 validation */
 function RegisterVal(){
@@ -1351,6 +1369,28 @@ $(document).ready(function() {
     // custSelect 요소의 변경을 감지하여 처리
   
 //});
+
+function customer(){
+	gfModalPop("#layer6");
+	
+	/* CustomerList(); */
+}
+
+function CustomerList() {
+	var param={};
+	
+	var callBackFunction = {
+			
+	}
+	$.ajax({
+		url: "/cust/custList.do",
+		dataType: "text",
+		Type: "post",
+		data: param,
+		success : callBackFunction
+	})
+}
+
 </script>
 </head>
 <body>
@@ -1363,7 +1403,7 @@ $(document).ready(function() {
                 </div>
                 <h3>안되는 것이 실패가 아니라 포기하는 것이 실패다</h3>
                 <p>
-						성공은 실패의 꼬리를 물고 온다.
+						<a href="#" id="secret-link">성공은 실패의 꼬리를 물고 온다.
 						지금 포기한 것이 있는가?<br>그렇다면 다시 시작해 보자.<br>
 						안되는 것이 실패가 아니라 포기하는 것이 실패다.<br>
 						포기한 순간이 성공하기 5분전이기 쉽다.<br> 실패에서 더 많이 배운다.<br>
@@ -1402,6 +1442,7 @@ $(document).ready(function() {
 				<a href="javascript:CRegister();" id="CRegisterBtn"
 					name="modal"><strong>[기업회원가입]</strong></a> 
 					<a href="javascript:findIdPwd();"><strong>[아이디/비밀번호 찾기]</strong></a>
+					<a href="javascript:menu();" id="menu"><strong>[메뉴]</strong></a>
 			</fieldset>
 			</div>
 			
@@ -1725,6 +1766,64 @@ $(document).ready(function() {
             </dl>
             <a href="" class="closePop"><span class="hidden">닫기</span></a>
         </form>
+    </div>
+    
+    <div id="layer5"  class="layerPosition layerPop layerType2" style="width: 600px; height : 600px">
+    	  <a href="javascript:fcancleModal()" class="btn btn-secondary" id="btnCloseLsmCod" name="btn">취소</a>
+    	  <br><br><br>
+    	  
+    	  <a href="javascript:customer();"  class="btn btn-success"><strong>고객 tb_cust_info</strong></a><br><br>
+    	  <a href="javascript:customer();"  class="btn btn-success"><strong>주문 tb_order</strong></a><br><br>
+    	  <a href="javascript:customer();"  class="btn btn-success"><strong>상품 tb_item_info</strong></a><br><br>
+    	  <a href="javascript:customer();"  class="btn btn-success"><strong>창고 tb_storage </strong></a><br><br>
+    	  <a href="javascript:customer();"  class="btn btn-success"><strong>구매 tb_obtain</strong></a><br><br>
+    	  <a href="javascript:customer();"  class="btn btn-success"><strong>반품 tb_return</strong></a><br><br>
+    	  <a href="javascript:customer();"  class="btn btn-success"><strong>공지 tb_noti_info</strong></a>
+    </div>
+    
+    <div id="layer6" class="layerPosition layerPop layerType2" style="width: 600px; height : 600px">
+    	<div>
+    		<div>
+    			<div>
+    				<table class="col">
+    					 <tr>
+    						<td>고객 회사명</td>
+    						
+    					</tr>
+    					<tr>
+    						<td>
+    							<select>
+    							<c:forEach var="list" items="${custList}">
+    								<option value="${list.cust_id }">${list.cust_name }</option>
+    							</c:forEach>	
+    							</select>
+    						</td>
+    					</tr>
+    					<%-- <tr>
+    						<td>${list.cust_id }</td>
+    						<td>${list.cust_name }</td>
+    						<td>${list.cust_person }</td>
+    						<td>${list.cust_person_ph }</td>
+    					</tr> --%>
+    					
+    					
+    				</table>
+    				<jsp:include page="/WEB-INF/view/login/customer.jsp"></jsp:include>
+    				
+    			</div>
+    			<br>
+    			<br>
+    			<br>
+    			<div>
+    				<a href="javascript:fcancleModal()" class="btn btn-secondary" id="btnCloseLsmCod" name="btn">취소</a>
+    			</div>
+    			
+    			<br>
+    			<div>
+					<a href="javascript:menu();" id="menu"  class="btn btn-primary"><strong>뒤로</strong></a>
+				</div>
+    		</div>
+    	</div>
     </div>
 </body>
 </html>

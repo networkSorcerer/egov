@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1> 의견을 제시해서 수주 기타등등 다른 페이지의 내용을 넣을 수 없겠냐 해서 <br> 연습 해보소</h1>
+	<h1> 상품 <br></h1>
 </body>
 </html>

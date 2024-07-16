@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1> 최근 게시물인데 위에 공지사항이 있다 다른걸 넣어야 할것 같다 겹친다 <br>원래 공지 사항 처음에 최근 공지사항이지 않나? </h1>
+	<h1> 영업실적 <br> </h1>
 </body>
 </html>

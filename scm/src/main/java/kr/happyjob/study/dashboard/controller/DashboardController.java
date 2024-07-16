@@ -15,17 +15,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.happyjob.study.system.model.NoticeModel;
-import kr.happyjob.study.system.model.nModel;
-import kr.happyjob.study.system.service.NoticeService;
-import kr.happyjob.study.system.service.nService;
+import kr.happyjob.study.board.model.NoticeModel;
+import kr.happyjob.study.board.service.NoticeService;
+import kr.happyjob.study.cust.service.CustService;
+import kr.happyjob.study.cust.vo.CustVO;
+import kr.happyjob.study.practice.service.CustomerService;
+import kr.happyjob.study.practice.vo.CustomerVO;
 
 @Controller
 @RequestMapping("/dashboard/")
 public class DashboardController {
-	@Autowired
-	NoticeService noticeService;
-	
+	 @Autowired
+	 private NoticeService noticeService;
+	    
+    @Autowired
+    private CustService cService;
 	private final Logger logger = LogManager.getLogger(this.getClass());
 
 	// Get class name for logger
@@ -45,8 +49,15 @@ public class DashboardController {
 		
 		List<NoticeModel> nList = noticeService.MainNoticeList(paramMap);
 		model.addAttribute("nList", nList);
+		
+	
+		List<CustVO> cList = cService.customerList(paramMap);
+		model.addAttribute("cList", cList);
+	
+		/*List<OrderVO> oList = oService.orderList(paramMap);
+		model.addAttribute("oList", oList);*/
 		String returnType = "/dashboard/dashboardMgr";
-
+		
 		logger.info("+ end " + className + ".initDashboard");
 
 		return returnType;
