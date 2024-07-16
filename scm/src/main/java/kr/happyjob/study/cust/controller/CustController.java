@@ -25,9 +25,12 @@ import kr.happyjob.study.cust.vo.CustVO;
 @Controller
 @RequestMapping("/cust/")
 public class CustController {
-	@Autowired
 	
+	
+	@Autowired
 	CustService cService;
+	
+	
 	  private final Logger logger = LogManager.getLogger(this.getClass());
 	
 	
@@ -63,6 +66,60 @@ public class CustController {
 		List<CustVO> custDetail = cService.cDetail(paramMap);
 		resultMap.put("custDetail",custDetail );
 		
+		return resultMap;
+	}
+	@RequestMapping("custModify.do")
+	@ResponseBody
+	public Map<String, Object>  custModify (@ModelAttribute CustVO cvo, Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		Map<String, Object> resultMap = new HashMap<>();
+		int result = 0;
+		String resultMsg="";
+		result = cService.custModify(paramMap);
+		if(result >0){
+			resultMsg="SUCCESS";
+		}else {
+			resultMsg="fail";
+		}
+		resultMap.put("resultMsg", resultMsg);
+		return resultMap;
+	}
+	
+	@RequestMapping("custInsert.do")
+	@ResponseBody
+	public Map<String, Object> custInsert (@RequestParam Map<String, Object> paramMap, 
+			HttpServletRequest resquest, HttpServletResponse response, HttpSession session) throws Exception{
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		int result = 0;
+		String resultMsg="";
+		
+		result = cService.custInsert(paramMap);
+		if(result >0) {
+			resultMsg="SUCCESS";
+		}else {
+			resultMsg="FAIL";
+		}
+		resultMap.put("resultMsg", resultMsg);
+		return resultMap;
+	}
+	
+	@RequestMapping("custDelete.do")
+	@ResponseBody
+	public Map<String, Object> custDelete(@RequestParam Map<String , Object> paramMap, 
+			HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
+		Map<String , Object> resultMap = new HashMap<String, Object>();
+		
+		int result = 0;
+		String resultMsg="";
+		
+		result = cService.custDel(paramMap);
+		if(result>0) {
+			resultMsg="SUCCESS";
+		}else {
+			resultMsg="FAIL";
+		}
+		resultMap.put("resultMsg", resultMsg);
 		return resultMap;
 	}
 	

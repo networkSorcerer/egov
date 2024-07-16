@@ -16,5 +16,11 @@ public interface CustDAO {
 	public List<CustVO> customerList(Map<String, Object> paramMap)throws Exception;
 	
 	public List<CustVO> cDetail(Map<String, Object> paramMap)throws Exception;
+	
+	public int custModify(Map<String, Object> paramMap)throws Exception;
+	
+	public int custInsert(Map<String, Object> paramMap) throws Exception;
+
+	public int custDel(Map<String, Object> paramMap)throws Exception;
 
 }

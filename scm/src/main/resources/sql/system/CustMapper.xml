@@ -62,4 +62,33 @@
 		from tb_cust_info
 		where cust_id = #{cust_id}
 	</select>
+	
+	<update id="custModify">
+		update tb_cust_info
+		set		
+		cust_name = #{cust_name},
+		cust_ph =#{cust_ph},
+		cust_person = #{cust_person},
+		cust_person_ph =#{cust_person_ph}
+		where cust_id = #{cust_id}
+	</update>
+	<insert id="custInsert">
+		insert into tb_cust_info (
+		cust_name,
+		cust_ph,
+		cust_person,
+		cust_person_ph
+		) values (
+		#{cust_name},
+		#{cust_ph},
+		#{cust_person},
+		#{cust_person_ph}
+			
+		)
+		
+	</insert>
+	<delete id="custDel">
+		delete from tb_cust_info
+		where cust_id = #{cust_id}
+	</delete>
 </mapper>

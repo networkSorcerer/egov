@@ -51,6 +51,27 @@ public class CustServiceImpl implements CustService {
 	}
 
 
+	@Override
+	public int custModify(Map<String, Object> paramMap) throws Exception {
+		// TODO Auto-generated method stub
+		return cdao.custModify(paramMap);
+	}
+
+
+	@Override
+	public int custInsert(Map<String, Object> paramMap) throws Exception{
+		// TODO Auto-generated method stub
+		return cdao.custInsert(paramMap);
+	}
+
+
+	@Override
+	public int custDel(Map<String, Object> paramMap) throws Exception {
+		// TODO Auto-generated method stub
+		return cdao.custDel(paramMap);
+	}
+
+
 	
 
 

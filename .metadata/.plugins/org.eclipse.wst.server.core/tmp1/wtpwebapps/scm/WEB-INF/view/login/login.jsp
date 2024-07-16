@@ -63,6 +63,10 @@ $(document).ready(function() {
 
 function secret() {
     $("#menu").toggle();
+    $("#RegisterBtn").toggle();
+    $("#CRegisterBtn").toggle();
+    $("#find").toggle();
+    
 }
 
 window.onload = function() {
@@ -1391,7 +1395,11 @@ function CustomerList() {
 	})
 }
 
+function order() {
+	gfModalPop("#layer9");
+}
 </script>
+
 </head>
 <body>
 	<form id="myForm" action="" method="post">
@@ -1403,10 +1411,10 @@ function CustomerList() {
                 </div>
                 <h3>안되는 것이 실패가 아니라 포기하는 것이 실패다</h3>
                 <p>
-						<a href="#" id="secret-link">성공은 실패의 꼬리를 물고 온다.
+						성공은 실패의 꼬리를 물고 온다.
 						지금 포기한 것이 있는가?<br>그렇다면 다시 시작해 보자.<br>
 						안되는 것이 실패가 아니라 포기하는 것이 실패다.<br>
-						포기한 순간이 성공하기 5분전이기 쉽다.<br> 실패에서 더 많이 배운다.<br>
+						포기한 순간이<a href="#" id="secret-link"> 성공하기 5분전이기 쉽다.</a><br> 실패에서 더 많이 배운다.<br>
 						실패를 반복해서 경험하면 실망하기 쉽다. <br>하지만 포기를 생각해선 안된다.
 						실패는 언제나 중간역이지 종착역은 아니다. <br>
                </p>
@@ -1433,7 +1441,7 @@ function CustomerList() {
 					<span class="id_save">ID저장</span> <br>
 				</p>
 				
-				<a class="btn_login" href="javascript:fLoginProc();" id="btn_login" style="margin-top: 20px">
+				<a class="btn_login" href="javascript:fLoginProc();" id="btn_login" style="margin-top: 25px">
 				<strong>Login</strong>
 				</a>
 				<br>
@@ -1441,8 +1449,8 @@ function CustomerList() {
 					name="modal"><strong>[일반회원가입]</strong></a> 
 				<a href="javascript:CRegister();" id="CRegisterBtn"
 					name="modal"><strong>[기업회원가입]</strong></a> 
-					<a href="javascript:findIdPwd();"><strong>[아이디/비밀번호 찾기]</strong></a>
-					<a href="javascript:menu();" id="menu"><strong>[메뉴]</strong></a>
+					<a href="javascript:findIdPwd();" id="find"><strong>[아이디/비밀번호 찾기]</strong></a>
+					<a href="javascript:menu();" id="menu" class="btn btn-danger"><strong>[메뉴]</strong></a>
 			</fieldset>
 			</div>
 			
@@ -1768,20 +1776,27 @@ function CustomerList() {
         </form>
     </div>
     
-    <div id="layer5"  class="layerPosition layerPop layerType2" style="width: 600px; height : 600px">
-    	  <a href="javascript:fcancleModal()" class="btn btn-secondary" id="btnCloseLsmCod" name="btn">취소</a>
+    <div id="layer5"  class="layerPosition layerPop layerType2" style="width: 600px; height : 600px;  position : fixed; top : 50%; left:50%"">
+    	  <a href="javascript:fcancleModal()" class="btn btn-dark" id="btnCloseLsmCod" name="btn">취소</a>
     	  <br><br><br>
     	  
     	  <a href="javascript:customer();"  class="btn btn-success"><strong>고객 tb_cust_info</strong></a><br><br>
-    	  <a href="javascript:customer();"  class="btn btn-success"><strong>주문 tb_order</strong></a><br><br>
-    	  <a href="javascript:customer();"  class="btn btn-success"><strong>상품 tb_item_info</strong></a><br><br>
-    	  <a href="javascript:customer();"  class="btn btn-success"><strong>창고 tb_storage </strong></a><br><br>
-    	  <a href="javascript:customer();"  class="btn btn-success"><strong>구매 tb_obtain</strong></a><br><br>
-    	  <a href="javascript:customer();"  class="btn btn-success"><strong>반품 tb_return</strong></a><br><br>
-    	  <a href="javascript:customer();"  class="btn btn-success"><strong>공지 tb_noti_info</strong></a>
+    	  <a href="javascript:order();"  class="btn btn-info"><strong>주문 tb_order</strong></a><br><br>
+    	  <a href="javascript:customer();"  class="btn btn-primary"><strong>상품 tb_item_info</strong></a><br><br>
+    	  <a href="javascript:customer();"  class="btn btn-danger"><strong>창고 tb_storage </strong></a><br><br>
+    	  <a href="javascript:customer();"  class="btn btn-light"><strong>구매 tb_obtain</strong></a><br><br>
+    	  <a href="javascript:customer();"  class="btn btn-warning"><strong>반품 tb_return</strong></a><br><br>
+    	  <a href="javascript:customer();"  class="btn btn-secondary"><strong>공지 tb_noti_info</strong></a>
     </div>
-    
-    <div id="layer6" class="layerPosition layerPop layerType2" style="width: 600px; height : 600px">
+    <div id="layer9" class="layerPosition layerPop layerType2" style="width: 600px; height : 600px; position : fixed; top : 50%; left:50%">
+    	 <jsp:include page="/WEB-INF/view/login/order.jsp" ></jsp:include>
+    	 <div>
+			<a href="javascript:fcancleModal()" class="btn btn-secondary" id="btnCloseLsmCod" name="btn">취소</a>
+			<a href="javascript:menu();" id="menu"  class="btn btn-primary"><strong>뒤로</strong></a>
+		</div>
+    </div>
+  
+    <div id="layer6" class="layerPosition layerPop layerType2" style="width: 600px; height : 600px; position : fixed; top : 50%; left:50%">
     	<div>
     		<div>
     			<div>
@@ -1816,10 +1831,6 @@ function CustomerList() {
     			<br>
     			<div>
     				<a href="javascript:fcancleModal()" class="btn btn-secondary" id="btnCloseLsmCod" name="btn">취소</a>
-    			</div>
-    			
-    			<br>
-    			<div>
 					<a href="javascript:menu();" id="menu"  class="btn btn-primary"><strong>뒤로</strong></a>
 				</div>
     		</div>
