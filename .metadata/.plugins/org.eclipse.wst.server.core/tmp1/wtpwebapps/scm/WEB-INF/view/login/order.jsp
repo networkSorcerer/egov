@@ -14,7 +14,7 @@ $(document).ready(function(){
         type: "post",
         dataType: "json",
         success: function(response) {
-            var orderList = response.orderList1;
+            var orderList = response.oList;
             var html = "";
             
             orderList.forEach(function(item){

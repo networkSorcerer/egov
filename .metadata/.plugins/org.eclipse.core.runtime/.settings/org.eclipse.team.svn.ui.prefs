@@ -2,6 +2,8 @@ eclipse.preferences.version=1
 firstStartup=false
 history.repositoryURL=aHR0cHM6Ly9ERVNLVE9QLTQwS0hKQlE6ODQ0My9zdm4vanVuZXJw;aHR0cHM6Ly9ERVNLVE9QLTQwS0hKQlE6ODQ0My9zdm4vanVuc2Nt
 history.repositoryUser=eW9oYW4\=;cm9vdA\=\=
+org.eclipse.team.svn.ui.crashrecovery.relocated.RelocationChoicesPanel.height=84
+org.eclipse.team.svn.ui.crashrecovery.relocated.RelocationChoicesPanel.width=470
 org.eclipse.team.svn.ui.panel.ListSelectionPanel.height=204
 org.eclipse.team.svn.ui.panel.ListSelectionPanel.width=470
 org.eclipse.team.svn.ui.panel.callback.PromptCredentialsPanel.height=255
