@@ -41,7 +41,7 @@ $(document).ready(function(){
    
     
     $("#list").change(function(){
-    	var cust_id = $(this).val();
+    	
     	$("#show").show();
     	$.ajax({
     		url:"/cust/custDetail.do",
@@ -53,7 +53,7 @@ $(document).ready(function(){
                  var custDetail = response.custDetail;
 				var html= "";
                  // 기존에 있던 데이터 삭제
-                 $("#customerDetail").empty();
+                 $("#customerDetail").empty();//이거 활용하면 모달창 껏다가 켜도 내용 초기화 되어있을 듯 
 
                  // 고객 상세 정보 테이블에 행 추가
                  custDetail.forEach(function(item){
@@ -114,7 +114,7 @@ function modifyCustomer() {
         cust_person: $(".cust_person").val(),
         cust_person_ph: $(".cust_person_ph").val(),
         cust_ph: $(".cust_ph").val(),
-        cust_id: currentCustId
+        cust_id: currentCustId 
     };
     $.ajax({
         url: "/cust/custModify.do",

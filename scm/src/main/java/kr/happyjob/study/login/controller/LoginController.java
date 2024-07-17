@@ -76,12 +76,12 @@ public class LoginController {
   List<ComnCodUtilModel> listOfcDvsCod = ComnCodUtil.getComnCod("OFC_DVS_COD","M");   // 오피스 구분 코드 (M제외)
   Collections.reverse(listOfcDvsCod); // 오피스 구분 역순으로
   
-  /*	List<CustVO> cList = custService.custList(paramMap);
+  	List<CustVO> cList = custService.custList(paramMap);
 	
   	result.addAttribute("cList", cList);
 	 logger.info("cList: " + cList);
 	 List<CustVO> custList = custService.customerList(paramMap);// 만약에 얘를 지우고 진짜로 ajax를 통해서 가져와서 박으면 어떻게 될까? //
-	 result.addAttribute("custList",custList);*/
+	 result.addAttribute("custList",custList);
 	 
 /*  List<LgnInfoModel> cdList = loginService.selectBankList();	//select박스 은행 목록
   request.setAttribute("cdListobj", cdList);					//select박스 은행 목록

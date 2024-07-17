@@ -20,4 +20,10 @@ public class OrderServiceImpl implements OrderService {
         return odao.orderList(paramMap);
     }
 
+	@Override
+	public List<OrderVO> oDetail(Map<String, Object> paramMap) throws Exception {
+		// TODO Auto-generated method stub
+		return odao.oDetail(paramMap);
+	}
+
 }

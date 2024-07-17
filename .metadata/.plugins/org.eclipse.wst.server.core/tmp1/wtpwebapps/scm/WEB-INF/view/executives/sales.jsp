@@ -10,6 +10,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
+	var pageSize = 10;
+	var pageBlockPage = 10;
+	
+
 	$(function() {
 		salesList();
 		registerBtnEvent()
@@ -22,17 +26,25 @@
 		});	
 	}
 	
-	function salesList() {
+	function salesList(cpage) {
 
+		cpage = cpage || 1;
+		
 		var param = {
 				searchTitle : $("#searchTitle").val(),
 				searchStDate : $("#searchStDate").val(),
-				searchEdDate : $("#searchEdDate").val()
+				searchEdDate : $("#searchEdDate").val(),
+				currentPage : cpage,
+				pageSize : pageSize
 		}
 
 		var callBackFunction = function(res) {
 
 			$("#salesList").empty().append(res);
+			
+			var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "salesList")
+			$("#pagingNavi").empty().append(pagieNavigateHtml);
+			$("#currentPage").val(cpage);
 
 		}
 

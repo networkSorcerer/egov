@@ -17,9 +17,9 @@
 							<input type="text" id="passwd2" name="passwd" value="${list.password}" style="height: 25px; margin-right: 10px;"/> 	
 							<br><span>      </span>
 							회사명
-							<input type="text" id="copName2" name="copName" value="-----" style="height: 25px; margin-right: 10px;"/>
+							<input type="text" id="copName2" name="copName" value="${list.cust_name }" style="height: 25px; margin-right: 10px;"/>
 							담당자명
-							<input type="text" id="manager2" name="manager" value="-----" style="height: 25px; margin-right: 10px;"/>
+							<input type="text" id="manager2" name="manager" value="${list.cust_person}" style="height: 25px; margin-right: 10px;"/>
 							<br>
 							연락처
 							<input type="text" id="phone2" name="phon" value="${list.hp}" style="height: 25px; margin-right: 10px;"/>
@@ -56,9 +56,9 @@
 <script>
 $(document).ready(function() {
 	<c:forEach var="list" items="${user}" varStatus="status">
-    var jobCode = "${list.job_code}";
-    $('#jobCode').val(jobCode);
-</c:forEach>
+    	var jobCode = "${list.job_code}";
+    	$('#jobCode').val(jobCode);
+	</c:forEach>
 
 	$("#ajustBtn").click(function() {
 		userUpdate();

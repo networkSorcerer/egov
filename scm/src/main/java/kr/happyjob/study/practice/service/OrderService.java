@@ -9,4 +9,6 @@ public interface OrderService {
 
 	public List<OrderVO> orderList(Map<String, Object> paramMap)throws Exception;
 
+	public List<OrderVO> oDetail(Map<String, Object> paramMap)throws Exception;
+
 }

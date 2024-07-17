@@ -38,4 +38,18 @@ public class OrderController {
 		
 		return resultMap;
 	}
+	
+	@RequestMapping("orderDetail.do")
+	@ResponseBody
+	public Map<String , Object> orderDetail(@ModelAttribute OrderVO ovo, 
+			@RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session)throws Exception{
+		Map<String ,Object> resultMap = new HashMap<>();
+		List<OrderVO>oDetail = oService.oDetail(paramMap);
+		resultMap.put("oDetail", oDetail);
+		
+		return resultMap;
+		
+	}
+	
 }

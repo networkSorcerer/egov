@@ -14,13 +14,14 @@
 		orderApproval()
 		returnApproval()
 		clickEvent()
+		radioChange()
 	})
 
 
-	function orderApproval() {
+	function orderApproval(type) {
 	
 		var param = {
-	
+			type : type
 		}
 	
 		var callBackFunction = function(res) {
@@ -33,8 +34,10 @@
 				callBackFunction);
 	}
 	
-	function returnApproval() {	
-		var param = {}	
+	function returnApproval(type) {	
+		var param = {
+				type : type
+		}	
 		var callBackFunction = function(res) {
 	
 			$("#returnApprovalList").empty().append(res);
@@ -73,14 +76,21 @@
 		}	
 		var callBackFunction = function(res) {
 			
-			alert("발주 승인 완료")
+			alert("승인 완료")
 			location.reload(true);
 		}
 		callAjax("/executives/approvalY.do", "post", "text", false, param,
 				callBackFunction);
-	
 	}
 	
+	function radioChange(){
+		 $('input[type=radio][name="orderRadio"]').change(function() {
+			 orderApproval($(this).val())
+		 });
+		 $('input[type=radio][name="returnRadio"]').change(function() {
+			 returnApproval($(this).val())
+		 });
+	}
 	
 </script>
 
@@ -107,7 +117,9 @@
 	border-right:1px solid black;
 	cursor: pointer;
 }
-
+.radio{
+	float: right;
+}
 </style>
 </head>
 <body>
@@ -139,6 +151,11 @@
 							<div class="orderApprovalList">
 								<p class="conTitle">
 									<span>발주승인</span>
+									<div class="radio">
+										<input type="radio" value=""  name="orderRadio" checked>전체
+										<input type="radio" value="Y" name="orderRadio">승인
+										<input type="radio" value="N" name="orderRadio">미승인
+									</div>
 								</p>
 								<table class="col">
 									<caption>발주승인</caption>
@@ -167,6 +184,11 @@
 								<div class="divStorageList">
 									<p class="conTitle">
 										<span>반품입금승인</span>
+										<div class="radio">
+											<input type="radio" value=""  name="returnRadio" checked>전체
+											<input type="radio" value="Y" name="returnRadio">승인
+											<input type="radio" value="N" name="returnRadio">미승인
+										</div>
 									</p>
 									<table class="col">
 										<caption>반품입금승인</caption>

@@ -1,0 +1,5 @@
+package kr.happyjob.study.responsibilities.vo;
+
+public class ReturnVO {
+
+}

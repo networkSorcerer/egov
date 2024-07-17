@@ -30,19 +30,19 @@
 						
 						
 					<p class="conTitle">
-						<span>test1</span>
-						<select>
-							<option>회사명</option>
-							<option>직원명</option>
-							<option>담당자명</option>
-							<option>담당업무</option>
+						
+						<select id="searchCondition">
+							<option value="0">회사명</option>
+							<option value="1">직원명</option>
+							<option value="2">담당자명</option>
+							<option value="3">담당업무</option>
 						</select> 
 						
 						<span class="fr">					
                           <input type="text" id="searchTitle" name="searchTitle" style="height: 25px; margin-right: 10px;"/>
                           <input type="checkbox" name="xxx" value="yyy" unchecked>
 							삭제된 정보 표시
-                          <a class="btnType red" href="" name="searchbtn"  id="searchBtn"><span>검색</span></a>
+                          <a class="btnType red" name="searchbtn"  id="searchBtn"><span>검색</span></a>
                           
 						</span>
 					</p> 
@@ -102,10 +102,10 @@
 							담당업무
 							<span>
 								<select id="jobCode">
-									<option value="AofuserInfo">SCM</option>
-									<option value="BofuserInfo">배송</option>
-									<option value="CofuserInfo">구매</option>
-									<option value="DofuserInfo">임원</option>
+									<option value="A">SCM</option>
+									<option value="B">배송</option>
+									<option value="C">구매</option>
+									<option value="D">임원</option>
 								</select>
 							</span>  
 							<br>
@@ -143,7 +143,7 @@ $(document).ready(function() {
     $("#newRegister").click(function() { //신규등록 버튼 클릭 시 실행
         $("#userdetail").empty();
         $("#new").show();
-        $("#deleteBtn").hide();    
+        $("#deleteBtn").hide();
     });
     
     $("#registBtn").click(function() {
@@ -158,6 +158,9 @@ $(document).ready(function() {
     	registCancle();
     })
     
+    $("#searchBtn").click(function() {
+    	detailSearch();
+    })
     
 });
 
@@ -190,7 +193,7 @@ function userSearch(cpage){
 	callAjax("/management/userList.do", "post", "text", false, param,callBackFunction);
 }
 
-function userRegist(){ //신규 등록 기능
+function userRegist(){ ////////신규 등록 기능
 	var loginId = $('#userId').val();
 	var name = $('#clerk').val();
 	var user_type = $('#type').val();
@@ -201,8 +204,6 @@ function userRegist(){ //신규 등록 기능
 	var addr = $('#address').val();
 	var addr_detail = $('#addressDetail').val();
 	var job_code = $('#jobCode').val();
-	
-
 	
 	
 	var param = {
@@ -239,8 +240,53 @@ function userDelete(){ /////삭제 기능
 	callAjax("/management/userDelete.do", "post", "text", false, param,callBackFunction);
 }
 
-function registCancle(){ /////등록 취소
+function registCancle(){ /////등록 취소 기능
 	$("#new").hide();
+}
+
+function detailSearch(cpage){ /////검색 기능
+	cpage = cpage || 1;
+	var searchTitle = $('#searchTitle').val();
+	var condition = $('#searchCondition').val();
+	var custName = "";
+	var userName = "";
+	var custPerson = "";
+	var job = "";
+	
+	switch(condition){
+	case "0":
+		custName = searchTitle;
+		break;
+	case "1":
+		userName = searchTitle;
+		break;
+	case "2":
+		custPerson = searchTitle;
+		break;
+	case "3":
+		job = searchTitle;
+		break;
+	}
+	
+	var param = {
+			searchCustName : custName,
+			searchUserName : userName,
+			searchCustPerson : custPerson,
+			searchJob : job,
+			currentPage : cpage,
+			pageSize : pageSize
+	};
+	
+	var callBackFunction = function(response){
+		$("#userList").empty().append(response);
+		
+		var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "detailSearch")
+		$("#pagingNavi").empty().append(pagieNavigateHtml);
+		$("#currentPage").val(cpage);
+	}
+	
+	
+	callAjax("/management/userSearch.do", "post", "text", false, param,callBackFunction);
 }
 
 </script>
