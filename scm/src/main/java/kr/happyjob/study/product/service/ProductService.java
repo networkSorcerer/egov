@@ -11,4 +11,8 @@ public interface ProductService {
 
 	int productCnt(Map<String, Object> paramMap);
 
+	List<ProductVO> productDetail(Map<String, Object> paramMap);
+
+	int productModify(Map<String, Object> paramMap);
+
 }

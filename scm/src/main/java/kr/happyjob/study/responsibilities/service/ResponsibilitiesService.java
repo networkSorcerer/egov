@@ -14,5 +14,7 @@ public interface ResponsibilitiesService {
 	public List<Map<String, Object>> deliveryDetail(Map<String, Object> paramMap);
 
 	public void deleveryDone(Map<String, Object> paramMap);
+	
+	
 
 }

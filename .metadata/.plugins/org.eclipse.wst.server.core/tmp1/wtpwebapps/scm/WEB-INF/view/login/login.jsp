@@ -1805,7 +1805,7 @@ function order() {
     						<td>고객 회사명</td>
     						
     					</tr>
-    					<tr>
+    					<%-- <tr>
     						<td>
     							<select>
     							<c:forEach var="list" items="${custList}">
@@ -1813,7 +1813,7 @@ function order() {
     							</c:forEach>	
     							</select>
     						</td>
-    					</tr>
+    					</tr> --%>
     					<%-- <tr>
     						<td>${list.cust_id }</td>
     						<td>${list.cust_name }</td>

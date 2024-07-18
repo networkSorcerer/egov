@@ -10,6 +10,8 @@
 <title>Insert title here</title>
 
 <script type="text/javascript">
+var pageSize=5;
+var pageBlockPage=10;
 
 $(function(){
     registerBtnEvent();
@@ -17,17 +19,31 @@ $(function(){
     returnList();
 });
 
-function returnList(type) {
+var type;
+
+function radioChange() {
+    $('input[type=radio][name="deliveryRadio"]').change(function() {
+    	var type = $(this).val();
+    	returnList(null, type);
+    });
+}
+
+function returnList(cpage, type) {
     $("#insert").hide();
     $("#layer1").hide();
-
+    
+    cpage = cpage || 1;
     var param = {
         searchTitle: $("#searchTitle").val(),
         searchStDate: $("#searchStDate").val(),
         searchEdDate: $("#searchEdDate").val(),
         searchSelect: $("#searchSelect").val(), // 이 부분을 확인하여 실제 ID를 사용합니다.
-        type: type || null // type 매개변수를 optional로 만들어 기본값을 null로 설정합니다.
+        currentPage : cpage,
+		pageSize : pageSize,
+		type: type || null // type 매개변수를 optional로 만들어 기본값을 null로 설정합니다.
     };
+	console.log(param);
+
 
     $.ajax({
         url: "/work/returnList.do",
@@ -37,8 +53,9 @@ function returnList(type) {
         success: function(response) {
             var returnList = response.returnList;
             var html = "";
-
-            returnList.forEach(function(item) {
+            var nRow = pageSize*(cpage -1);
+            returnList.forEach(function(item, index) {
+            	nRow++;
                 html += "<tr>";
                 html += "<td>" + item.seq + "</td>";
                 html += "<td>" + item.item_code + "</td>";
@@ -50,15 +67,21 @@ function returnList(type) {
             });
 
             $("#returnList").html(html);
+            
+            $("#totcnt").val(response.returnCnt);
+			$("#nRow").val(nRow);
+			$("#currentPage").val(cpage);
+			
+			var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "returnList")
+			$("#pagingNavi").empty().append(pagieNavigateHtml);
+			$("#currentPage").val(cpage);
+			
+			console.log("Total Count: ", response.returnCnt);
         }
     });
 }
 
-function radioChange() {
-    $('input[type=radio][name="deliveryRadio"]').change(function() {
-        returnList($(this).val());
-    });
-}
+
 
 function returnDetail(seq, item_code) {
     var seqParam = { seq: seq };
@@ -79,7 +102,7 @@ function returnDetail(seq, item_code) {
             $("#returnDetail").empty();
 
             returnDetail.forEach(function(item) {
-               
+               	html+="<tr>";
                 html += "<td>" + item.seq + "</td>";
                 html += "<td>" + item.item_code + "</td>";
                 html += "<td>" + item.return_order_date + "</td>";
@@ -93,14 +116,15 @@ function returnDetail(seq, item_code) {
                 } else {
                     html += "<td></td>";
                 }
+                html+="</tr>";
 
                 $("#seq").val(item.seq);
                 $("#item_code").val(item.item_code);
                 $("#return_count").val(item.return_count);
                 
-                var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "productList")
+               /*  var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "productList")
     			$("#pagingNavi").empty().append(pagieNavigateHtml);
-    			$("#currentPage").val(cpage);
+    			$("#currentPage").val(cpage); */
             });
 
             $("#returnDetail").append(html);
@@ -202,6 +226,12 @@ function registerBtnEvent() {
 									<input type="radio" value="done" name="deliveryRadio">반품완
 									<button id="insert">신규</button>
 								</div>
+								<div>
+								<input type="hidden" id="" name="">
+								<input type="hidden" id="totcnt" name="totcnt">
+								<input type="hidden" id="nRow" name="nRow">
+								
+							</div>
 								<table class="col">
 									<caption>발주승인</caption>
 									<colgroup>
@@ -251,10 +281,15 @@ function registerBtnEvent() {
 										<td>반품결과</td>
 										<td></td>
 									</tr>
-									<tr id="returnDetail">
+									<tbody id="returnDetail">
 										
-									</tr>
+									</tbody>
 								</table>
+								<div>
+								<button onClick="modify" id="modify">수정</button>
+								
+								<button id="close" class="btn btn-success">닫기</button>
+							</div>
 							</div>
 							<div>
 								<input type="hidden" id="seq">
@@ -263,11 +298,7 @@ function registerBtnEvent() {
  							</div>
 							<br>
 							<br>
-							<div>
-								<button onClick="modify" id="modify">수정</button>
-								
-								<button id="close" class="btn btn-success">닫기</button>
-							</div>
+							
 						</div>
 						
 

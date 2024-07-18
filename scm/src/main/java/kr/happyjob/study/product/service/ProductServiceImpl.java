@@ -26,4 +26,16 @@ public class ProductServiceImpl implements ProductService {
 		return pdao.productCnt(paramMap);
 	}
 
+	@Override
+	public List<ProductVO> productDetail(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return pdao.productDetail(paramMap);
+	}
+
+	@Override
+	public int productModify(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return pdao.productModify(paramMap);
+	}
+
 }

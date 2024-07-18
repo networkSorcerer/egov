@@ -8,5 +8,7 @@ import kr.happyjob.study.product.vo.ProductVO;
 public interface ProductDAO {
 	List<ProductVO> productList(Map<String, Object> paramMap);
 	int productCnt(Map<String, Object> paramMap);
+	List<ProductVO> productDetail(Map<String, Object> paramMap);
+	int productModify(Map<String, Object> paramMap);
 
 }

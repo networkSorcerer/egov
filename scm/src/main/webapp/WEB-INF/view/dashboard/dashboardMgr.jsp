@@ -60,10 +60,10 @@ click-able rows
 									href="../dashboard/dashboard.do" class="btn_set refresh">새로고침</a>
 							</p>
 							<%@ include file="/WEB-INF/view/dashboard/Notice.jsp" %>
-							<%@ include file="/WEB-INF/view/dashboard/Order.jsp" %>
+							<%-- <%@ include file="/WEB-INF/view/dashboard/Order.jsp" %>
 							<%@ include file="/WEB-INF/view/dashboard/Sale.jsp" %>
 							<%@ include file="/WEB-INF/view/dashboard/Product.jsp" %>
-							<%@ include file="/WEB-INF/view/dashboard/Customer.jsp" %>
+							<%@ include file="/WEB-INF/view/dashboard/Customer.jsp" %> --%>
 							
 							
 						</div>

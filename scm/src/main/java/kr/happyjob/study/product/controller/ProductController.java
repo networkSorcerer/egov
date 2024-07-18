@@ -65,4 +65,38 @@ public class ProductController {
 		resultMap.put("productCnt",productCnt);
 		return resultMap;
 	}
+	
+	@RequestMapping("productDetail.do")
+	@ResponseBody
+	public Map<String , Object> productDetail(@ModelAttribute ProductVO pvo,
+			HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam Map<String , Object> paramMap, HttpSession session)throws Exception{
+		
+		Map<String , Object> resultMap = new HashMap<>();
+		List<ProductVO> productDetail = pService.productDetail(paramMap);
+		
+		resultMap.put("productDetail", productDetail);
+		
+		return resultMap;
+	}
+	
+	@RequestMapping("productModify.do")
+	@ResponseBody
+	public Map<String , Object> productModify(@ModelAttribute ProductVO pvo,
+			HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam Map<String , Object> paramMap, HttpSession session)throws Exception{
+		Map<String , Object> resultMap = new HashMap<>();
+		
+		int result = 0;
+		String resultMsg ="";
+		result = pService.productModify(paramMap);
+		if(result >0) {
+			resultMsg="SUCCESS";
+		} else {
+			resultMsg="FAIL";
+		}
+		
+		resultMap.put("resultMsg", resultMsg);
+		return resultMap;
+	}
 }

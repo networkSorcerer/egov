@@ -5,10 +5,28 @@
 		SELECT item_code, item_name, major_class, sub_class, manufac, item_surtax, provide_value, equipment_type, product_detail
 		FROM tb_item_info
 		LIMIT #{startSeq}, #{pageSize}
-</select>
+	</select>
 
 	<select id="productCnt" resultType="int">
 		SELECT count(*)
 		from tb_item_info
 	</select>
+	<select id="productDetail" resultType="kr.happyjob.study.product.vo.ProductVO">
+		SELECT item_code, item_name, major_class, sub_class, manufac, item_surtax, provide_value, equipment_type, product_detail
+		FROM tb_item_info
+		WHERE item_code = #{item_code}
+	</select>
+	<update id="productModify">
+		UPDATE tb_item_info
+		SET 
+		item_name = #{item_name},
+		major_class = #{major_class},
+		sub_class = #{sub_class},
+		manufac = #{manufac},
+		provide_value = #{provide_value},
+		equipment_type = #{equipment_type},
+		product_detail = #{product_detail}
+		WHERE item_code = #{item_code}
+		
+	</update>
 </mapper>
