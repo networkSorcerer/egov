@@ -16,8 +16,6 @@
 $(document).ready(function(){
 	$("#show").hide();
 	
-	$("#list").val("");
-	
     $.ajax({
         url: "/cust/custList1.do",
         type: "POST", // POST 방식으로 요청
@@ -25,50 +23,21 @@ $(document).ready(function(){
         success: function(response) {
             var custList = response.custList; // 받아온 JSON 데이터에서 custList 배열 추출
             var html = ""; // 옵션 태그를 담을 문자열 초기화
-            
             // custList 배열을 순회하며 옵션 태그 생성
             custList.forEach(function(item) {
                 html += "<option value='" +item.cust_id+ "'>" + item.cust_name + " (" + item.cust_id + ")</option>";
+                
             });
             
             // #list 요소에 생성된 옵션 태그 추가
+            
             $("#list").html(html);
         },
         error: function(xhr, status, error) {
             console.error("AJAX 오류 발생:", error);
         }
     });
-   
-    
-    $("#list").change(function(){
-    	
-    	$("#show").show();
-    	$.ajax({
-    		url:"/cust/custDetail.do",
-    		type:"post",
-    		dataType:"json",
-    		data: { cust_id: cust_id },// 이부분 엄청 중요했음 ㄷㄷ  근데 여러가지 내용을 수정하려면 어떻게 해야할까? 
-    				//var param = {cust_id : cust_id , cust_name : cust_name} 이런식으로 도전 
-    		 success: function (response) {
-                 var custDetail = response.custDetail;
-				var html= "";
-                 // 기존에 있던 데이터 삭제
-                 $("#customerDetail").empty();//이거 활용하면 모달창 껏다가 켜도 내용 초기화 되어있을 듯 
 
-                 // 고객 상세 정보 테이블에 행 추가
-                 custDetail.forEach(function(item){
-                	 html += "<td><a href='javascript:void(0);' onclick='custDetail(" + item.cust_id + ");' id='cust_name'>" + item.cust_id + "</td>";
-                	 html += "<td>" + item.cust_name + "</a></td>";
-                     html += "<td>" + item.cust_person + "</td>";
-                     html += "<td>" + item.cust_person_ph + "</td>";
-                 })               
-                 $("#customerDetail").append(html);
-             },
-             error: function(xhr, status, error) {
-                 console.error("AJAX 오류 발생:", error);
-             }
-    	})
-    })
      
 });
 
@@ -89,7 +58,7 @@ function custDetail(custId) {//중요하다 베리 아주 많이 data로 넣었�
         success: function(response) {
             var custDetail = response.custDetail;
             var html = "";
-
+				
             custDetail.forEach(function(item) {
                 html += "<tr>";
                 html += "<td><input class='cust_name' value='" + item.cust_name + "'></td>";
@@ -106,6 +75,38 @@ function custDetail(custId) {//중요하다 베리 아주 많이 data로 넣었�
         }
     });
 }
+
+$(document).ready(function(){
+	$("#list").change(function(){
+		var cust_id = $(this).val();
+		$("#show").show();
+		$.ajax({
+			url:"/cust/custDetail.do",
+			type:"post",
+			dataType:"json",
+			data: { cust_id: cust_id },// 이부분 엄청 중요했음 ㄷㄷ  근데 여러가지 내용을 수정하려면 어떻게 해야할까? 
+					//var param = {cust_id : cust_id , cust_name : cust_name} 이런식으로 도전 
+			 success: function (response) {
+	             var custDetail = response.custDetail;
+				var html= "";
+	             // 기존에 있던 데이터 삭제
+	             $("#customerDetail").empty();//이거 활용하면 모달창 껏다가 켜도 내용 초기화 되어있을 듯 
+
+	             // 고객 상세 정보 테이블에 행 추가
+	             custDetail.forEach(function(item){
+	            	 html += "<td><a href='javascript:void(0);' onclick='custDetail(" + item.cust_id + ");' id='cust_name'>" + item.cust_id + "</td>";
+	            	 html += "<td>" + item.cust_name + "</a></td>";
+	                 html += "<td>" + item.cust_person + "</td>";
+	                 html += "<td>" + item.cust_person_ph + "</td>";
+	             })               
+	             $("#customerDetail").append(html);
+	         },
+	         error: function(xhr, status, error) {
+	             console.error("AJAX 오류 발생:", error);
+	         }
+		})
+	})
+});
 
 
 function modifyCustomer() {
@@ -205,6 +206,9 @@ function newCustomerInsert(){
 						
 						</tr >
 					</table>
+				</div>
+				<div>
+					<input type="hidden" id="cust_id1" name="" >
 				</div>
 				
 			</div>

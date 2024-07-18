@@ -1,0 +1,454 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title> 제품  </title>
+
+<jsp:include page="/WEB-INF/view/common/common_include.jsp"></jsp:include>
+<script type="text/javascript">
+
+var pageSize = 5;
+var pageBlockPage = 10;
+
+$(document).ready(function() {
+	priceCheck();
+})
+
+$(function () {
+	productSearch();
+	BtnEvent();
+})
+
+function BtnEvent() {
+	$("#searchBtn").click(function(e){
+		e.preventDefault();
+		productSearch();
+	});
+	
+	$("a[name=btn]").click(function(e) {
+		e.preventDefault();
+		
+		var btnId = $(this).attr("id");
+		
+		switch(btnId) {
+			case "btnCart":
+				productCart();
+				break;
+			case "btnClose":
+				gfCloseModal();
+				break;
+			case "btnPay":
+				pay();
+				break;
+		}
+	})
+}
+
+function productSearch(cpage) {
+	cpage = cpage || 1;
+	
+	var param = {
+			search_type : $("#searchType").val(),
+			search_title : $("#searchTitle").val(),
+			cpage : cpage,
+			pageSize: pageSize
+	};
+	
+	$.ajax({
+		type: "POST",
+        url: "/product/productList.do",
+        contentType: "application/json",
+        data: JSON.stringify(param),
+        success: function(data) {
+        	$("#productList").empty().append(data);
+        	
+        	var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "productSearch")
+			$("#pagingNavi").empty().append(pagieNavigateHtml);
+			$("#currentPage").val(cpage);
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+}
+
+function productDetailModal(code) {
+	var param = {
+			item_code : code
+	};
+	
+	$.ajax({
+        type: "POST",
+        url: "/product/productDetail.do",
+        contentType: "application/json",
+        data: JSON.stringify(param),
+        success: function(data) {
+        	var info = data.productInfo;
+        	
+        	$("#item_name_detail").val(info.item_name);
+        	$("#equipment_type_detail").val(info.equipment_type);
+        	$("#item_price_detail").val(info.item_price);
+        	$("#product_detail").val(info.product_detail);
+        	$("#manufac").val(info.manufac);
+        	
+        	gfModalPop("#productDetailModal")
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+}
+
+
+function saveProduct() {
+	if(!fValidatefile()){
+		return;
+	}
+	
+	var param = {
+		item_name : $("#item_name").val(),
+		manufac : $("#manufac").val(),
+		equipment_type : $("#equipment_type").val(),
+		product_detail : $("#product_detail").val(),
+		img_path : $("#img_path").val(),
+	}
+	
+	$.ajax({
+        type: "POST",
+        url: "/product/saveProduct.do",
+        contentType: "application/json",
+        data: JSON.stringify(param),
+        success: function(data) {
+        	gfCloseModal();
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+}
+
+function productBuy(code) {
+	var param = {
+			item_code : code
+	};
+	
+	$.ajax({
+        type: "POST",
+        url: "/product/productDetail.do",
+        contentType: "application/json",
+        data: JSON.stringify(param),
+        success: function(data) {
+        	var info = data.productInfo;
+        	
+        	$("#item_code").val(info.item_code);
+        	$("#item_name_buy").val(info.item_name);
+        	$("#equipment_type_buy").val(info.equipment_type);
+        	$("#product_buy").val(info.product_detail);
+        	$("#manufac_buy").val(info.manufac);
+        	$("#item_price_buy").val(info.item_price);
+        	
+        	gfModalPop("#buyModal")
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+}
+
+function pay() {
+	var param = {
+			item_code : $("#item_code").val(),
+			count : $("#count").val()
+	};
+	
+	$.ajax({
+        type: "POST",
+        url: "/product/productPay.do",
+        contentType: "application/json",
+        data: JSON.stringify(param),
+        success: function(data) {
+        	console.log(data)
+        	
+        	gfCloseModal();
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+}
+
+function productCart() {
+	var param = {
+			item_code : $("#item_code").val(),
+			obtain_count : $("#count").val()
+	}
+	
+	$.ajax({
+        type: "POST",
+        url: "/product/productCart.do",
+        contentType: "application/json",
+        data: JSON.stringify(param),
+        success: function(data) {
+        	
+        	gfCloseModal();
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+}
+
+function priceCheck() {
+	$("#count").on("propertychange change paste input", function () {
+		var count = fnReplace($("#count").val());
+		var price = $("#item_price_buy").val();
+		
+		$("#total").val(count * price)
+	})
+}
+
+// 미리보기
+function filePreview(){
+	$("#img_path").change(function(e){
+		e.preventDefault();
+		
+		// 파일이 있는 경우
+		if($(this)[0].files[0]){
+			var fileInfo = $("#img_path").val();
+			var fileInfoSplit = fileInfo.split(".");
+			var fileLowerCase = fileInfoSplit[1].toLowerCase();
+			
+			var imgPath = "";
+			var previewHtml = "";
+			
+			if(fileLowerCase == "jpg" || fileLowerCase == "gif" || fileLowerCase == "png"){
+				// 파일이 이미지 일 경우
+				imgPath = window.URL.createObjectURL($(this)[0].files[0]);
+				
+				previewHtml = "<img src='" + imgPath + "' id='imgFile' style='width: 100px; height: 100px;' />";	
+			} else {
+				// 파일이 이미지가 아닌 다른 것일 경우
+				previewHtml = "";
+			}
+			$("#preview").empty().append(previewHtml)
+		}
+	});
+}
+
+function fValidatefile() {
+	var chk = checkNotEmpty(
+			[
+					[ "item_name", "제품명을 입력해주세요." ]
+				,	[ "manufac", "제조업체를 입력해 주세요." ]
+			]
+	);
+	if (!chk) {
+		return;
+	}
+	return true;
+}
+
+function fnReplace(val) {
+    var ret = 0;
+    if(typeof val != "undefined" && val != null && val != ""){
+        ret = Number(val.replace(/,/gi,''));
+    }
+    return ret;        
+}
+
+</script>
+</head>
+<body>
+<input type="hidden" id="currentPage" value="">  <!-- 현재페이지는 처음에 항상 1로 설정하여 넘김  -->
+	<input type="hidden" name="action" id="action" value=""> 
+	<div id="wrap_area">
+		<h2 class="hidden">header 영역</h2> 
+		<jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+
+		<h2 class="hidden">컨텐츠 영역</h2>
+		<div id="container">
+			<ul>
+				<li class="lnb">
+					<!-- lnb 영역 --> 
+					<jsp:include page="/WEB-INF/view/common/lnbMenu.jsp"></jsp:include> <!--// lnb 영역 -->
+				</li>
+				<li class="contents">
+					<!-- contents -->
+					<h3 class="hidden">contents 영역</h3> <!-- content -->
+					<div class="content">
+						<p class="Location">
+							<a href="#" class="btn_set home">메인으로</a> 
+							<a href="#" class="btn_nav bold">제품</a> 
+							<span class="btn_nav bold">전체</span> 
+							<a href="#" class="btn_set refresh">새로고침</a>
+						</p>
+						
+						<p class="conTitle">
+							<span>제품</span> 
+							<span class="fr">
+							<select name="" id="searchType">
+								<option value="item_name">제품명</option>
+								<option value="equipment_type">장비</option>
+								<option value="manufac">제조사</option>
+							</select>
+	                          <input type="text" id="searchTitle" name="searchTitle" style="height: 25px; margin-right: 10px;"/>
+							  <a class="btnType red" href="" name="searchbtn"  id="searchBtn"><span>검색</span></a>
+							</span>
+						</p> 
+						
+						<div class="divNoticeList">
+							<table class="col">
+								<caption>caption</caption>
+		                            <colgroup>
+						                   <col width="50px">
+						                   <col width="60px">
+						                   <col width="60px">
+						                   <col width="60px">
+						                   <col width="30px">
+					                 </colgroup>
+								<thead>
+									<tr>
+							              <th scope="col">장비구분</th> 
+							              <th scope="col">제품명</th>
+							              <th scope="col">제조사</th>
+							              <th scope="col">가격</th>
+							              <th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody id="productList"></tbody>
+							</table>
+							
+							<!-- 페이징 처리  -->
+							<div class="paging_area" id="pagingNavi">
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- 모달팝업 -->
+	<div id="productDetailModal" class="layerPop layerType2" style="width: 600px;">
+		<dl>
+			<dt>
+				<strong>제품 상세정보</strong>
+			</dt>
+			<dd class="content">
+				<!-- s : 여기에 내용입력 -->
+				<table class="row">
+					<caption>caption</caption>
+
+					<tbody>
+						<tr>
+							<th scope="row">제품명 </th>
+							<td>
+								<input type="text" class="inputTxt p100" name="item_name_detail" id="item_name_detail" readonly="readonly"/>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">장비구분</th>
+							<td colspan="3">
+								<input type="text" class="inputTxt p100" name="equipment_type_detail" id="equipment_type_detail" readonly="readonly"/>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">가격</th>
+							<td colspan="3">
+								<input type="text" class="inputTxt p100" name="item_price_detail" id="item_price_detail" readonly="readonly" />
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">제품정보</th>
+							<td colspan="3">
+								<textarea class="inputTxt p100" name="product_detail" id="product_detail" disabled>
+								</textarea>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">제조사</th>
+							<td colspan="3">
+								<input type="text" class="inputTxt p100" name="manufac" id="manufac" readonly="readonly"/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!-- e : 여기에 내용입력 -->
+			</dd>
+		</dl>
+		<a href="" class="closePop"><span class="hidden">닫기</span></a>
+	</div>
+	
+	<div id="buyModal" class="layerPop layerType2" style="width: 600px;">
+		<input type="hidden" id="item_code" name="item_code" value="">
+		<dl>
+			<dt>
+				<strong>제품 상세정보</strong>
+			</dt>
+			<dd class="content">
+				<!-- s : 여기에 내용입력 -->
+				<table class="row">
+					<caption>caption</caption>
+
+					<tbody>
+						<tr>
+							<th scope="row">제품명 </th>
+							<td>
+								<input type="text" class="inputTxt p100" name="item_name_buy" id="item_name_buy" readonly="readonly"/>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">장비구분</th>
+							<td colspan="3">
+								<input type="text" class="inputTxt p100" name="equipment_type_buy" id="equipment_type_buy" readonly="readonly"/>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">제품정보</th>
+							<td colspan="3">
+								<textarea class="inputTxt p100" name="product_buy" id="product_buy" disabled>
+								</textarea>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">제조사</th>
+							<td colspan="3">
+								<input type="text" class="inputTxt p100" name="manufac_buy" id="manufac_buy" readonly="readonly"/>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">수량</th>
+							<td colspan="3">
+								<input type="text" class="inputTxt p100" name="count" id="count" />
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">가격</th>
+							<td colspan="3">
+								<input type="text" class="inputTxt p100" name="item_price_buy" id="item_price_buy" readonly="readonly" />
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">총 가격</th>
+							<td colspan="3">
+								<input type="text" class="inputTxt p100" name="total" id="total" readonly="readonly" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="btn_areaC mt30">
+					<a href="" class="btnType blue" id="btnPay" name="btn"><span>결제</span></a> 
+					<a href="" class="btnType blue" id="btnCart" name="btn"><span>담기</span></a> 
+					<a href=""	class="btnType gray"  id="btnClose" name="btn"><span>취소</span></a>
+				</div>
+				<!-- e : 여기에 내용입력 -->
+			</dd>
+		</dl>
+	</div>
+</body>
+</html>

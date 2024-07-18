@@ -73,6 +73,7 @@ public class CustController {
 	public Map<String, Object>  custModify (@ModelAttribute CustVO cvo, Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
+		
 		int result = 0;
 		String resultMsg="";
 		result = cService.custModify(paramMap);

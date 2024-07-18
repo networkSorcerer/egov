@@ -368,15 +368,7 @@
 		VALUES (#{company_seq} , #{company_name});
 
 	
-	</insert>
-	
-	<delete id="orderComponyDelete">
-	
-		DELETE FROM tb_order_company
-		WHERE company_seq = #{company_seq}
-		
-	
-	</delete>
+	</insert>	
 
 	<update id="comCodeAdjust">
 	/* kr.happyjob.study.management.dao.ManagementDao.comCodeAdjust */
