@@ -17,12 +17,12 @@
 			<c:set var="nRow" value="${pageSize*(currentPage-1)}" /> 
             <c:forEach var="list" items="${codeList}"  varStatus="status">
                 <tr>
-                    <td class="codeDetailView" >${status.index + 1}</td>
-                    <td id="groupCode" data-groupcode="${list.group_code}">${list.group_code}</td>
-                    <td id="groupName" data-groupname="${list.group_name}">${list.group_name}</td>
-                    <td id="groupYn" data-groupyn="${list.use_yn}">${list.use_yn}</td>
+                    <td id="codeDetailView" >${status.index + 1}</td>
+                    <td class="groupCode" data-groupcode="${list.group_code}">${list.group_code}</td>
+                    <td class="groupName" data-groupname="${list.group_name}">${list.group_name}</td>
+                    <td class="groupYn" data-groupyn="${list.use_yn}">${list.use_yn}</td>
                     <td>${list.reg_date}</td>
-                    <td><button class="ajustBtn">수정</button></td>
+                    <td class="adjust" data-groupid="${list.group_code}"><button class="adjustBtn">수정</button></td>
                     
                 </tr>
                <c:set var="nRow" value="${nRow + 1}" />
@@ -35,29 +35,37 @@
 $(document).ready(function() {
 	
 	
-	$(".ajustBtn").click(function() {
+	$(document).on('click', '.adjustBtn', function() {
+		var row = $(this).closest("tr");
 		$("#myModal").show();
+        
+        // 행의 데이터 추출
+        var groupCode = row.find(".groupCode").data('groupcode');
+        var groupName = row.find(".groupName").data("groupname");
+        var groupYn = row.find(".groupYn").data("groupyn");
+        var regDate = row.find("td:nth-child(5)").text(); // 등록일 텍스트 추출
+
+        
+        $("#groupCodeModal").val(groupCode);
+        $("#groupCodeModalOrigin").val(groupCode);
+		$("#groupCodeNameModal").val(groupName);
+		$("#groupCodeNameModalOrigin").val(groupName);
 		
-		<c:forEach var="list" items="${codeList}">
-    		var group_code = "${list.group_code}";
-    		console.log("값: "+group_code);
-		</c:forEach>
-		
-		//var group_code = $("#groupCode").data('groupcode');
-		//var group_name = $("#groupName").data('groupname');
-		//var use_yn = $("#groupYn").data('groupyn');
-		
-		//$("#groupCodeModal").val(group_code);
-		//$("#groupCodeNameModal").val(group_name);
 		 
-		/*if(use_yn == 'Y'){
-			$("input[name='codeRadio'][value=0]").prop("checked", true);
+		if(groupYn == 'Y'){
+			$("input[name='codeRadio'][value=0]").prop("checked", true); //yes 채크
+			$("#groupYnOrigin").val(groupYn);
 		} else {
-			$("input[name='codeRadio'][value=1]").prop("checked", true);
-		}*/
-		
+			$("input[name='codeRadio'][value=1]").prop("checked", true); // no 채크
+			$("#groupYnOrigin").val(groupYn);
+		}
 		
 	});
+				
+		
+		
+		
+	
     
 });
 </script>

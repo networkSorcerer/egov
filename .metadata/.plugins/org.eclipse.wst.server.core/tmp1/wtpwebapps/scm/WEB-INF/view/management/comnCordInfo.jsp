@@ -93,6 +93,11 @@
 							<input type="radio" id="yn2" name="codeRadio" value="1" style="height: 25px; margin-left: 10px;"/>
 							NO
 							<br>
+							<input type="hidden" id="groupCodeModalOrigin" >
+							<input type="hidden" id="groupCodeNameModalOrigin" >
+							<input type="hidden" id="groupYnOrigin" >
+						
+							
 							<div class="modal-footer">
 								<button class="btn2 btn-primary">저장</button>
                 				<button class="btn1 btn-primary">삭제</button>
@@ -130,7 +135,7 @@ $(document).ready(function() {
     });
     
     $(".btn2").click(function() {
-    	console.log("클릭됐당")
+    	comCodeAdjust();
     });
     
 });
@@ -160,8 +165,39 @@ function getCodeList(cpage){
 	callAjax("/management/getCodeList.do", "post", "text", false, param,callBackFunction);
 }
 
+function comCodeAdjust(){ // 수정 버튼 클릭 시 발동
+	var group_code = $('#groupCodeModal').val();
+	var group_name= $('#groupCodeNameModal').val();
+	var checked = $('#yn1').prop('checked') == true ? 'Y' : 'N';
+	
+	var group_codeOri = $('#groupCodeModalOrigin').val();
+	var group_nameOri= $('#groupCodeNameModalOrigin').val();
+	var checkedOri = $('#groupYnOrigin').val();
+	
+	var test1 = group_code != group_codeOri ? group_code : '';
+	var test2 = group_name != group_nameOri ? group_name : '';
+	var test3 = checked != checkedOri ? checked : '';
+	
+	
+	
+	var param = {
+		group_code : test1,
+		group_name : test2,
+		use_yn : test3,
+		group_id : group_codeOri
+	};
+	
+	console.log(group_code+", "+group_codeOri);
+	
+	var callBackFunction = function(response){
+		alert("수정 됐습니다");
+	}
+	
+	callAjax("/management/comCodeAdjust.do", "post", "text", false, param,callBackFunction);
+}
+
 </script>
-<style>
+
 <style>
         /* 모달 배경 */
         .modal {
@@ -221,5 +257,5 @@ function getCodeList(cpage){
             bottom: 20px;
             right: 100px;
         }
-    </style>
 </style>
+

@@ -377,5 +377,58 @@
 		
 	
 	</delete>
+
+	<update id="comCodeAdjust">
+	/* kr.happyjob.study.management.dao.ManagementDao.comCodeAdjust */
+		update tb_group_code
+		   set
+		   <if test="group_code != null and !''.equals(group_code)">
+	            group_code = #{group_code},
+	        </if> 
+		   <if test="group_name != null and !''.equals(group_name) ">
+	            group_name = #{group_name},
+	        </if>
+	        <if test="use_yn != null and !''.equals(use_yn)">
+				use_yn = #{use_yn}
+	        </if>
+			WHERE group_code = #{group_id}
+	</update>
+
+	<select id="orderComponyDetail" resultType="map">
 	
+		SELECT oc.company_seq, oc.company_name, ci.item_code, it.item_name 
+		from tb_company_item ci
+		left join tb_order_company oc
+		ON ci.company_seq = oc.company_seq 
+		left join tb_item_info it
+		on it.item_code = ci.item_code 
+		WHERE ci.company_seq =  #{company_seq}
+	
+	</select>
+	
+	<select id="orderComSelectItem" resultType="map">
+	
+		SELECT 
+			item_code, item_name
+		FROM 
+			tb_item_info
+		WHERE 
+			(item_code, item_name) NOT IN 
+				(
+			    SELECT ci.item_code, it.item_name
+			    FROM tb_company_item ci
+			    LEFT JOIN tb_order_company oc ON ci.company_seq = oc.company_seq
+			    LEFT JOIN tb_item_info it ON it.item_code = ci.item_code
+			    WHERE ci.company_seq = #{company_seq}
+				)
+	
+	</select>
+	
+	<insert id="newItemSave">
+	
+	 	INSERT INTO tb_company_item (company_seq, item_code)
+		VALUES (#{company_seq}, #{item_code})
+		
+	</insert>
+
 </mapper>

@@ -97,6 +97,10 @@ function returnDetail(seq, item_code) {
                 $("#seq").val(item.seq);
                 $("#item_code").val(item.item_code);
                 $("#return_count").val(item.return_count);
+                
+                var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "productList")
+    			$("#pagingNavi").empty().append(pagieNavigateHtml);
+    			$("#currentPage").val(cpage);
             });
 
             $("#returnDetail").append(html);
