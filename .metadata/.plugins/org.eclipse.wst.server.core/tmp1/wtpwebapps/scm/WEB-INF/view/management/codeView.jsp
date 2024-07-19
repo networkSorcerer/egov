@@ -37,6 +37,7 @@ $(document).ready(function() {
 	
 	$(document).on('click', '.adjustBtn', function() {
 		var row = $(this).closest("tr");
+		$(".btn1").show();
 		$("#myModal").show();
         
         // 행의 데이터 추출
@@ -61,13 +62,30 @@ $(document).ready(function() {
 		}
 		
 	});
-				
-		
-		
-		
 	
-    
+	$('.groupCode').click(function() {
+		 var groupCode = $(this).data('groupcode');
+		 getDetailCodeList(groupCode);
+		 $('.divDetailList2').show();
+	});
+	 
 });
+
+function getDetailCodeList(groupCode){
+
+	
+	var param = {		
+			group_code : groupCode
+	};
+	
+	var callBackFunction = function(response){
+		$("#detailCodeView").empty().append(response);
+	}
+	
+	callAjax("/management/getDetailCodeList.do", "post", "text", false, param,callBackFunction);
+}
+
+
 </script>
     
     

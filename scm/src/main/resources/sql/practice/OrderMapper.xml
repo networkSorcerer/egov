@@ -3,7 +3,7 @@
 <mapper namespace="kr.happyjob.study.practice.dao.OrderDAO">
 
 	<select id="orderList" resultType="kr.happyjob.study.practice.vo.OrderVO">
-		select seq, product_name
+		select seq, product_name, order_count, order_date
 		from tb_order
 	</select>
 </mapper>

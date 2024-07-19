@@ -98,8 +98,7 @@
 							</div>
 
 						</div>
-						<h3 class="hidden">풋터 영역</h3>
-						<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
+						
 					</div>
 				</li>
 			</ul>

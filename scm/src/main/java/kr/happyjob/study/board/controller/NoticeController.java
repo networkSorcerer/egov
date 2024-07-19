@@ -72,6 +72,33 @@ public class NoticeController {
 
 		return "board/noticeList";
 	}
+	
+	@RequestMapping("noticeList1.do")
+	@ResponseBody
+	public Map<String, Object> getNoticeList1(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		logger.info("+ Start " + className + ".getNoticeList");
+		logger.info("   - paramMap : " + paramMap);
+
+		int cpage = Integer.valueOf((String) paramMap.get("currentPage"));
+		int pageSize = Integer.valueOf((String) paramMap.get("pageSize"));
+
+		int startSeq = (cpage - 1) * pageSize;
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		paramMap.put("startSeq", startSeq);
+		paramMap.put("pageSize", pageSize);
+
+		List<NoticeModel> noticeList = noticeService.noticeList(paramMap);
+		int noticeCnt = noticeService.noticeListCnt(paramMap);
+		
+		resultMap.put("noticeList", noticeList);
+		resultMap.put("noticeCnt", noticeCnt);
+		/*model.addAttribute("notice", noticeList);
+		model.addAttribute("noticeCnt", noticeCnt);*/
+
+		return resultMap;
+	}
 
 	@RequestMapping("noticeSave.do")
 	@ResponseBody
