@@ -41,7 +41,7 @@
 	/* kr.happyjob.study.management.dao.ManagementDao.userDetail */
 		SELECT
     		name , 
-    		job_code ,
+    		user_type ,
     		zip_code ,
     		hp ,
     		email ,

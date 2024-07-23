@@ -20,14 +20,14 @@
 				<c:set var="price" value="${list.obtain_count * list.item_price }"></c:set>
 				<fmt:formatNumber value="${price }" type="currency" currencySymbol="￦" /> 
 			</td>
-			<td>${list.delivery_date }</td>
+			<td id="deliveryDate">${list.delivery_date }</td>
 			<td>
 				<c:choose>
 					<c:when test="${list.returnYN eq 'Y' }">
 						<button disabled>반품</button>
 					</c:when>
 					<c:otherwise>
-						<button onclick="javascript:returnBtn(${list.seq})">반품</button>
+						<button onclick="javascript:returnBtn(${list.seq}, this)">반품</button>
 					</c:otherwise>
 				</c:choose>
 			</td>

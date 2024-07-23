@@ -77,13 +77,18 @@ $(document).ready(function() {
 							</p>
 							 <div id="mainContent">
         						<!-- target.jsp의 #content 부분이 여기 추가됩니다 -->
-        						
-    						</div>					
+        					<%@ include file="/WEB-INF/view/dashboard/Notice.jsp" %>
+        					<%@ include file="/WEB-INF/view/dashboard/Order.jsp" %>
+        					
+        					
+        					
 							
-								
-							<%@ include file="/WEB-INF/view/dashboard/Order.jsp" %>
-							<%@ include file="/WEB-INF/view/dashboard/Notice.jsp" %>
+							
+    						</div>					
+													
 						
+							
+							
 						</div>
 							
  					</li>

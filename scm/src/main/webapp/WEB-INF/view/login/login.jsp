@@ -26,6 +26,19 @@
             color: inherit; /* 링크 색상을 부모 요소의 색상과 동일하게 설정 */
             text-decoration: none; /* 밑줄 제거 */
         }
+        <style>
+        /* Chrome, Safari, Edge, Opera */
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
 </style>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" charset="utf-8" src="${CTX_PATH}/js/popFindZipCode.js"></script>
@@ -1398,6 +1411,20 @@ function CustomerList() {
 function order() {
 	gfModalPop("#layer9");
 }
+$(document).ready(function() {
+    $('#cust_ph').on('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    $('#biz_num').on('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    $('#cust_fax').on('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+});
+
 </script>
 
 </head>
@@ -1450,7 +1477,7 @@ function order() {
 				<a href="javascript:CRegister();" id="CRegisterBtn"
 					name="modal"><strong>[기업회원가입]</strong></a> 
 					<a href="javascript:findIdPwd();" id="find"><strong>[아이디/비밀번호 찾기]</strong></a>
-					<a href="javascript:menu();" id="menu" class="btn btn-danger"><strong>[메뉴]</strong></a>
+				 <a href="javascript:menu();" id="menu" class="btn btn-danger"><strong>[메뉴]</strong></a>
 			</fieldset>
 			</div>
 			

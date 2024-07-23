@@ -175,7 +175,9 @@ function productBuy() {
 			contentType: "application/json",
 			data: JSON.stringify(totalList),
 			success: function(data) {
+				alert("결제가 완료되었습니다.")
 				
+				location.href = "/mypage/order.do";
 			},
 			error: function(err) {
 				console.log(err);

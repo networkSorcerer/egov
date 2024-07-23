@@ -17,7 +17,8 @@
 			cust_addr,
 			cust_detail_addr,
 			biz_num,
-			industry_code
+			industry_code,
+			reg_date
 		) VALUES (
 			#{cust_name},
 			#{cust_ph},
@@ -28,7 +29,8 @@
 			#{cust_addr},
 			#{cust_detail_addr},
 			#{biz_num},
-			#{industry_code}
+			#{industry_code},
+			now()
 		)
 	</insert>
 	

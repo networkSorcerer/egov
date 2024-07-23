@@ -8,6 +8,7 @@
 <head>
 <title>반품 이력</title>
 <jsp:include page="/WEB-INF/view/common/common_include.jsp"></jsp:include>
+<script type="text/javascript" src="${CTX_PATH}/js/view/scm/dateCheck/dateCheck.js"></script>
 <script type="text/javascript">
 
 var pageSize = 5;
@@ -15,14 +16,27 @@ var pageBlockPage = 10;
 
 $(function() {
 	returnList()
+	dateSetting()
+	registerBtnEvent()
 })
+
+function registerBtnEvent(){
+		$("#searchBtn").click(function(e){
+			e.preventDefault();
+			returnList();
+		});
+}
 
 function returnList(cpage) {
 	cpage = cpage || 1;
 	
+	console.log($("#startDate").val())
+	
 	var param = {
 			cpage: cpage,
-			pageSize: pageSize
+			pageSize: pageSize,
+			startDate: $("#startDate").val(),
+			endDate: $("#endDate").val()
 	}
 	
 	$.ajax({

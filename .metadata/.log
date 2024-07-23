@@ -8857,3 +8857,1744 @@ Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git
 
 !ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-19 13:57:07.429
 !MESSAGE loading file 'pom.properties'
+
+!ENTRY org.eclipse.jdt.launching 4 150 2024-07-19 16:31:24.496
+!MESSAGE Unable to restore classpath entry.
+!STACK 0
+org.xml.sax.SAXException: FWK005 parse may not be called while parsing.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:271)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.eclipse.jdt.launching.JavaRuntime.newRuntimeClasspathEntry(JavaRuntime.java:724)
+	at org.eclipse.jdt.launching.StandardClasspathProvider.recoverRuntimePath(StandardClasspathProvider.java:102)
+	at org.eclipse.jdt.launching.StandardClasspathProvider.computeUnresolvedClasspath(StandardClasspathProvider.java:66)
+	at org.eclipse.jdt.launching.JavaRuntime.computeUnresolvedRuntimeClasspath(JavaRuntime.java:1246)
+	at org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate.getBootpathExt(AbstractJavaLaunchConfigurationDelegate.java:296)
+	at org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate.getVMSpecificAttributesMap(AbstractJavaLaunchConfigurationDelegate.java:563)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatLaunchConfigurationDelegate.launch(TomcatLaunchConfigurationDelegate.java:66)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.jdt.launching 4 150 2024-07-19 16:31:32.465
+!MESSAGE Unable to restore classpath entry.
+!STACK 0
+org.xml.sax.SAXException: FWK005 parse may not be called while parsing.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:271)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.eclipse.jdt.launching.JavaRuntime.newRuntimeClasspathEntry(JavaRuntime.java:724)
+	at org.eclipse.jdt.launching.StandardClasspathProvider.recoverRuntimePath(StandardClasspathProvider.java:102)
+	at org.eclipse.jdt.launching.StandardClasspathProvider.computeUnresolvedClasspath(StandardClasspathProvider.java:66)
+	at org.eclipse.jdt.launching.JavaRuntime.computeUnresolvedRuntimeClasspath(JavaRuntime.java:1246)
+	at org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate.getBootpathExt(AbstractJavaLaunchConfigurationDelegate.java:296)
+	at org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate.getVMSpecificAttributesMap(AbstractJavaLaunchConfigurationDelegate.java:563)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatLaunchConfigurationDelegate.launch(TomcatLaunchConfigurationDelegate.java:66)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2024-07-20 22:43:10.502 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_181
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  openFile -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 openFile -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.springframework.ide.eclipse.bestpractices 4 0 2024-07-20 22:43:12.859
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.springframework.ide.eclipse.bestpractices [1087]
+  Unresolved requirement: Require-Bundle: org.springframework.ide.eclipse.quickfix
+    -> Bundle-SymbolicName: org.springframework.ide.eclipse.quickfix; bundle-version="3.9.22.202204280911-RELEASE"; singleton:="true"
+       org.springframework.ide.eclipse.quickfix [1101]
+         No resolution report for the bundle.  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.springframework.ide.eclipse.quickfix [osgi.identity; osgi.identity="org.springframework.ide.eclipse.quickfix"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"] because it is exposed to package 'javax.xml.ws.handler' from resources org.eclipse.osgi [osgi.identity; osgi.identity="org.eclipse.osgi"; type="osgi.bundle"; version:Version="3.10.102.v20160118-1700"; singleton:="true"] and javax.xml.ws [osgi.identity; osgi.identity="javax.xml.ws"; type="osgi.bundle"; version:Version="2.1.0.v200902101523"] via two dependency chains.
+
+Chain 1:
+  org.springframework.ide.eclipse.quickfix [osgi.identity; osgi.identity="org.springframework.ide.eclipse.quickfix"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.core.runtime)
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; osgi.identity="org.eclipse.osgi"; type="osgi.bundle"; version:Version="3.10.102.v20160118-1700"; singleton:="true"]
+
+Chain 2:
+  org.springframework.ide.eclipse.quickfix [osgi.identity; osgi.identity="org.springframework.ide.eclipse.quickfix"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.springframework.web)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="4.3.23.20190313-CI"; osgi.wiring.bundle="org.springframework.web"
+  org.springframework.web [osgi.identity; osgi.identity="org.springframework.web"; type="osgi.bundle"; version:Version="4.3.23.20190313-CI"]
+    import: (&(osgi.wiring.package=javax.xml.ws.handler)(version>=0.0.0))
+     |
+    export: osgi.wiring.package: javax.xml.ws.handler
+  javax.xml.ws [osgi.identity; osgi.identity="javax.xml.ws"; type="osgi.bundle"; version:Version="2.1.0.v200902101523"]
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.springframework.ide.eclipse.config.ui 4 0 2024-07-20 22:43:13.152
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.springframework.ide.eclipse.config.ui [1093]
+  Unresolved requirement: Require-Bundle: org.springframework.ide.eclipse.wizard
+    -> Bundle-SymbolicName: org.springframework.ide.eclipse.wizard; bundle-version="3.9.22.202204280911-RELEASE"; singleton:="true"
+       org.springframework.ide.eclipse.wizard [1103]
+         Unresolved requirement: Require-Bundle: org.springsource.ide.eclipse.commons.gettingstarted; bundle-version="3.5.0"; resolution:="optional"
+         Unresolved requirement: Require-Bundle: org.springsource.ide.eclipse.commons.browser; bundle-version="[3.5.0,4.0.0)"; resolution:="optional"
+         Unresolved requirement: Require-Bundle: org.springframework.ide.eclipse.quickfix
+           -> Bundle-SymbolicName: org.springframework.ide.eclipse.quickfix; bundle-version="3.9.22.202204280911-RELEASE"; singleton:="true"
+              org.springframework.ide.eclipse.quickfix [1101]
+                No resolution report for the bundle.  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.springframework.ide.eclipse.wizard [osgi.identity; osgi.identity="org.springframework.ide.eclipse.wizard"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"] because it is exposed to package 'com.google.common.base' from resources com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="27.1.0.v20190517-1946"] and com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="15.0.0.v201403281430"] via two dependency chains.
+
+Chain 1:
+  org.springframework.ide.eclipse.wizard [osgi.identity; osgi.identity="org.springframework.ide.eclipse.wizard"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (osgi.wiring.bundle=com.google.guava)
+     |
+    provide: osgi.wiring.bundle: com.google.guava
+  com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="27.1.0.v20190517-1946"]
+
+Chain 2:
+  org.springframework.ide.eclipse.wizard [osgi.identity; osgi.identity="org.springframework.ide.eclipse.wizard"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.springsource.ide.eclipse.commons.livexp)(bundle-version>=3.8.4))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="4.14.1.202204250653"; osgi.wiring.bundle="org.springsource.ide.eclipse.commons.livexp"
+  org.springsource.ide.eclipse.commons.livexp [osgi.identity; osgi.identity="org.springsource.ide.eclipse.commons.livexp"; type="osgi.bundle"; version:Version="4.14.1.202204250653"]
+    import: (osgi.wiring.package=com.google.common.base)
+     |
+    export: osgi.wiring.package: com.google.common.base
+  com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="15.0.0.v201403281430"]
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.springframework.ide.eclipse.quickfix 4 0 2024-07-20 22:43:13.237
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.springframework.ide.eclipse.quickfix [1101]
+  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.springframework.ide.eclipse.quickfix [osgi.identity; osgi.identity="org.springframework.ide.eclipse.quickfix"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"] because it is exposed to package 'javax.xml.ws.handler' from resources org.eclipse.osgi [osgi.identity; osgi.identity="org.eclipse.osgi"; type="osgi.bundle"; version:Version="3.10.102.v20160118-1700"; singleton:="true"] and javax.xml.ws [osgi.identity; osgi.identity="javax.xml.ws"; type="osgi.bundle"; version:Version="2.1.0.v200902101523"] via two dependency chains.
+
+Chain 1:
+  org.springframework.ide.eclipse.quickfix [osgi.identity; osgi.identity="org.springframework.ide.eclipse.quickfix"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.core.runtime)
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; osgi.identity="org.eclipse.osgi"; type="osgi.bundle"; version:Version="3.10.102.v20160118-1700"; singleton:="true"]
+
+Chain 2:
+  org.springframework.ide.eclipse.quickfix [osgi.identity; osgi.identity="org.springframework.ide.eclipse.quickfix"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.springframework.web)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="4.3.23.20190313-CI"; osgi.wiring.bundle="org.springframework.web"
+  org.springframework.web [osgi.identity; osgi.identity="org.springframework.web"; type="osgi.bundle"; version:Version="4.3.23.20190313-CI"]
+    import: (&(osgi.wiring.package=javax.xml.ws.handler)(version>=0.0.0))
+     |
+    export: osgi.wiring.package: javax.xml.ws.handler
+  javax.xml.ws [osgi.identity; osgi.identity="javax.xml.ws"; type="osgi.bundle"; version:Version="2.1.0.v200902101523"]
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.springframework.ide.eclipse.wizard 4 0 2024-07-20 22:43:13.352
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.springframework.ide.eclipse.wizard [1103]
+  Unresolved requirement: Require-Bundle: org.springsource.ide.eclipse.commons.gettingstarted; bundle-version="3.5.0"; resolution:="optional"
+  Unresolved requirement: Require-Bundle: org.springsource.ide.eclipse.commons.browser; bundle-version="[3.5.0,4.0.0)"; resolution:="optional"
+  Unresolved requirement: Require-Bundle: org.springframework.ide.eclipse.quickfix
+    -> Bundle-SymbolicName: org.springframework.ide.eclipse.quickfix; bundle-version="3.9.22.202204280911-RELEASE"; singleton:="true"
+       org.springframework.ide.eclipse.quickfix [1101]
+         No resolution report for the bundle.  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.springframework.ide.eclipse.wizard [osgi.identity; osgi.identity="org.springframework.ide.eclipse.wizard"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"] because it is exposed to package 'com.google.common.base' from resources com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="27.1.0.v20190517-1946"] and com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="15.0.0.v201403281430"] via two dependency chains.
+
+Chain 1:
+  org.springframework.ide.eclipse.wizard [osgi.identity; osgi.identity="org.springframework.ide.eclipse.wizard"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (osgi.wiring.bundle=com.google.guava)
+     |
+    provide: osgi.wiring.bundle: com.google.guava
+  com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="27.1.0.v20190517-1946"]
+
+Chain 2:
+  org.springframework.ide.eclipse.wizard [osgi.identity; osgi.identity="org.springframework.ide.eclipse.wizard"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.springsource.ide.eclipse.commons.livexp)(bundle-version>=3.8.4))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="4.14.1.202204250653"; osgi.wiring.bundle="org.springsource.ide.eclipse.commons.livexp"
+  org.springsource.ide.eclipse.commons.livexp [osgi.identity; osgi.identity="org.springsource.ide.eclipse.commons.livexp"; type="osgi.bundle"; version:Version="4.14.1.202204250653"]
+    import: (osgi.wiring.package=com.google.common.base)
+     |
+    export: osgi.wiring.package: com.google.common.base
+  com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="15.0.0.v201403281430"]
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.core.resources 2 10035 2024-07-20 22:43:14.594
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.ui 2 0 2024-07-20 22:43:15.928
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-07-20 22:43:15.928
+!MESSAGE Commands should really have a category: plug-in='org.springframework.ide.eclipse.boot', id='org.springframework.ide.eclipse.boot.ui.EnableDisableBootDevtools', categoryId='org.springframework.ide.eclipse.boot.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2024-07-20 22:43:17.475
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-07-20 22:43:17.475
+!MESSAGE Commands should really have a category: plug-in='org.springframework.ide.eclipse.boot', id='org.springframework.ide.eclipse.boot.ui.EnableDisableBootDevtools', categoryId='org.springframework.ide.eclipse.boot.commands.category'
+
+!ENTRY org.eclipse.jface 2 0 2024-07-20 22:43:21.666
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-07-20 22:43:21.666
+!MESSAGE A conflict occurred for ALT+CTRL+T:
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.connector.local.command.launch,Open Local Terminal on Selection,
+		,
+		Category(org.eclipse.tm.terminal.view.ui.commands.category,Terminal Commands,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@715d82a0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.team.svn.ui.command.EditPropertiesCommand,Show Properties,
+		,
+		Category(org.eclipse.team.svn.ui.command.category,SVN,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@299cddbf,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 16 2024-07-20 22:43:39.037
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $. ; version: 1.100.0.v20160217-0435
+!STACK 0
+com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:224)
+	at com.google.gson.Gson.fromJson(Gson.java:887)
+	at com.google.gson.Gson.fromJson(Gson.java:852)
+	at com.google.gson.Gson.fromJson(Gson.java:801)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.json.Json.deserialize(Json.java:88)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:70)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:101)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $
+	at com.google.gson.stream.JsonReader.beginObject(JsonReader.java:385)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:213)
+	... 9 more
+
+!ENTRY org.eclipse.ui 2 2 2024-07-20 22:43:40.843
+!MESSAGE Invalid preference category path: egovframework.dev.imp.confmngt.preferences.emptyconfpreperencepage (bundle: egovframework.rte.rdt, page: egovframework.rte.rdt.plugin.preferences.RdtPreferencePage)
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.019
+!MESSAGE properties loading for project 'RemoteSystemsTempFiles'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.020
+!MESSAGE properties loading for project 'Servers'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.021
+!MESSAGE loading file 'catalina.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.023
+!MESSAGE loading file 'catalina.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.025
+!MESSAGE properties loading for project 'erp'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.028
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.029
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.031
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.032
+!MESSAGE properties loading for project 'marlmsone1'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.036
+!MESSAGE loading file 'GitProjectData.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.037
+!MESSAGE loading file 'clean-cache.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.038
+!MESSAGE loading file 'node.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.039
+!MESSAGE loading file 'node.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.041
+!MESSAGE loading file 'node.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.042
+!MESSAGE loading file 'data.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.043
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.044
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.045
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.046
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.047
+!MESSAGE properties loading for project 'scm'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.048
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.049
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:41.051
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-07-20 22:43:44.565
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\user'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jst.jsp.core 4 4 2024-07-20 22:43:53.199
+!MESSAGE A workspace crash was detected. The previous session did not exit normally. Not using saved taglib indexes.
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:59.382
+!MESSAGE properties loading for project 'erp'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:59.384
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:59.386
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:43:59.387
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:25.873
+!MESSAGE properties loading for project 'marlmsone1'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:25.875
+!MESSAGE loading file 'GitProjectData.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:25.877
+!MESSAGE loading file 'clean-cache.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:25.878
+!MESSAGE loading file 'node.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:25.878
+!MESSAGE loading file 'node.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:25.879
+!MESSAGE loading file 'node.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:25.880
+!MESSAGE loading file 'data.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:25.881
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:25.882
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:25.883
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:25.884
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:50.033
+!MESSAGE properties loading for project 'scm'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:50.036
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:50.037
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:44:50.038
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY org.eclipse.wst.server.core 4 0 2024-07-20 22:45:01.370
+!MESSAGE Server scm failed to start.
+
+!ENTRY org.eclipse.wst.server.core 4 0 2024-07-20 22:45:46.388
+!MESSAGE Server scm failed to start.
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:46:01.692
+!MESSAGE properties loading for project 'Servers'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:46:01.693
+!MESSAGE loading file 'catalina.properties'
+
+!ENTRY org.eclipse.wst.server.discovery 1 0 2024-07-20 22:46:04.751
+!MESSAGE cacheFile=file:/D:/egov/3.6/eGovFrameDev-3.6.0-64bit/eclipse/configuration/org.eclipse.wst.server.discovery/serverAdapterSitesDetails.xml
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:46:20.955
+!MESSAGE properties loading for project 'Servers'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:46:20.956
+!MESSAGE loading file 'catalina.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-20 22:46:20.957
+!MESSAGE loading file 'catalina.properties'
+!SESSION 2024-07-22 09:16:32.060 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_181
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  openFile -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 openFile -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.springframework.ide.eclipse.bestpractices 4 0 2024-07-22 09:16:37.347
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.springframework.ide.eclipse.bestpractices [1087]
+  Unresolved requirement: Require-Bundle: org.springframework.ide.eclipse.quickfix
+    -> Bundle-SymbolicName: org.springframework.ide.eclipse.quickfix; bundle-version="3.9.22.202204280911-RELEASE"; singleton:="true"
+       org.springframework.ide.eclipse.quickfix [1101]
+         No resolution report for the bundle.  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.springframework.ide.eclipse.quickfix [osgi.identity; osgi.identity="org.springframework.ide.eclipse.quickfix"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"] because it is exposed to package 'javax.xml.ws.handler' from resources org.eclipse.osgi [osgi.identity; osgi.identity="org.eclipse.osgi"; type="osgi.bundle"; version:Version="3.10.102.v20160118-1700"; singleton:="true"] and javax.xml.ws [osgi.identity; osgi.identity="javax.xml.ws"; type="osgi.bundle"; version:Version="2.1.0.v200902101523"] via two dependency chains.
+
+Chain 1:
+  org.springframework.ide.eclipse.quickfix [osgi.identity; osgi.identity="org.springframework.ide.eclipse.quickfix"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.core.runtime)
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; osgi.identity="org.eclipse.osgi"; type="osgi.bundle"; version:Version="3.10.102.v20160118-1700"; singleton:="true"]
+
+Chain 2:
+  org.springframework.ide.eclipse.quickfix [osgi.identity; osgi.identity="org.springframework.ide.eclipse.quickfix"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.springframework.web)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="4.3.23.20190313-CI"; osgi.wiring.bundle="org.springframework.web"
+  org.springframework.web [osgi.identity; osgi.identity="org.springframework.web"; type="osgi.bundle"; version:Version="4.3.23.20190313-CI"]
+    import: (&(osgi.wiring.package=javax.xml.ws.handler)(version>=0.0.0))
+     |
+    export: osgi.wiring.package: javax.xml.ws.handler
+  javax.xml.ws [osgi.identity; osgi.identity="javax.xml.ws"; type="osgi.bundle"; version:Version="2.1.0.v200902101523"]
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.springframework.ide.eclipse.config.ui 4 0 2024-07-22 09:16:37.628
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.springframework.ide.eclipse.config.ui [1093]
+  Unresolved requirement: Require-Bundle: org.springframework.ide.eclipse.wizard
+    -> Bundle-SymbolicName: org.springframework.ide.eclipse.wizard; bundle-version="3.9.22.202204280911-RELEASE"; singleton:="true"
+       org.springframework.ide.eclipse.wizard [1103]
+         Unresolved requirement: Require-Bundle: org.springsource.ide.eclipse.commons.gettingstarted; bundle-version="3.5.0"; resolution:="optional"
+         Unresolved requirement: Require-Bundle: org.springsource.ide.eclipse.commons.browser; bundle-version="[3.5.0,4.0.0)"; resolution:="optional"
+         Unresolved requirement: Require-Bundle: org.springframework.ide.eclipse.quickfix
+           -> Bundle-SymbolicName: org.springframework.ide.eclipse.quickfix; bundle-version="3.9.22.202204280911-RELEASE"; singleton:="true"
+              org.springframework.ide.eclipse.quickfix [1101]
+                No resolution report for the bundle.  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.springframework.ide.eclipse.wizard [osgi.identity; osgi.identity="org.springframework.ide.eclipse.wizard"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"] because it is exposed to package 'com.google.common.base' from resources com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="27.1.0.v20190517-1946"] and com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="15.0.0.v201403281430"] via two dependency chains.
+
+Chain 1:
+  org.springframework.ide.eclipse.wizard [osgi.identity; osgi.identity="org.springframework.ide.eclipse.wizard"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (osgi.wiring.bundle=com.google.guava)
+     |
+    provide: osgi.wiring.bundle: com.google.guava
+  com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="27.1.0.v20190517-1946"]
+
+Chain 2:
+  org.springframework.ide.eclipse.wizard [osgi.identity; osgi.identity="org.springframework.ide.eclipse.wizard"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.springsource.ide.eclipse.commons.livexp)(bundle-version>=3.8.4))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="4.14.1.202204250653"; osgi.wiring.bundle="org.springsource.ide.eclipse.commons.livexp"
+  org.springsource.ide.eclipse.commons.livexp [osgi.identity; osgi.identity="org.springsource.ide.eclipse.commons.livexp"; type="osgi.bundle"; version:Version="4.14.1.202204250653"]
+    import: (osgi.wiring.package=com.google.common.base)
+     |
+    export: osgi.wiring.package: com.google.common.base
+  com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="15.0.0.v201403281430"]
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.springframework.ide.eclipse.quickfix 4 0 2024-07-22 09:16:37.706
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.springframework.ide.eclipse.quickfix [1101]
+  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.springframework.ide.eclipse.quickfix [osgi.identity; osgi.identity="org.springframework.ide.eclipse.quickfix"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"] because it is exposed to package 'javax.xml.ws.handler' from resources org.eclipse.osgi [osgi.identity; osgi.identity="org.eclipse.osgi"; type="osgi.bundle"; version:Version="3.10.102.v20160118-1700"; singleton:="true"] and javax.xml.ws [osgi.identity; osgi.identity="javax.xml.ws"; type="osgi.bundle"; version:Version="2.1.0.v200902101523"] via two dependency chains.
+
+Chain 1:
+  org.springframework.ide.eclipse.quickfix [osgi.identity; osgi.identity="org.springframework.ide.eclipse.quickfix"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.core.runtime)
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; osgi.identity="org.eclipse.osgi"; type="osgi.bundle"; version:Version="3.10.102.v20160118-1700"; singleton:="true"]
+
+Chain 2:
+  org.springframework.ide.eclipse.quickfix [osgi.identity; osgi.identity="org.springframework.ide.eclipse.quickfix"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.springframework.web)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="4.3.23.20190313-CI"; osgi.wiring.bundle="org.springframework.web"
+  org.springframework.web [osgi.identity; osgi.identity="org.springframework.web"; type="osgi.bundle"; version:Version="4.3.23.20190313-CI"]
+    import: (&(osgi.wiring.package=javax.xml.ws.handler)(version>=0.0.0))
+     |
+    export: osgi.wiring.package: javax.xml.ws.handler
+  javax.xml.ws [osgi.identity; osgi.identity="javax.xml.ws"; type="osgi.bundle"; version:Version="2.1.0.v200902101523"]
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.springframework.ide.eclipse.wizard 4 0 2024-07-22 09:16:37.784
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.springframework.ide.eclipse.wizard [1103]
+  Unresolved requirement: Require-Bundle: org.springsource.ide.eclipse.commons.gettingstarted; bundle-version="3.5.0"; resolution:="optional"
+  Unresolved requirement: Require-Bundle: org.springsource.ide.eclipse.commons.browser; bundle-version="[3.5.0,4.0.0)"; resolution:="optional"
+  Unresolved requirement: Require-Bundle: org.springframework.ide.eclipse.quickfix
+    -> Bundle-SymbolicName: org.springframework.ide.eclipse.quickfix; bundle-version="3.9.22.202204280911-RELEASE"; singleton:="true"
+       org.springframework.ide.eclipse.quickfix [1101]
+         No resolution report for the bundle.  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.springframework.ide.eclipse.wizard [osgi.identity; osgi.identity="org.springframework.ide.eclipse.wizard"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"] because it is exposed to package 'com.google.common.base' from resources com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="27.1.0.v20190517-1946"] and com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="15.0.0.v201403281430"] via two dependency chains.
+
+Chain 1:
+  org.springframework.ide.eclipse.wizard [osgi.identity; osgi.identity="org.springframework.ide.eclipse.wizard"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (osgi.wiring.bundle=com.google.guava)
+     |
+    provide: osgi.wiring.bundle: com.google.guava
+  com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="27.1.0.v20190517-1946"]
+
+Chain 2:
+  org.springframework.ide.eclipse.wizard [osgi.identity; osgi.identity="org.springframework.ide.eclipse.wizard"; type="osgi.bundle"; version:Version="3.9.22.202204280911-RELEASE"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.springsource.ide.eclipse.commons.livexp)(bundle-version>=3.8.4))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="4.14.1.202204250653"; osgi.wiring.bundle="org.springsource.ide.eclipse.commons.livexp"
+  org.springsource.ide.eclipse.commons.livexp [osgi.identity; osgi.identity="org.springsource.ide.eclipse.commons.livexp"; type="osgi.bundle"; version:Version="4.14.1.202204250653"]
+    import: (osgi.wiring.package=com.google.common.base)
+     |
+    export: osgi.wiring.package: com.google.common.base
+  com.google.guava [osgi.identity; osgi.identity="com.google.guava"; type="osgi.bundle"; version:Version="15.0.0.v201403281430"]
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.core.resources 2 10035 2024-07-22 09:16:39.223
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.ui 2 0 2024-07-22 09:16:40.288
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-07-22 09:16:40.288
+!MESSAGE Commands should really have a category: plug-in='org.springframework.ide.eclipse.boot', id='org.springframework.ide.eclipse.boot.ui.EnableDisableBootDevtools', categoryId='org.springframework.ide.eclipse.boot.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2024-07-22 09:16:41.867
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-07-22 09:16:41.867
+!MESSAGE Commands should really have a category: plug-in='org.springframework.ide.eclipse.boot', id='org.springframework.ide.eclipse.boot.ui.EnableDisableBootDevtools', categoryId='org.springframework.ide.eclipse.boot.commands.category'
+
+!ENTRY org.eclipse.jface 2 0 2024-07-22 09:16:45.448
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-07-22 09:16:45.448
+!MESSAGE A conflict occurred for ALT+CTRL+T:
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.connector.local.command.launch,Open Local Terminal on Selection,
+		,
+		Category(org.eclipse.tm.terminal.view.ui.commands.category,Terminal Commands,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@f3c27e9,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.team.svn.ui.command.EditPropertiesCommand,Show Properties,
+		,
+		Category(org.eclipse.team.svn.ui.command.category,SVN,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1fd4850b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 16 2024-07-22 09:17:04.259
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $. ; version: 1.100.0.v20160217-0435
+!STACK 0
+com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:224)
+	at com.google.gson.Gson.fromJson(Gson.java:887)
+	at com.google.gson.Gson.fromJson(Gson.java:852)
+	at com.google.gson.Gson.fromJson(Gson.java:801)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.json.Json.deserialize(Json.java:88)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:70)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:101)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $
+	at com.google.gson.stream.JsonReader.beginObject(JsonReader.java:385)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:213)
+	... 9 more
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-07-22 09:17:05.604
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\user'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.ui 2 2 2024-07-22 09:17:06.025
+!MESSAGE Invalid preference category path: egovframework.dev.imp.confmngt.preferences.emptyconfpreperencepage (bundle: egovframework.rte.rdt, page: egovframework.rte.rdt.plugin.preferences.RdtPreferencePage)
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.588
+!MESSAGE properties loading for project 'RemoteSystemsTempFiles'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.590
+!MESSAGE properties loading for project 'Servers'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.591
+!MESSAGE loading file 'catalina.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.594
+!MESSAGE loading file 'catalina.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.598
+!MESSAGE properties loading for project 'erp'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.601
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.602
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.604
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.606
+!MESSAGE properties loading for project 'marlmsone1'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.609
+!MESSAGE loading file 'GitProjectData.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.610
+!MESSAGE loading file 'clean-cache.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.611
+!MESSAGE loading file 'node.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.613
+!MESSAGE loading file 'node.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.615
+!MESSAGE loading file 'node.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.617
+!MESSAGE loading file 'data.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.618
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.620
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.621
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.623
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.624
+!MESSAGE properties loading for project 'scm'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.627
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.628
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:06.630
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY org.eclipse.jst.jsp.core 4 4 2024-07-22 09:17:12.520
+!MESSAGE A workspace crash was detected. The previous session did not exit normally. Not using saved taglib indexes.
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:21.878
+!MESSAGE properties loading for project 'erp'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:21.880
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:21.882
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:21.883
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:45.675
+!MESSAGE properties loading for project 'marlmsone1'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:45.677
+!MESSAGE loading file 'GitProjectData.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:45.678
+!MESSAGE loading file 'clean-cache.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:45.679
+!MESSAGE loading file 'node.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:45.679
+!MESSAGE loading file 'node.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:45.680
+!MESSAGE loading file 'node.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:45.681
+!MESSAGE loading file 'data.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:45.682
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:45.682
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:45.683
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:17:45.684
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:18:03.863
+!MESSAGE properties loading for project 'scm'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:18:03.865
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:18:03.866
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:18:03.867
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:27:35.240
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:27:35.240
+!MESSAGE Get properties for 'product' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:27:35.262
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:27:35.262
+!MESSAGE Get properties for 'product' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\product' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\product' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\product' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:27:35.517
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:27:35.517
+!MESSAGE Get properties for 'product' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\webapp\WEB-INF\view\product' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\webapp\WEB-INF\view\product' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\webapp\WEB-INF\view\product' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:29:16.763
+!MESSAGE SVN: '0x00000114: Commit' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:29:16.763
+!MESSAGE Failed to convert replacement into edit
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorUnresolvedConflictException: svn: E155010: The node 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product\dao\ProductDAO.java' was not found.
+	at org.eclipse.team.svn.core.operation.SVNProgressMonitor.progress(SVNProgressMonitor.java:50)
+	at org.polarion.team.svn.connector.svnkit.SVNKitService$ProgressMonitorWrapper.notify(SVNKitService.java:139)
+	at org.eclipse.team.svn.core.utility.SVNNotificationComposite.notify(SVNNotificationComposite.java:51)
+	at org.polarion.team.svn.connector.svnkit.ConversionUtility$Notify2Wrapper.onNotify(ConversionUtility.java:924)
+	at org.tmatesoft.svn.core.javahl17.JavaHLEventHandler.handleEvent(JavaHLEventHandler.java:64)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.handleEvent(SvnOperationRunner.java:67)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.handleEvent(SvnOperationRunner.java:72)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgRevert.run(SvnNgRevert.java:46)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgRevert.run(SvnNgRevert.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.revert(SVNClientImpl.java:437)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.revert(SVNKitConnector.java:579)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.revert(ThreadNameModifier.java:542)
+	at org.eclipse.team.svn.ui.operation.TreatAsEditsOperation$1.run(TreatAsEditsOperation.java:54)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doSubTask(ProgressMonitorUtility.java:118)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.protectStep(AbstractActionOperation.java:156)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.protectStep(AbstractActionOperation.java:151)
+	at org.eclipse.team.svn.ui.operation.TreatAsEditsOperation.runImpl(TreatAsEditsOperation.java:52)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.operation.CompositeOperation.runImpl(CompositeOperation.java:99)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.WorkspaceModifyCancellableOperationWrapper.execute(WorkspaceModifyCancellableOperationWrapper.java:58)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:108)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:130)
+	at org.eclipse.team.svn.ui.utility.SVNTeamOperationWrapper.run(SVNTeamOperationWrapper.java:35)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:29:57.369
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:29:57.369
+!MESSAGE Get properties for 'product' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:29:57.393
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:29:57.393
+!MESSAGE Get properties for 'product' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\product' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\product' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\product' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:29:57.640
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 09:29:57.640
+!MESSAGE Get properties for 'product' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\webapp\WEB-INF\view\product' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\webapp\WEB-INF\view\product' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\webapp\WEB-INF\view\product' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:31:59.868
+!MESSAGE properties loading for project 'scm'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:31:59.869
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:31:59.870
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:31:59.871
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:32:01.035
+!MESSAGE properties loading for project 'scm'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:32:01.037
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:32:01.038
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:32:16.567
+!MESSAGE properties loading for project 'scm'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:32:16.568
+!MESSAGE loading file 'happyjob.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:32:16.569
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2024-07-22 09:32:16.570
+!MESSAGE loading file 'pom.properties'
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.467
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.467
+!MESSAGE Get properties for 'dao' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\dao' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:879)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\dao' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 17 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\dao' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 18 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.498
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.498
+!MESSAGE Get properties for 'product' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.516
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.516
+!MESSAGE Get properties for 'product' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\product' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\product' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\product' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.574
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.574
+!MESSAGE Get properties for 'controller' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\controller' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:879)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\controller' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 17 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\controller' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 18 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.671
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.671
+!MESSAGE Get properties for 'mypage' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\mypage' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\mypage' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\mypage' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.719
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.719
+!MESSAGE Get properties for 'service' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\service' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\service' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\service' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.729
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:46:15.729
+!MESSAGE Get properties for 'product' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\webapp\WEB-INF\view\product' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\webapp\WEB-INF\view\product' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\webapp\WEB-INF\view\product' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.398
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.398
+!MESSAGE Get properties for 'dao' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\dao' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:879)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\dao' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 17 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\dao' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 18 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.432
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.432
+!MESSAGE Get properties for 'product' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.452
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.452
+!MESSAGE Get properties for 'product' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\product' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\product' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\product' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.527
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.527
+!MESSAGE Get properties for 'controller' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\controller' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:879)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\controller' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 17 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\controller' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 18 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.638
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.638
+!MESSAGE Get properties for 'mypage' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\mypage' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\mypage' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\resources\sql\mypage' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.667
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.667
+!MESSAGE Get properties for 'service' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\service' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\service' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\mypage\service' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.678
+!MESSAGE SVN: '0x0000011f: Get Properties' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:55:06.678
+!MESSAGE Get properties for 'product' failed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\webapp\WEB-INF\view\product' is not under version control
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2174)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.listProperties(ThreadNameModifier.java:732)
+	at org.eclipse.team.svn.core.utility.SVNUtility.properties(SVNUtility.java:296)
+	at org.eclipse.team.svn.core.operation.local.property.GetPropertiesOperation.runImpl(GetPropertiesOperation.java:79)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternalDefault(ProgressMonitorUtility.java:77)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.processProperty(CommitPanel.java:862)
+	at org.eclipse.team.svn.ui.panel.local.CommitPanel$CollectPropertiesOperation.runImpl(CommitPanel.java:848)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.DefaultCancellableOperationWrapper.run(DefaultCancellableOperationWrapper.java:55)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\webapp\WEB-INF\view\product' is not under version control
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:68)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1496)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1251)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.listProperties(SVNKitConnector.java:2168)
+	... 16 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200005: 'C:\Users\user\git\egov\scm\src\main\webapp\WEB-INF\view\product' is not under version control
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:64)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:51)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:53)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:41)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgGetProperties.run(SvnNgGetProperties.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.properties(SVNClientImpl.java:1249)
+	... 17 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:56:47.488
+!MESSAGE SVN: '0x00000114: Commit' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2024-07-22 13:56:47.488
+!MESSAGE Failed to convert replacement into edit
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorUnresolvedConflictException: svn: E155010: The node 'C:\Users\user\git\egov\scm\src\main\java\kr\happyjob\study\product\dao\ProductDAO.java' was not found.
+	at org.eclipse.team.svn.core.operation.SVNProgressMonitor.progress(SVNProgressMonitor.java:50)
+	at org.polarion.team.svn.connector.svnkit.SVNKitService$ProgressMonitorWrapper.notify(SVNKitService.java:139)
+	at org.eclipse.team.svn.core.utility.SVNNotificationComposite.notify(SVNNotificationComposite.java:51)
+	at org.polarion.team.svn.connector.svnkit.ConversionUtility$Notify2Wrapper.onNotify(ConversionUtility.java:924)
+	at org.tmatesoft.svn.core.javahl17.JavaHLEventHandler.handleEvent(JavaHLEventHandler.java:64)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.handleEvent(SvnOperationRunner.java:67)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.handleEvent(SvnOperationRunner.java:72)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgRevert.run(SvnNgRevert.java:46)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgRevert.run(SvnNgRevert.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.revert(SVNClientImpl.java:437)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.revert(SVNKitConnector.java:579)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.revert(ThreadNameModifier.java:542)
+	at org.eclipse.team.svn.ui.operation.TreatAsEditsOperation$1.run(TreatAsEditsOperation.java:54)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doSubTask(ProgressMonitorUtility.java:118)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.protectStep(AbstractActionOperation.java:156)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.protectStep(AbstractActionOperation.java:151)
+	at org.eclipse.team.svn.ui.operation.TreatAsEditsOperation.runImpl(TreatAsEditsOperation.java:52)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.operation.CompositeOperation.runImpl(CompositeOperation.java:99)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.WorkspaceModifyCancellableOperationWrapper.execute(WorkspaceModifyCancellableOperationWrapper.java:58)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:108)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:130)
+	at org.eclipse.team.svn.ui.utility.SVNTeamOperationWrapper.run(SVNTeamOperationWrapper.java:35)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

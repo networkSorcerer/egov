@@ -96,7 +96,8 @@
             addr,
             addr_detail,
             email,
-            cust_id
+            cust_id,
+            regdate
         ) VALUES (
             #{loginID},
             #{user_type},
@@ -109,7 +110,8 @@
             #{user_address},
             #{user_dt_address},
             #{user_email},
-            #{hidden_cust_id}
+            #{hidden_cust_id},
+            now()
         )
 </insert>
 

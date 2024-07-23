@@ -17,16 +17,25 @@ var pageBlockPage = 10;
 $(function () {
 	orderList()
 	dateSetting()
+	registerBtnEvent()
+	inputNumChk()
 })
+
+function registerBtnEvent(){
+		$("#searchBtn").click(function(e){
+			e.preventDefault();
+			orderList();
+		});
+}
 
 function orderList(cpage) {
 	cpage = cpage || 1;
 	
-	console.log(cpage)
-	
 	var param = {
 			cpage: cpage,
-			pageSize: pageSize
+			pageSize: pageSize,
+			startDate: $("#startDate").val(),
+			endDate: $("#endDate").val()
 	};
 	
 	$.ajax({
@@ -47,90 +56,94 @@ function orderList(cpage) {
 	})
 }
 
-function returnBtn(seq) {
+function returnBtn(seq, btn) {
 	var param = {
 			seq: seq
 	}
 	
-	if(confirm("반품하시겠습니까?") == true) {
-		$.ajax({
-			type: "POST",
-			url: "/mypage/returnInfo.do",
-			contentType: "application/json",
-			data: JSON.stringify(param),
-	        success: function(data) {
-	        	console.log(data)
-	        	
-	        	$("#item_name").val(data.item_name)
-	        	$("#manufac").val(data.manufac)
-	        	$("#count").val(data.count)
-	        	$("#total").val(data.count*data.item_price)
-	        	
-	        	$("#btnReturn").attr('href', 'javascript:returnModalBtn('+seq+')')
-	        	
-	        	gfModalPop('#returnModal')
-	        },
-	        error: function(err) {
-	        	
-	        }
-    	})
-		
-		
+	var deliveryDate = btn.closest('tr').querySelector('#deliveryDate').innerText 
+	
+	if(deliveryDate) {
+		if(confirm("반품하시겠습니까?") == true) {
+			$.ajax({
+				type: "POST",
+				url: "/mypage/returnInfo.do",
+				contentType: "application/json",
+				data: JSON.stringify(param),
+		        success: function(data) {
+		        	$("#item_name").val(data.item_name)
+		        	$("#manufac").val(data.manufac)
+		        	$("#count").val(data.count)
+		        	$("#total").val(data.count*data.item_price)
+		        	
+		        	$("#btnReturn").attr('href', 'javascript:returnModalBtn('+seq+')')
+		        	
+		        	gfModalPop('#returnModal')
+		        },
+		        error: function(err) {
+		        	console.log(err)
+		        }
+	    	})
+		}
 	} else {
-		console.log("fail")
+		alert("아직 배송 전입니다.")
 	}
 }
 
 function returnModalBtn(seq) {
-	var param = {
-			seq: seq,
-			refund_bank: $("#refund_bank").val(),
-			refund_bank_name: $("#refund_bank_name").val(),
-			refund_bank_num: $("#refund_bank_num").val
+	if(inputCheck()) {
+		var param = {
+				seq: seq,
+				refund_bank: $("#refund_bank").val(),
+				refund_bank_name: $("#refund_bank_name").val(),
+				refund_bank_num: $("#refund_bank_num").val
+		}
+		
+		$.ajax({
+			type: "POST",
+			url: "/mypage/orderReturn.do",
+			contentType: "application/json",
+			data: JSON.stringify(param),
+	        success: function(data) {
+	        	if(data > 0) {
+	        		alert("반품신청이 완료되었습니다.")
+	        		
+	        		gfCloseModal()
+	        	/*
+	        		window.location.href = "/mypage/order.do"
+	        	*/
+	        	} else {
+	        		alert("죄송합니다. 다시 신청해주세요.")
+	        	}
+	        },
+	        error: function(err) {
+	        	console.log(err);
+	        }
+		})
 	}
-	
-	$.ajax({
-		type: "POST",
-		url: "/mypage/orderReturn.do",
-		contentType: "application/json",
-		data: JSON.stringify(param),
-        success: function(data) {
-        	if(data > 0) {
-        		alert("반품신청이 완료되었습니다.")
-        		
-        		gfCloseModal()
-        	/*
-        		window.location.href = "/mypage/order.do"
-        	*/
-        	} else {
-        		alert("죄송합니다. 다시 신청해주세요.")
-        	}
-        },
-        error: function(err) {
-        	console.log(err);
-        }
-	})
 }
 
 function dateSetting() {
-	$("#startDate").val(new Date().toISOString().substring(0, 10))
-	$("#endDate").val(new Date().toISOString().substring(0, 10))
+	var today = new Date().toISOString().substring(0, 10)
+	
+	$("#startDate").val(today)
+	$("#endDate").val(today)
 }
 
 function dateFormat(type) {
 	var changeDate = $("#startDate")
-	var day = new Date()
+	var day = new Date($("#endDate").val())
 	
 	switch(type) {
 		case "today" :
-			changeDate.val(day.getFullYear()+"-"
-			+(day.getMonth()+1).toString().padStart(2,'0')+"-"
-			+ day.getDate().toString().padStart(2,'0'));
+			dateSetting()
 			break;
 		case "week" :
-			changeDate.val(day.getFullYear()+"-"
-			+(day.getMonth()+1).toString().padStart(2,'0')+"-"
-			+ (day.getDate()-7).toString().padStart(2,'0'));
+			var sevenDaysAgo = new Date(day);
+            sevenDaysAgo.setDate(day.getDate() - 7);
+            changeDate.val(sevenDaysAgo.getFullYear() + "-" +
+                (sevenDaysAgo.getMonth() + 1).toString().padStart(2, '0') + "-" +
+                sevenDaysAgo.getDate().toString().padStart(2, '0'));
 			break;
 		case "month" :
 			changeDate.val(day.getFullYear()+"-"
@@ -148,12 +161,29 @@ function dateCheck(date) {
 	if(startDate > endDate) {
 		alert("날짜를 다시 선택해주세요")
 		
-		if(checkDate.attr('id')== "startDate") {
-			
-		} else {
-			
-		}
+		dateSetting()
 	}
+}
+
+function inputCheck() {
+	var bank = $('#refund_bank')
+	var name = $('#refund_bank_name')
+	var number = $('#refund_bank_num')
+	
+	if(!$(bank).val() || !$(name).val() || !$(number).val()){
+		alert("필수항목을 입력해주세요")
+		
+		return false;
+	}
+	
+	return true;
+}
+
+function inputNumChk() {
+	 $("#refund_bank_num").keyup(function() {
+         var replace_text = $(this).val().replace(/[^-0-9]/g, '');
+         $(this).val(replace_text);
+     });
 }
 </script>
 </head>
@@ -242,6 +272,7 @@ function dateCheck(date) {
 		<dl>
 			<dt>
 				<strong>반품 신청</strong>
+				<span class="font_red fr">* 필수항목</span>
 			</dt>
 			<dd class="content">
 				<!-- s : 여기에 내용입력 -->
@@ -274,21 +305,21 @@ function dateCheck(date) {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row">은행명</th>
+							<th scope="row">은행명<span class="font_red">*</span></th>
 							<td colspan="3">
-								<input type="text" class="inputTxt p100" name="refund_bank" id="refund_bank" />
+								<input type="text" class="inputTxt p100" name="refund_bank" id="refund_bank" placeholder="은행명을 입력해주세요" />
 							</td>
 						</tr>
 						<tr>
-							<th scope="row">예금자명</th>
+							<th scope="row">송금자명<span class="font_red">*</span></th>
 							<td colspan="3">
-								<input type="text" class="inputTxt p100" name="refund_bank_name" id="refund_bank_name" />
+								<input type="text" class="inputTxt p100" name="refund_bank_name" id="refund_bank_name" placeholder="송금자명을 입력해주세요"/>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row">계좌번호</th>
+							<th scope="row">계좌번호<span class="font_red">*</span></th>
 							<td colspan="3">
-								<input type="text" class="inputTxt p100" name="refund_bank_num" id="refund_bank_num" />
+								<input type="text" class="inputTxt p100" name="refund_bank_num" id="refund_bank_num" placeholder="계좌번호를 입력해주세요"/>
 							</td>
 						</tr>
 					</tbody>

@@ -8,7 +8,45 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+    <style>
+        .layerPosition {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            padding: 20px;
+            z-index: 1000;
+        }
+        .layerPop {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .layerType2 {
+            width: 500px;
+            height: 300px;
+        }
+        .col {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .col td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .btn {
+            margin: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+    </style>
 <script type="text/javascript">
 var pageSize=5;
 var pageBlockPage=10;
