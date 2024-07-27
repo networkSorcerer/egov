@@ -1424,7 +1424,9 @@ $(document).ready(function() {
         this.value = this.value.replace(/[^0-9]/g, '');
     });
 });
-
+function item(){
+	gfModalPop("#layer10");	
+}
 </script>
 
 </head>
@@ -1809,14 +1811,24 @@ $(document).ready(function() {
     	  
     	  <a href="javascript:customer();"  class="btn btn-success"><strong>고객 tb_cust_info</strong></a><br><br>
     	  <a href="javascript:order();"  class="btn btn-info"><strong>주문 tb_order</strong></a><br><br>
-    	  <a href="javascript:customer();"  class="btn btn-primary"><strong>상품 tb_item_info</strong></a><br><br>
+    	  <a href="javascript:item();"  class="btn btn-primary"><strong>상품 tb_item_info</strong></a><br><br>
     	  <a href="javascript:customer();"  class="btn btn-danger"><strong>창고 tb_storage </strong></a><br><br>
     	  <a href="javascript:customer();"  class="btn btn-light"><strong>구매 tb_obtain</strong></a><br><br>
     	  <a href="javascript:customer();"  class="btn btn-warning"><strong>반품 tb_return</strong></a><br><br>
     	  <a href="javascript:customer();"  class="btn btn-secondary"><strong>공지 tb_noti_info</strong></a>
     </div>
+    
+    
     <div id="layer9" class="layerPosition layerPop layerType2" style="width: 600px; height : 600px; position : fixed; top : 50%; left:50%">
     	 <jsp:include page="/WEB-INF/view/login/order.jsp" ></jsp:include>
+    	 <div>
+			<a href="javascript:fcancleModal()" class="btn btn-secondary" id="btnCloseLsmCod" name="btn">취소</a>
+			<a href="javascript:menu();" id="menu"  class="btn btn-primary"><strong>뒤로</strong></a>
+		</div>
+    </div>
+    
+       <div id="layer10" class="layerPosition layerPop layerType2" style="width: 600px; height : 600px; position : fixed; top : 50%; left:50%">
+    	 <jsp:include page="/WEB-INF/view/login/item.jsp" ></jsp:include>
     	 <div>
 			<a href="javascript:fcancleModal()" class="btn btn-secondary" id="btnCloseLsmCod" name="btn">취소</a>
 			<a href="javascript:menu();" id="menu"  class="btn btn-primary"><strong>뒤로</strong></a>

@@ -9,6 +9,7 @@
 <title> 장바구니  </title>
 
 <jsp:include page="/WEB-INF/view/common/common_include.jsp"></jsp:include>
+<script type="text/javascript" src="${CTX_PATH}/js/view/scm/callAjaxJson/callAjaxJson.js"></script>
 <script type="text/javascript">
 
 var totalList = [];
@@ -39,45 +40,37 @@ function cartList() {
 			
 	}
 	
-	$.ajax({
-		type: "POST",
-		url: "/mypage/cartList.do",
-		contentType: "application/json",
-		data: JSON.stringify(param),
-		success: function(data) {
-			$("#cartList").empty().append(data);
-		},
-		error: function(err) {
-			console.log(err);
-		}
-	})
+	var callback = function(data) {
+		$("#cartList").empty().append(data);
+	}
+	
+	callAjaxJson("/mypage/cartList.do", "POST", true, param, callback)
 }
 
 function countCheck(info) {
-	info.addEventListener("change", function(e) {
-		var chkbox = $(info).closest('tr').find('.checkbox').attr('id')
-		
+	var chkbox = $(info).closest('tr').find('.checkbox').attr('id')
+	
+	info.addEventListener("focusout", function(e) {
 		var param = {
 				item_code : chkbox,
 				obtain_count : e.target.value
 		}
 		
-		$.ajax({
-			type: "POST",
-			url: "/mypage/cartCountChange.do",
-			contentType: "application/json",
-			data: JSON.stringify(param),
-			success: function(data) {
+		if($(info).val() && ($(info).val() > 0)){
+			var callback = function(data) {
 				var changeTotal = data.item_price * data.count
 				var parentsTagName = $(info).closest('tr').children("#total");
 				
 				parentsTagName.text('');
 				parentsTagName.append(changeTotal);
-			},
-			error: function(err) {
-				console.log(err);
 			}
-		})
+			
+			callAjaxJson("/mypage/cartCountChange.do", "POST", true, param, callback)
+		} else {
+			if(confirm("장바구니에서 삭제하시겠습니까?") == true) {
+				cartDelete(chkbox)
+			}
+		}
 	})
 }
 
@@ -169,20 +162,13 @@ function totalPrice(checked) {
 
 function productBuy() {
 	if(totalList.length > 0) {
-		$.ajax({
-			type: "POST",
-			url: "/mypage/productBuy.do",
-			contentType: "application/json",
-			data: JSON.stringify(totalList),
-			success: function(data) {
-				alert("결제가 완료되었습니다.")
-				
-				location.href = "/mypage/order.do";
-			},
-			error: function(err) {
-				console.log(err);
-			}
-		});
+		var callback = function(data) {
+			alert("결제가 완료되었습니다.")
+			
+			location.href = "/mypage/order.do";
+		}
+		
+		callAjaxJson("/mypage/productBuy.do", "POST", true, totalList, callback)
 	} else {
 		alert("결제할 제품이 없습니다.")
 	}
@@ -193,18 +179,11 @@ function cartDelete(item) {
 			item_code: $(item).attr('id')
 	}
 	
-	$.ajax({
-		type: "POST",
-		url: "/mypage/cartDelete.do",
-		contentType: "application/json",
-		data: JSON.stringify(param),
-		success: function(data) {
-			
-		},
-		error: function(err) {
-			console.log(err);
-		}
-	});
+	var callback = function(data) {
+		
+	}
+	
+	callAjaxJson("/mypage/cartDelete.do", "POST", true, param, callback)
 }
 
 // 빈값 체크

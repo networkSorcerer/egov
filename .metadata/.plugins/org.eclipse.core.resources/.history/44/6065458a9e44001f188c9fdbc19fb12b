@@ -1,5 +1,0 @@
-package kr.happyjob.study.product.service;
-
-public interface ProductService {
-
-}

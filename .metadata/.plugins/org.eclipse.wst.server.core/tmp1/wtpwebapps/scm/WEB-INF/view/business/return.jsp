@@ -72,6 +72,36 @@
 		})
 	}
 	
+	// 날짜 유효성 검사 함수
+	function validateDateRange() {
+	    let searchStDate = $("#searchStDate").val();
+	    let searchEdDate = $("#searchEdDate").val();
+
+	    // 날짜가 선택되지 않았으면 아무 동작도 하지 않음
+	    if (!searchStDate || !searchEdDate) {
+	        return;
+	    }
+
+	    let stDate = new Date(searchStDate);
+	    let edDate = new Date(searchEdDate);
+
+	    // 종료일이 시작일보다 이전일 때 경고
+	    if (edDate < stDate) {
+	        alert("날짜를 다시 선택해주세요.");
+	        $("#searchEdDate").val(""); // 잘못된 종료일 입력 필드 초기화
+	    }
+	}
+	
+	
+	
+	//유효성검사 => 실행시 => event 체인지 인 경우에 나오도록
+	$(document).ready(function() {
+	    $("#searchEdDate").on("change", validateDateRange);
+	    $("#searchStDate").on("change", validateDateRange);
+	});
+          
+
+	
 	//첫화면 조회 + 페이징 처리
 	function returnList(cpage) {
 		
@@ -84,10 +114,26 @@
 				currentPage : cpage,
 				pageSize : pageSize
 		}
+		
+		
+		/*
 		var callBackFunction = function(res) {
 			$("#returnList").empty().append(res);
 			
-		}
+		}*/
+		
+		var callBackFunction = function(res) {
+	        $("#returnList").empty(); // 기존 내용을 비움
+	        
+	        if (res.trim() === "") { // res가 빈 문자열일 경우 .trim으로 잘라줘야됨
+	            // 검색 결과가 없을 때 메시지 추가
+	            $("#returnList").append('<tr><td colspan="10">검색한 데이터가 존재하지 않습니다.</td></tr>');
+	        } else {
+	            // 검색 결과가 있을 때, 결과 추가
+	            $("#returnList").append(res);
+	        }
+	    }
+
 		callAjax("/business/returnList.do", "post", "text", false, param, callBackFunction);
 	}
 	
@@ -157,7 +203,6 @@
 	        // 셀렉트 박스를 비움
 	        $("#select_storage").empty();
 	        $("#select_storage").append('<option value="">창고선택</option>');
-			
 	        
 	        // 서버로부터 받은 데이터를 셀렉트 박스에 추가
 	        res.forEach(function(getStorageList) {
@@ -316,7 +361,7 @@
 		            tableBody += '<td id="changeDeliveryName">' + re_deliveryData.delivery_name + '</td>';
 		            tableBody += '</tr>';
 		        } else {
-		            tableBody += '<tr><td colspan="6">데이터가 없습니다.</td></tr>';
+		            tableBody += '<tr><td colspan="10">데이터가 없습니다.</td></tr>';
 		        }
 		        $('#deliveryTableBody').html(tableBody); // 테이블 업데이트
 		    };

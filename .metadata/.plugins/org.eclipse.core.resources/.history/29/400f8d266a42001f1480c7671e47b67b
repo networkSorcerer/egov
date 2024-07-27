@@ -1,5 +1,0 @@
-package kr.happyjob.study.practice.dao;
-
-public interface CustomerDAO {
-
-}

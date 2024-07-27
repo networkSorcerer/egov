@@ -1,5 +1,0 @@
-package kr.happyjob.study.practice.service;
-
-public interface OrderService {
-
-}

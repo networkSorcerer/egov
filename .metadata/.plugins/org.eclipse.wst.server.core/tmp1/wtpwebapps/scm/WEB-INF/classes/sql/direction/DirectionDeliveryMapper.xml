@@ -14,17 +14,41 @@
 		LEFT JOIN tb_item_info tii ON td.item_code = tii.item_code
 		LEFT JOIN tb_inventory ti ON tii.item_code = ti.item_code
 		LEFT JOIN tb_storage ts ON ti.storage_code = ts.storage_code
-		where td.delivery_state = "배송중"	
+		<where>	
 			<if test="(searchTitle != null) and (!''.equals(searchTitle))">
 				and td.delivery_name Like CONCAT('%', #{searchTitle}, '%')
 			</if>
 			<if test="(searchStDate != null) and (!''.equals(searchStDate))">
-				and tr.return_order_date <![CDATA[>=]]> STR_TO_DATE(#{searchStDate}, '%Y-%m-%d')
+				and td.delivery_date <![CDATA[>=]]> STR_TO_DATE(#{searchStDate}, '%Y-%m-%d')
 			</if>
 			<if test="(searchEdDate != null) and (!''.equals(searchEdDate))">
-				and tr.return_order_date <![CDATA[<=]]> STR_TO_DATE(#{searchEdDate}, '%Y-%m-%d')
+				and td.delivery_date <![CDATA[<=]]> STR_TO_DATE(#{searchEdDate}, '%Y-%m-%d')
 			</if>
+		</where>
+		LIMIT #{startSeq}, #{pageSize}
 	</select>
+	
+	
+	<select id="deliveryListCnt" resultType="int">
+		SELECT 
+			count(*)
+		FROM tb_delivery td
+		LEFT JOIN tb_item_info tii ON td.item_code = tii.item_code
+		LEFT JOIN tb_inventory ti ON tii.item_code = ti.item_code
+		LEFT JOIN tb_storage ts ON ti.storage_code = ts.storage_code
+		<where>	
+			<if test="(searchTitle != null) and (!''.equals(searchTitle))">
+				and td.delivery_name Like CONCAT('%', #{searchTitle}, '%')
+			</if>
+			<if test="(searchStDate != null) and (!''.equals(searchStDate))">
+				and td.delivery_date <![CDATA[>=]]> STR_TO_DATE(#{searchStDate}, '%Y-%m-%d')
+			</if>
+			<if test="(searchEdDate != null) and (!''.equals(searchEdDate))">
+				and td.delivery_date <![CDATA[<=]]> STR_TO_DATE(#{searchEdDate}, '%Y-%m-%d')
+			</if>
+		</where>
+	</select>
+	
 	
 	
 </mapper>

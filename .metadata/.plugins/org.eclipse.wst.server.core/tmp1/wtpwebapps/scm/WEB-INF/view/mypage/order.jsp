@@ -9,6 +9,7 @@
 <title> 구매내역  </title>
 
 <jsp:include page="/WEB-INF/view/common/common_include.jsp"></jsp:include>
+<script type="text/javascript" src="${CTX_PATH}/js/view/scm/callAjaxJson/callAjaxJson.js"></script>
 <script type="text/javascript">
 
 var pageSize = 5;
@@ -38,22 +39,15 @@ function orderList(cpage) {
 			endDate: $("#endDate").val()
 	};
 	
-	$.ajax({
-		type: "POST",
-		url: "/mypage/orderHistory.do",
-		contentType: "application/json",
-		data: JSON.stringify(param),
-        success: function(data) {
-        	$("#orderList").empty().append(data);
-        	
-        	var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "orderList")
-			$("#pagingNavi").empty().append(pagieNavigateHtml);
-			$("#currentPage").val(cpage);
-        },
-        error: function(err) {
-        	console.log(err);
-        }
-	})
+	var callbackFunction = function(data) {
+		$("#orderList").empty().append(data);
+    	
+    	var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "orderList")
+		$("#pagingNavi").empty().append(pagieNavigateHtml);
+		$("#currentPage").val(cpage);
+	}
+	
+	callAjaxJson("/mypage/orderHistory.do", "POST", true, param, callbackFunction)
 }
 
 function returnBtn(seq, btn) {
@@ -65,25 +59,18 @@ function returnBtn(seq, btn) {
 	
 	if(deliveryDate) {
 		if(confirm("반품하시겠습니까?") == true) {
-			$.ajax({
-				type: "POST",
-				url: "/mypage/returnInfo.do",
-				contentType: "application/json",
-				data: JSON.stringify(param),
-		        success: function(data) {
-		        	$("#item_name").val(data.item_name)
-		        	$("#manufac").val(data.manufac)
-		        	$("#count").val(data.count)
-		        	$("#total").val(data.count*data.item_price)
-		        	
-		        	$("#btnReturn").attr('href', 'javascript:returnModalBtn('+seq+')')
-		        	
-		        	gfModalPop('#returnModal')
-		        },
-		        error: function(err) {
-		        	console.log(err)
-		        }
-	    	})
+			var callback = function(data){
+				$("#item_name").val(data.item_name)
+	        	$("#manufac").val(data.manufac)
+	        	$("#count").val(data.count)
+	        	$("#total").val(data.count*data.item_price)
+	        	
+	        	$("#btnReturn").attr('href', 'javascript:returnModalBtn('+seq+')')
+	        	
+	        	gfModalPop('#returnModal')
+			}			
+			
+	    	callAjaxJson("/mypage/returnInfo.do", "POST", true, param, callback)
 		}
 	} else {
 		alert("아직 배송 전입니다.")
@@ -99,27 +86,17 @@ function returnModalBtn(seq) {
 				refund_bank_num: $("#refund_bank_num").val
 		}
 		
-		$.ajax({
-			type: "POST",
-			url: "/mypage/orderReturn.do",
-			contentType: "application/json",
-			data: JSON.stringify(param),
-	        success: function(data) {
-	        	if(data > 0) {
-	        		alert("반품신청이 완료되었습니다.")
-	        		
-	        		gfCloseModal()
-	        	/*
-	        		window.location.href = "/mypage/order.do"
-	        	*/
-	        	} else {
-	        		alert("죄송합니다. 다시 신청해주세요.")
-	        	}
-	        },
-	        error: function(err) {
-	        	console.log(err);
-	        }
-		})
+		var callback = function(data) {
+			if(data > 0) {
+        		alert("반품신청이 완료되었습니다.")
+        		
+        		gfCloseModal()
+        	} else {
+        		alert("죄송합니다. 다시 신청해주세요.")
+        	}
+		}
+		
+		callAjaxJson("/mypage/orderReturn.do", "POST", true, param, callback)
 	}
 }
 

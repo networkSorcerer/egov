@@ -9,6 +9,7 @@
 <title>반품 이력</title>
 <jsp:include page="/WEB-INF/view/common/common_include.jsp"></jsp:include>
 <script type="text/javascript" src="${CTX_PATH}/js/view/scm/dateCheck/dateCheck.js"></script>
+<script type="text/javascript" src="${CTX_PATH}/js/view/scm/callAjaxJson/callAjaxJson.js"></script>
 <script type="text/javascript">
 
 var pageSize = 5;
@@ -30,8 +31,6 @@ function registerBtnEvent(){
 function returnList(cpage) {
 	cpage = cpage || 1;
 	
-	console.log($("#startDate").val())
-	
 	var param = {
 			cpage: cpage,
 			pageSize: pageSize,
@@ -39,22 +38,15 @@ function returnList(cpage) {
 			endDate: $("#endDate").val()
 	}
 	
-	$.ajax({
-		type: "POST",
-		url: "/mypage/returnHistory.do",
-		contentType: "application/json",
-		data: JSON.stringify(param),
-        success: function(data) {
-			$("#returnList").empty().append(data)
-			
-			var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "orderList")
-			$("#pagingNavi").empty().append(pagieNavigateHtml);
-			$("#currentPage").val(cpage);
-        },
-        error: function(err) {
-        	console.log(err);
-        }
-	})
+	var callback = function(data) {
+		$("#returnList").empty().append(data)
+		
+		var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "orderList")
+		$("#pagingNavi").empty().append(pagieNavigateHtml);
+		$("#currentPage").val(cpage);
+	}
+	
+	callAjaxJson("/mypage/returnHistory.do", "POST", true, param, callback)
 }
 </script>
 </head>

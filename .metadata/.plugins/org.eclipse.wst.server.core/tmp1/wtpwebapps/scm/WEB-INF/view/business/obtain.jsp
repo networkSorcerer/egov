@@ -16,6 +16,8 @@
 
 <script type="text/javascript">
 	var findStatus;// = $("#findStatus"); 
+	var pageSize = 5;
+	var pageBlockPage = 10;
 	
 	//수주리스트 불러오기
 	$(function() {
@@ -45,6 +47,31 @@
 		
 	})
 	
+	// 날짜 유효성 검사 함수
+	function validateDateRange() {
+	    let searchStDate = $("#searchStDate").val();
+	    let searchEdDate = $("#searchEdDate").val();
+
+	    // 날짜가 선택되지 않았으면 아무 동작도 하지 않음
+	    if (!searchStDate || !searchEdDate) {
+	        return;
+	    }
+
+	    let stDate = new Date(searchStDate);
+	    let edDate = new Date(searchEdDate);
+
+	    // 종료일이 시작일보다 이전일 때 경고
+	    if (edDate < stDate) {
+	        alert("종료일이 시작일보다 이전입니다. 날짜를 다시 선택해주세요.");
+	        $("#searchEdDate").val(""); // 잘못된 종료일 입력 필드 초기화
+	    }
+	}
+
+	// 종료일(EDate) 변경 이벤트 핸들러 등록
+	$(document).ready(function() {
+	    $("#searchEdDate").on("change", validateDateRange);
+	});
+	
 	function searchBtnEvent() {
 		$("#searchBtn").click(function(event){
 			event.preventDefault();
@@ -52,17 +79,41 @@
 		})
 	}
 	
-	
 	//수주내역 전체 리스트
-	function obtainList() {
+	function obtainList(cpage) {
+		cpage = cpage || 1;
+
 		let param = {
 				searchTitle : $("#searchTitle").val(),
 				searchStDate : $("#searchStDate").val(),
 				searchEdDate : $("#searchEdDate").val(),
+				currentPage : cpage,
+				pageSize : pageSize
 		}
+		/*
 		var callBackFunction = function(res) {
 			$("#obtainList").empty().append(res);
 		}
+		*/
+		
+		var callBackFunction = function(res) {
+	        $("#obtainList").empty(); // 기존 내용을 비움
+	        
+	        if (res.trim() === "") { // res가 빈 문자열일 경우 .trim으로 잘라줘야됨
+	            // 검색 결과가 없을 때 메시지 추가
+	            $("#obtainList").append('<tr><td colspan="8">검색한 데이터가 존재하지 않습니다.</td></tr>');
+	        } else {
+	            // 검색 결과가 있을 때, 결과 추가
+	            console.log(res);
+	            console.log("왜 다 사라지고 있니?? 데이터는 들어있냐?"+res);
+	            $("#obtainList").append(res);
+				var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "obtainList");
+				$("#pagingNavi").empty().append(pagieNavigateHtml);
+				$("#currentPage").val(cpage);	            
+	            
+	        }
+	    }
+		
 		callAjax("/business/obtainList.do", "post", "text", false, param, callBackFunction);
 	}
 	
@@ -306,8 +357,35 @@
 	
 	    callMyAjax("/business/deliveryUpdate.do", "POST", "json", true, param, callBackFunction);
 	}
+		
+		// 날짜 유효성 검사 함수
+		function validateDateRange() {
+		    let searchStDate = $("#searchStDate").val();
+		    let searchEdDate = $("#searchEdDate").val();
 
-	
+		    // 날짜가 선택되지 않았으면 아무 동작도 하지 않음
+		    if (!searchStDate || !searchEdDate) {
+		        return;
+		    }
+
+		    let stDate = new Date(searchStDate);
+		    let edDate = new Date(searchEdDate);
+
+		    // 종료일이 시작일보다 이전일 때 경고
+		    if (edDate < stDate) {
+		        alert("날짜를 다시 선택해주세요.");
+		        $("#searchEdDate").val(""); // 잘못된 종료일 입력 필드 초기화
+		    }
+		}
+		
+		
+		
+		//유효성검사 => 실행시 => event 체인지 인 경우에 나오도록
+		$(document).ready(function() {
+		    $("#searchEdDate").on("change", validateDateRange);
+		    $("#searchStDate").on("change", validateDateRange);
+		});
+	          
 	
 	
 	// 배송지시서 1row select => 모달창 띄울때 넣어주면 됨
@@ -426,7 +504,6 @@
 
 								</thead>
 								<tbody id="obtainList"></tbody>
-								<tbody id="orderList"></tbody>
 							</table>
 							
 							<!-- 페이징 처리  -->

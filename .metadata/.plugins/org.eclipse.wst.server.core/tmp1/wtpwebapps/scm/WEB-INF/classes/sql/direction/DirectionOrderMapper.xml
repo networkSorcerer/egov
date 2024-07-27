@@ -13,18 +13,20 @@
         toc.company_name as order_company
     FROM tb_order tord
     JOIN tb_item_info info ON tord.item_code = info.item_code
-    Join tb_order_company toc on tord.company_seq = toc.company_seq 
-    WHERE 1=1
+    JOIN tb_order_company toc ON tord.company_seq = toc.company_seq 
+    <where>
         <if test="order_company != null and order_company != ''">
-            AND tord.order_company LIKE CONCAT('%', #{order_company}, '%')
+            AND toc.company_name LIKE CONCAT('%', #{order_company}, '%')
         </if>
         <if test="searchStDate != null and searchStDate != ''">
-            AND tord.order_date  <![CDATA[ >= ]]> STR_TO_DATE(#{searchStDate}, '%Y-%m-%d')
+            AND tord.order_date <![CDATA[ >= ]]> STR_TO_DATE(#{searchStDate}, '%Y-%m-%d')
         </if>
         <if test="searchEdDate != null and searchEdDate != ''">
             AND tord.order_date <![CDATA[ <= ]]> STR_TO_DATE(#{searchEdDate}, '%Y-%m-%d')
         </if>
+    </where>
 </select>
+
 
 
 </mapper>

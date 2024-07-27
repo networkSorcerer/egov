@@ -40,7 +40,7 @@
 			    contentType: "application/json; charset=utf-8",
 	            success: function(response) {
 	                console.log("AJAX 응답 데이터: ", response);
-	                alert("검색결과를 잘 불러왔습니다.");
+	                //alert("검색결과를 잘 불러왔습니다.");
 	                OrderResults(response.searchOrder);
 	            },
 	            error: function(xhr, status, error) {
@@ -51,22 +51,65 @@
 	}
 	
 	
-	//검색조건에 맞게 불러와서 테이블만들어주기
+	// 	검색조건에 맞게 불러와서 테이블 만들기
 	function OrderResults(orderList) {
 	    var tableBody = $("#orderList");
+	    
+	    // 테이블 본문을 초기화
 	    tableBody.empty();
-
-	    $.each(orderList, function(index, order) {
-	        var row = "<tr>"
-	            + "<td>" + order.item_code + "</td>"
-	            + "<td>" + order.item_name + "</td>"
-	            + "<td>" + order.order_company + "</td>"
-	            + "<td>" + order.order_date + "</td>"
-	            + "<td>" + order.order_count + "</td>"
-	            + "</tr>";
-	        tableBody.append(row);
-	    });
+	    
+	    if (orderList.length === 0) {
+	        // 데이터가 없는 경우 메시지 추가
+	        tableBody.append("<tr><td colspan='5'>데이터가 없습니다.</td></tr>");
+	    } else {
+	        // 데이터가 있는 경우 테이블 행 추가
+	        $.each(orderList, function(index, order) {
+	            var row = "<tr>"
+	                + "<td>" + order.item_code + "</td>"
+	                + "<td>" + order.item_name + "</td>"
+	                + "<td>" + order.order_company + "</td>"
+	                + "<td>" + order.order_date + "</td>"
+	                + "<td>" + order.order_count + "</td>"
+	                + "</tr>";
+	            tableBody.append(row);
+	        });
+	    }
 	}
+
+	
+	// 날짜 유효성 검사 함수
+	function validateDateRange() {
+	    let searchStDate = $("#searchStDate").val();
+	    let searchEdDate = $("#searchEdDate").val();
+
+	    // 날짜가 선택되지 않았으면 아무 동작도 하지 않음
+	    if (!searchStDate || !searchEdDate) {
+	        return;
+	    }
+
+	    let stDate = new Date(searchStDate);
+	    let edDate = new Date(searchEdDate);
+
+	    // 종료일이 시작일보다 이전일 때 경고
+	    if (edDate < stDate) {
+	        alert("날짜를 다시 선택해주세요.");
+	        $("#searchEdDate").val(""); // 잘못된 종료일 입력 필드 초기화
+	    }
+	}
+	
+	
+	
+	//유효성검사 => 실행시 => event 체인지 인 경우에 나오도록
+	$(document).ready(function() {
+	    $("#searchEdDate").on("change", validateDateRange);
+	    $("#searchStDate").on("change", validateDateRange);
+	});
+          
+	
+	//유효성검사 => 실행시 => event 체인지 인 경우에 나오도록
+	$(document).ready(function() {
+	    $("#searchEdDate").on("change", validateDateRange);
+	});
             
                 
 </script>
@@ -152,7 +195,9 @@
 												<td>${orderList.item_code}</td>
 												<td>${orderList.item_name}</td>
 												<td>${orderList.order_company}</td>
-												<td>${orderList.order_date}</td>
+												<td>
+												    <fmt:formatDate value="${orderList.order_date}" pattern="yyyy-MM-dd" />
+												</td>												
 												<td>${orderList.order_count}</td>
 										</tr>
 									</c:forEach>

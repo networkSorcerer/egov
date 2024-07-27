@@ -20,7 +20,7 @@
 			<td>${list.item_name }</td>
 			<td>${list.manufac }</td>
 			<td>
-				<input type="text" class="inputTxt p100" name="count" value="${list.count }" onclick="javascript:countCheck(this)" >
+				<input type="text" class="inputTxt p100" name="count" value="${list.count }" onchange="javascript:countCheck(this)" >
 			</td>
 			<td id="total">${list.total }</td>
 			<td>

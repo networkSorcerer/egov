@@ -1,0 +1,62 @@
+package kr.happyjob.study.item.vo;
+
+public class ItemVO {
+	private String item_code;
+	private String item_name;
+	private String major_class;
+	private String sub_class;
+	private String manufac;
+	private	int item_price;
+	private int item_surtax;
+	private int provide_value;
+	
+	public String getItem_code() {
+		return item_code;
+	}
+	public void setItem_code(String item_code) {
+		this.item_code = item_code;
+	}
+	public String getItem_name() {
+		return item_name;
+	}
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+	public String getMajor_class() {
+		return major_class;
+	}
+	public void setMajor_class(String major_class) {
+		this.major_class = major_class;
+	}
+	public String getSub_class() {
+		return sub_class;
+	}
+	public void setSub_class(String sub_class) {
+		this.sub_class = sub_class;
+	}
+	public String getManufac() {
+		return manufac;
+	}
+	public void setManufac(String manufac) {
+		this.manufac = manufac;
+	}
+	public int getItem_price() {
+		return item_price;
+	}
+	public void setItem_price(int item_price) {
+		this.item_price = item_price;
+	}
+	public int getItem_surtax() {
+		return item_surtax;
+	}
+	public void setItem_surtax(int item_surtax) {
+		this.item_surtax = item_surtax;
+	}
+	public int getProvide_value() {
+		return provide_value;
+	}
+	public void setProvide_value(int provide_value) {
+		this.provide_value = provide_value;
+	}
+	
+}

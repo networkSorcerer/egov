@@ -28,9 +28,30 @@
 	        </if>
 	    </where>
 	    ORDER BY to2.seq
+	    LIMIT #{startSeq}, #{pageSize}
 	</select>
 
-	
+	<select id="obtainListCnt" resultType="int">
+	    SELECT
+			count(*)
+	    FROM tb_obtain to2
+	    JOIN tb_cust_info tci ON to2.cust_id = tci.cust_id
+	    JOIN tb_item_info tii ON to2.item_code = tii.item_code
+	    LEFT OUTER JOIN tb_inventory ti ON ti.item_code = to2.item_code
+	    <where>
+	        <if test="(searchTitle != null) and (!''.equals(searchTitle))">
+	            AND tci.cust_name LIKE CONCAT('%', #{searchTitle}, '%')
+	        </if>
+	        <if test="(searchStDate != null) and (!''.equals(searchStDate))">
+	            AND to2.obtain_date <![CDATA[>=]]> STR_TO_DATE(#{searchStDate}, '%Y-%m-%d')
+	        </if>
+	        <if test="(searchEdDate != null) and (!''.equals(searchEdDate))">
+	            AND to2.obtain_date <![CDATA[<=]]> STR_TO_DATE(#{searchEdDate}, '%Y-%m-%d')
+	        </if>
+	    </where>
+	</select>
+
+
 	
 	<select id="deliveryManList" resultType ="map" >
 		select name
@@ -114,6 +135,14 @@
 	</update>
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	<select id= "businessorderList" resultType="map">
 		SELECT *
 		FROM tb_obtain to2
@@ -141,14 +170,21 @@
 		and tci.item_code = #{item_code}
 	</select>
 	
+	<select id="getOrderStatus" resultType="Integer">
+		select count(*)
+		from tb_order to2
+		where to2.obtain_date =#{obtain_date}
+		and  to2.item_code = #{item_code}
+	</select>
+	
 	<insert id="insertOrder">
 		INSERT INTO tb_order (
 		    item_code, product_name, order_date, order_count, 
-		    signYN, depositYN, seq, company_seq, obtain_date
+		    signYN, depositYN, company_seq, obtain_date
 		) 
 		VALUES (
-		    #{item_code}, #{product_name}, now(), #{order_count},
-		    'N', 'N', #{seq},
+		      #{item_code}, #{product_name}, now(), #{order_count},
+		    'N', 'N', 
 		    (
 		    SELECT MAX(toc.company_seq)
 		    FROM tb_obtain to2, tb_company_item tci, tb_order_company toc 
@@ -159,12 +195,7 @@
 		)
 	</insert>
 	
-	<select id="getOrderStatus" resultType="Integer">
-		select count(*)
-		from tb_obtain tot
-		where tot.obtain_date =#{obtain_date}
-		and  tot.item_code = #{item_code}
-	</select>
+
 
 	
 	

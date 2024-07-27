@@ -34,37 +34,81 @@ $(document).ready(function(){
         $("#deliveryDetailPop").modal('hide');
     });
 });
+
 */
+	var pageSize = 5;
+	var pageBlockPage = 10;
+	
+	// 종료일(EDate) 변경 이벤트 핸들러 등록
+	$(document).ready(function() {
+	    $("#searchEdDate").on("change", validateDateRange);
+	    deliveryList();
+	});
 
-$(function() {
-	returnList();
-	searchBtnEvent();
-})
+	// 날짜 유효성 검사 함수
+	function validateDateRange() {
+	    let searchStDate = $("#searchStDate").val();
+	    let searchEdDate = $("#searchEdDate").val();
 
-function searchBtnEvent() {
-	$("#searchBtn").click(function(event){
-		event.preventDefault();
-		returnList();
+	    // 날짜가 선택되지 않았으면 아무 동작도 하지 않음
+	    if (!searchStDate || !searchEdDate) {
+	        return;
+	    }
+
+	    let stDate = new Date(searchStDate);
+	    let edDate = new Date(searchEdDate);
+
+	    // 종료일이 시작일보다 이전일 때 경고
+	    if (edDate < stDate) {
+	        alert("날짜를 다시 선택해주세요.");
+	        $("#searchEdDate").val(""); // 잘못된 종료일 입력 필드 초기화
+	    }
+	}
+	
+	
+	
+	//유효성검사 => 실행시 => event 체인지 인 경우에 나오도록
+	$(document).ready(function() {
+	    $("#searchEdDate").on("change", validateDateRange);
+	    $("#searchStDate").on("change", validateDateRange);
+	});
+          
+	
+	$(function() {
+		deliveryList();
+		searchBtnEvent();
 	})
-}
-
-function returnList() {
-
-	let param = {
-			searchTitle : $("#searchTitle").val(),
-			searchStDate : $("#searchStDate").val(),
-			searchEdDate : $("#searchEdDate").val()
+	
+	function searchBtnEvent() {
+		$("#searchBtn").click(function(event){
+			event.preventDefault();
+			deliveryList();
+		})
 	}
+	
+	function deliveryList(cpage) {
+		cpage = cpage || 1;
 
-	var callBackFunction = function(res) {
+		var param = {
+				searchTitle : $("#searchTitle").val(),
+				searchStDate : $("#searchStDate").val(),
+				searchEdDate : $("#searchEdDate").val(),
+				currentPage : cpage,
+				pageSize : pageSize
+		};
+	
+		var callBackFunction = function(res) {
+			$("#directionDeliveryList").empty().append(res);
 
-		$("#directionDeliveryList").empty().append(res);
-
+			//페이징
+			var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "deliveryList");
+			$("#pagingNavi").empty().append(pagieNavigateHtml);
+			$("#currentPage").val(cpage);
+			
+		}
+	
+		callAjax("/direction/directionDeliveryList.do", "post", "text", false, param, callBackFunction);
 	}
-
-	callAjax("/direction/directionDeliveryList.do", "post", "text", false, param, callBackFunction);
-}
-
 
 </script>
 
@@ -107,24 +151,18 @@ function returnList() {
 								<a class="btnType red" href="" name="searchbtn"  id="searchBtn"><span>검색</span></a>
 							</span>
 						</p> 
-					
-					<!-- 여기를 없앨까?? 배송지시서 클릭시 모달 나오도록 
-					<span class="fr">					
-                        <input type="text" id="searchTitle" name="searchTitle" style="height: 25px; margin-right: 10px;"/>
-						<a class="btnType red" href="" name="searchbtn"  id="searchBtn"><span>검색</span></a>
-					</span> 
-					 -->	
+
 							<Strong class="btn_nav bold">배송 지시서</Strong> 
 						
 						<div class="divNoticeList">
 							<table class="col">
 								<caption>caption</caption>
 		                            <colgroup>
-						                   <col width="80px">
-						                   <col width="100px">
-						                   <col width="60px">
-						                   <col width="60px">
+						                   <col width="30px">
+						                   <col width="90px">
 						                   <col width="50px">
+						                   <col width="50px">
+						                   <col width="100px">
 						                   <col width="50px">
 						                   <col width="50px">
 					                 </colgroup>
@@ -160,52 +198,5 @@ function returnList() {
 	</div>
 	
 	
-	
-	<!-- 배송조회 row클릭시 상세페이지 -->
-	<div id="deliveryDetailPop" class="layerPop layerType2" style="width: 600px;">
-		<dl>
-			<dt>
-				<strong>주문번호</strong>
-			</dt>
-			<dd class="content">
-				<!-- s : 여기에 내용입력 -->
-                    <table class="row">
-                        <caption>caption</caption>
-                        <tbody>
-                            <tr>
-                                <th scope="row">주문번호</th>
-                                <td><input type="text" class="inputTxt p100" id="modalOrderNumber" readonly="readonly"/></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">주문일자</th>
-                                <td><input type="text" class="inputTxt p100" id="modalOrderDate" readonly="readonly"/></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">고객기업명</th>
-                                <td><input type="text" class="inputTxt p100" id="modalCompanyName" readonly="readonly"/></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">주문개수</th>
-                                <td><input type="text" class="inputTxt p100" id="modalOrderQuantity" readonly="readonly"/></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- e : 여기에 내용입력 -->
-
-				<!-- e : 여기에 내용입력 -->
-
-				<div class="btn_areaC mt30">
-					<a href=""	class="btnType gray"  id="btnClose" name="btn"><span>닫기</span></a>
-				</div>
-			</dd>
-
-		</dl>
-		<a href="" class="closePop"><span class="hidden">닫기</span></a>
-	</div>
-	
-		
-	
-	
-
 </body>
 </html>

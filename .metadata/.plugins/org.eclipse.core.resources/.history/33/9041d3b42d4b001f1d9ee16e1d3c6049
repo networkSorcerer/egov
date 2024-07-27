@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.happyjob.study.item.dao.ItemDAO">
+<select id="itemList" resultType="kr.happyjob.study.item.vo.ItemVO">
+	SELECT item_code, item_name, major_class, sub_class, manufac, item_surtax, provide_value, equipment_type, product_detail
+		FROM tb_item_info
+</select>
+<select id="itemDetail" resultType="kr.happyjob.study.item.vo.ItemVO">
+	SELECT item_code, item_name, major_class, sub_class, manufac, item_surtax, provide_value, equipment_type, product_detail
+		FROM tb_item_info
+		WHERE item_code = #{item_code}
+</select>
+<update id="itemModify">
+	UPDATE tb_item_info
+	SET 
+	item_name = #{mode_item_name},
+	manufac = #{mode_manufac},
+	provide_value = #{mode_provide_value}
+	WHERE item_code = #{item_code}
+</update>
+</mapper>

@@ -1,8 +1,0 @@
-package kr.happyjob.study.responsibilities.service;
-
-import org.springframework.stereotype.Service;
-
-@Service
-public class ReturnServiceImpl implements ReturnService{
-
-}

@@ -20,9 +20,26 @@
 			<if test="(searchEdDate != null) and (!''.equals(searchEdDate))">
 				and tr.return_order_date <![CDATA[<=]]> STR_TO_DATE(#{searchEdDate}, '%Y-%m-%d')
 			</if>
+		LIMIT #{startSeq}, #{pageSize}
 	</select>
 	
-	
+	<select id="returnListCnt" resultType="int">
+	    SELECT 
+	        COUNT(*)
+	    FROM tb_return tr
+	    JOIN tb_item_info ti 
+	        ON tr.item_code = ti.item_code
+	    <if test="(searchTitle != null) and (!''.equals(searchTitle))">
+	        AND ti.item_name LIKE CONCAT('%', #{searchTitle}, '%')
+	    </if>
+	    <if test="(searchStDate != null) and (!''.equals(searchStDate))">
+	        AND tr.return_order_date <![CDATA[>=]]> STR_TO_DATE(#{searchStDate}, '%Y-%m-%d')
+	    </if>
+	    <if test="(searchEdDate != null) and (!''.equals(searchEdDate))">
+	        AND tr.return_order_date <![CDATA[<=]]> STR_TO_DATE(#{searchEdDate}, '%Y-%m-%d')
+	    </if>
+	</select>
+
 	
 	
 </mapper>
