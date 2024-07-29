@@ -24,18 +24,37 @@ public class ItemCotroller {
 	@Autowired
 	ItemService is;
 	
+	@RequestMapping("itemList1.do")
+	@ResponseBody
+	public Map<String , Object> itemList1 (@RequestParam Map<String , Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		
+		List<ItemVO> itemList = is.itemList1(paramMap);
+		resultMap.put("itemList", itemList);
+		return resultMap;
+	}
 	
 	@RequestMapping("itemList.do")
 	@ResponseBody
 	public Map<String , Object> itemList (@RequestParam Map<String , Object> paramMap, HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) {
+			HttpServletResponse response, HttpSession session) throws Exception {
 		
 		Map<String, Object> resultMap = new HashMap<>();
 		
+		int cpage = Integer.valueOf((String)paramMap.get("currentPage"));
+		int pageSize = Integer.valueOf((String) paramMap.get("pageSize"));
+		int startSeq = (cpage -1) *pageSize;
+		
+		paramMap.put("startSeq", startSeq);
+		paramMap.put("pageSize", pageSize);
+		
 		List<ItemVO> itemList = is.itemList(paramMap);
-		
+		int itemCnt = is.itemCnt(paramMap);
 		resultMap.put("itemList", itemList);
-		
+		resultMap.put("itemCnt", itemCnt);
 		return resultMap;
 	}
 	

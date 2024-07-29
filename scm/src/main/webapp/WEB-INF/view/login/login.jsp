@@ -1815,7 +1815,7 @@ function item(){
     	  <a href="javascript:customer();"  class="btn btn-danger"><strong>창고 tb_storage </strong></a><br><br>
     	  <a href="javascript:customer();"  class="btn btn-light"><strong>구매 tb_obtain</strong></a><br><br>
     	  <a href="javascript:customer();"  class="btn btn-warning"><strong>반품 tb_return</strong></a><br><br>
-    	  <a href="javascript:customer();"  class="btn btn-secondary"><strong>공지 tb_noti_info</strong></a>
+    	  <a href="javascript:customer();"  class="btn btn-secondary"><strong>장바구니 tb_cart</strong></a>
     </div>
     
     

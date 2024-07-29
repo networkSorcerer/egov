@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -73,18 +74,19 @@ public class NoticeController {
 		return "board/noticeList";
 	}
 	
-	@RequestMapping("noticeList1.do")
+	@RequestMapping("noticeListJson.do")
 	@ResponseBody
 	public Map<String, Object> getNoticeList1(Model model, @RequestParam Map<String, Object> paramMap, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.info("+ Start " + className + ".getNoticeList");
 		logger.info("   - paramMap : " + paramMap);
-
-		int cpage = Integer.valueOf((String) paramMap.get("currentPage"));
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		int cpage = Integer.valueOf((String) paramMap.get("cpage"));
 		int pageSize = Integer.valueOf((String) paramMap.get("pageSize"));
 
 		int startSeq = (cpage - 1) * pageSize;
-		Map<String, Object> resultMap = new HashMap<>();
+		
 		
 		paramMap.put("startSeq", startSeq);
 		paramMap.put("pageSize", pageSize);
@@ -156,7 +158,7 @@ public class NoticeController {
 
 	@RequestMapping("noticeDetail.do")
 	@ResponseBody
-	public Map<String, Object> noticeDetail(@RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+	public Map<String, Object> noticeDetail(@RequestBody Map<String, Object> paramMap, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 		logger.info("+ Start " + className + ".noticeDetail");
 		logger.info("   - paramMap : " + paramMap);

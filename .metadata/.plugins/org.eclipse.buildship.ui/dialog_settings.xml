@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="workingset_selection_history">
+		<item value="aws"/>
+	</list>
+	<section name="org.eclipse.buildship.ui.wizard.project.creation">
+		<item value="true" key="use_default_location"/>
+		<item value="false" key="apply_working_sets"/>
+		<item value="C:\Users\user\git\egov\aws" key="project_location"/>
+		<list key="working_sets">
+		</list>
+	</section>
+</section>

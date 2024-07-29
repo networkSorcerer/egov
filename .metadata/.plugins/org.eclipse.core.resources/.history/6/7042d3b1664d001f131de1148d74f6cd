@@ -1,0 +1,101 @@
+package kr.happyjob.study.item.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.happyjob.study.item.service.ItemService;
+import kr.happyjob.study.item.vo.ItemVO;
+
+@Controller
+@RequestMapping("/item/")
+public class ItemCotroller {
+	
+	@Autowired
+	ItemService is;
+	
+	
+	@RequestMapping("itemList.do")
+	@ResponseBody
+	public Map<String, Object> itemList(@RequestParam Map<String, Object> paramMap,
+	                                     HttpServletRequest request,
+	                                     HttpServletResponse response,
+	                                     HttpSession session) throws Exception {
+	    
+	    Map<String, Object> resultMap = new HashMap<>();
+	    
+	    // 기본값 설정
+	    int cpage = 1; // 기본 페이지 번호
+	    int pageSize = 10; // 기본 페이지 사이즈
+	    
+	    // 현재 페이지와 페이지 사이즈 파라미터 확인 및 파싱
+	    try {
+	        String cpageStr = (String) paramMap.get("currentPage");
+	        if (cpageStr != null && !cpageStr.isEmpty()) {
+	            cpage = Integer.parseInt(cpageStr);
+	        }
+
+	        String pageSizeStr = (String) paramMap.get("pageSize");
+	        if (pageSizeStr != null && !pageSizeStr.isEmpty()) {
+	            pageSize = Integer.parseInt(pageSizeStr);
+	        }
+	    } catch (NumberFormatException e) {
+	        // 로그에 오류를 기록하거나 기본값을 유지
+	        System.err.println("NumberFormatException occurred: " + e.getMessage());
+	    }
+
+	    int startSeq = (cpage - 1) * pageSize;
+
+	    // 파라미터 맵에 startSeq와 pageSize 추가
+	    paramMap.put("startSeq", startSeq);
+	    paramMap.put("pageSize", pageSize);
+	    
+	    // 데이터베이스에서 아이템 목록과 카운트 가져오기
+	    List<ItemVO> itemList = is.itemList(paramMap);
+	    int itemCnt = is.itemCnt(paramMap);
+	    
+	    resultMap.put("itemList", itemList);
+	    resultMap.put("itemCnt", itemCnt);
+	    
+	    return resultMap;
+	}
+
+	@RequestMapping("itemDetail.do")
+	@ResponseBody
+	public Map<String , Object> itemDetail (@RequestParam Map<String , Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session){
+	Map<String , Object> resultMap = new HashMap<>();	
+	List<ItemVO> itemDetail = is.itemDetail(paramMap);
+	
+	resultMap.put("itemDetail", itemDetail);
+	return resultMap;
+	}
+	
+	@RequestMapping("itemModify.do")
+	@ResponseBody
+	public Map<String , Object> itemModify(@RequestParam Map<String , Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
+	Map<String , Object> resultMap = new HashMap<>();
+	int result = 0;
+	String resultMsg ="";
+	result = is.itemModify(paramMap);
+	if (result >0 ) {
+		resultMsg="SUCCESS";
+	} else {
+		resultMsg="FAIL";
+	}
+	resultMap.put("resultMsg",resultMsg );
+		return resultMap;
+	}
+	
+}

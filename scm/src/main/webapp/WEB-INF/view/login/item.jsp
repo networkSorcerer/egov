@@ -13,7 +13,7 @@ $(document).ready(function(){
 	$("#itemDetail").hide();
 	var param ={};
 	$.ajax({
-		url:"/item/itemList.do",
+		url:"/item/itemList1.do",
 		type : "post",
 		dataType :"json",
 		data: param,
@@ -102,54 +102,87 @@ function modify(){
 		}
 	})
 }
-$(document).ready(function(){
-	$("#modeItem").click(function(){
-		var param = {
-				item_code : $("#item_code").val(),
-				item_name : $("#mode_item_name").val(),
-				manufac : $("#mode_manufac").val(),
-				provide_value : $("#mode_provide_value").val()
-				
-		}
-		$.ajax({
-			url : "/item/itemModify.do",
-			type : "post",
-			dataType : "json",
-			data : param,
-			success : function(response) {
-				alert(response.resultMsg);
-				itemDetail();
-			}
-		})
-	})
-	$("#itemList1").click(function(){
-		$("#main_item").hide();
-        $("#layer30").show();
-        console.log("확인");
+
+var pageSize = 5; // Define pageSize here
+var pageBlockPage = 5; // Define pageBlockPage here
+
+
+$(document).ready(function() {
+    $("#modeItem").click(function() {
+        var param = {
+            item_code: $("#item_code").val(),
+            item_name: $("#mode_item_name").val(),
+            manufac: $("#mode_manufac").val(),
+            provide_value: $("#mode_provide_value").val()
+        };
+
         $.ajax({
-        	url :"/item/itemList.do",
-        	type:"post",
-        	dataType:"json",
-        	success : function(response){
-        		var itemList = response.itemList;
-        		var html="";
-        		
-        		itemList.forEach(function(item){
-        			html+="<tr>";
-        			html+="<td>"+item.item_code+"</td>";
-        			html+="<td>"+item.item_name+"</td>";
-        			html+="<td>"+item.manufac+"</td>";
-        			html+="<td>"+item.provide_value+"</td>";
-        			html+="</tr>";
-
-
-        		})
-        		$("#itemList2").html(html);
-        	}
-        })
-        
+            url: "/item/itemModify.do",
+            type: "post",
+            dataType: "json",
+            data: param,
+            success: function(response) {
+                alert(response.resultMsg);
+                itemDetail();
+            }
+        });
     });
+    $("#itemList1").click(function() {
+        loadItemList(1);
+    });
+    $(("#search").click(function(){
+    	loadItemList();
+    }))
 })
+
+// 전역 범위에 함수 정의
+function loadItemList(cpage) {
+    $("#main_item").hide();
+    $("#layer30").show();
+    $("#layer20").hide();
+    
+    cpage = cpage || 1;
+
+    var param = {
+        currentPage: cpage,
+        pageSize: pageSize,
+        searchTitle : $("#searchTitle").val()
+    };
+
+    $.ajax({
+        url: "/item/itemList.do",
+        type: "post",
+        dataType: "json",
+        data: param,
+        success: function(response) {
+            var itemList = response.itemList;
+            var html = "";
+            var nRow = pageSize * (cpage - 1);
+
+            itemList.forEach(function(item) {
+                nRow++;
+                html += "<tr>";
+                html += "<td>" + item.item_code + "</td>";
+                html += "<td>" + item.item_name + "</td>";
+                html += "<td>" + item.manufac + "</td>";
+                html += "<td>" + item.provide_value + "</td>";
+                html += "</tr>";
+            });
+
+            $("#itemList2").html(html);
+            $("#totcnt").val(response.itemCnt);
+            $("#nRow").val(nRow);
+
+            var pagieNavigateHtml = getPaginationHtml(cpage, $("#totcnt").val(), pageSize, pageBlockPage, "loadItemList");
+            $("#pagingNavi").empty().append(pagieNavigateHtml);
+            $("#currentPage").val(cpage);
+
+            console.log("Total Count: ", response.itemCnt);
+        }
+    });
+}
+
+
 function itemOption(){
 	$("#main_item").show();
 	$("#layer30").hide();
@@ -248,10 +281,21 @@ function itemOption(){
 
 
 <div id="layer30" >
+		<input type="hidden" id="currentPage" value="">
+		<input type="hidden" id="totcnt" name="totcnt">
+		<input type="hidden" id="nRow" name="nRow">
 		<div>
 			<div>
 				<h1>상품 리스트</h1> 
 			</div>
+			<br>
+			<div>
+				<p>상품명</p>
+			<input type="text" id="searchTitle" name="searchTitle" style="height: 25px; margin-right: 10px;"/>
+			<button id="search" class="btn btn-success">검색</button>
+			</div>
+			
+			
 			<div>
 				<table class="col">
 					<tr>
@@ -265,11 +309,11 @@ function itemOption(){
 					</tbody>
 				</table>
 			</div>
+			<div class="paging_area" id="pagingNavi"></div>
 			<br>
 			<div>
 				<a href="javascript:itemOption();" class="btn btn-success">옵션으로 보기</a>
-				<a href="#" onclick='deleteCust();' class="btn btn-danger">삭제</a>
-				<a href="javascript:close();" class="btn btn-secondary">닫기</a>
+				
 			</div>
 			<div>
 				

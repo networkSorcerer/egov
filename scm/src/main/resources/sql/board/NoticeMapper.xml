@@ -85,6 +85,7 @@
 			noti_title ,
 			noti_content ,
 			file_name ,
+			noti_date,
 			phsycal_path ,
 			logical_path ,
 			file_size ,

@@ -266,6 +266,7 @@ function registerBtnEvent() {
 								</div>
 								<div>
 								<input type="hidden" id="" name="">
+								
 								<input type="hidden" id="totcnt" name="totcnt">
 								<input type="hidden" id="nRow" name="nRow">
 								

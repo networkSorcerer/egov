@@ -32,4 +32,16 @@ public class ItemServiceImpl implements ItemService{
 		return id.itemModify(paramMap);
 	}
 
+	@Override
+	public int itemCnt(Map<String, Object> paramMap)throws Exception {
+		// TODO Auto-generated method stub
+		return id.itemCnt(paramMap);
+	}
+
+	@Override
+	public List<ItemVO> itemList1(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return id.itemList1(paramMap);
+	}
+
 }
