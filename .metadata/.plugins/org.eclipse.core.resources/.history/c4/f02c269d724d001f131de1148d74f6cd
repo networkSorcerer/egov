@@ -130,10 +130,10 @@ $(document).ready(function() {
     $("#itemList1").click(function() {
         loadItemList(1);
     });
-    $("#search").click(function(){
+    $(("#search").click(function(){
     	loadItemList();
     	console.log("검색");
-    });
+    }))
 })
 
 // 전역 범위에 함수 정의

@@ -10,7 +10,7 @@
 		FROM tb_item_info
 		<where>
 			<if test="(searchTitle != null) and (!''.equals(searchTitle))">
-				and item_name Like CONCAT('%', #{searchTitle}, '%')
+				and noti_title Like CONCAT('%', #{searchTitle}, '%')
 			</if>
 		</where>
 		LIMIT #{startSeq}, #{pageSize}
@@ -31,10 +31,5 @@
 <select id="itemCnt" resultType="int">
 	SELECT count(*)
 	FROM tb_item_info
-	<where>
-		<if test="(searchTitle != null) and (!''.equals(searchTitle))">
-			and item_name Like CONCAT('%', #{searchTitle}, '%')
-		</if>
-	</where>
 </select>
 </mapper>
