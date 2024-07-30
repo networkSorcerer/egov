@@ -3,6 +3,8 @@ package kr.happyjob.study.board.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import kr.happyjob.study.board.model.NoticeModel;
 
 public interface NoticeDao {
@@ -23,5 +25,12 @@ public interface NoticeDao {
 	public int noticeUpdateFile(Map<String, Object> paramMap);
 	
 	public List<NoticeModel> MainNoticeList(Map<String, Object> paramMap);
+	
+
+	public int noticeSaveFileJson(Map<String, Object> paramMap);
+	public int noticeFileUpdateJson(Map<String, Object> paramMap, MultipartFile[] files) throws Exception;
+
+
+
 
 }

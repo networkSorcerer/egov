@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import kr.happyjob.study.board.model.NoticeModel;
 
 public interface NoticeService {
@@ -25,4 +27,8 @@ public interface NoticeService {
 	public int noticeUpdateFile(Map<String, Object> paramMap, HttpServletRequest request) throws Exception;
 
 	public List<NoticeModel> MainNoticeList(Map<String, Object> paramMap);
+
+	public int noticeFileSaveJson(Map<String, Object> text, MultipartFile[] files) throws Exception;
+
+	public int noticeFileUpdateJson(Map<String, Object> paramMap, MultipartFile[] files) throws Exception;
 }

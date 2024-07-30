@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.happyjob.study.board.dao.NoticeDao;
 import kr.happyjob.study.board.model.NoticeModel;
 import kr.happyjob.study.common.comnUtils.FileUtilCho;
+import kr.happyjob.study.common.comnUtils.FileUtilMultipartFile;
 
 @Service
 public class NoticeServiceImpl implements NoticeService {
@@ -126,6 +128,46 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<NoticeModel> MainNoticeList(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
 		return noticeDao.MainNoticeList(paramMap);
+	}
+
+	@Override
+    public int noticeFileSaveJson(Map<String, Object> paramMap, MultipartFile[] files) throws Exception {
+        String itemFilePath = noticePath + File.separator;
+        FileUtilMultipartFile fileUpload = new FileUtilMultipartFile(files, rootPath, virtualRootPath, itemFilePath);
+        Map<String, Object> fileInfo = fileUpload.uploadFiles();
+        if (!fileInfo.isEmpty()) {
+            paramMap.put("fileYn", "Y");
+            paramMap.put("fileinfo", fileInfo);
+
+        } else {
+            paramMap.put("fileYn", "N");
+            paramMap.put("fileinfo", null);
+        }
+
+        return noticeDao.noticeSaveFileJson(paramMap);
+    }
+
+	@Override
+	public int noticeFileUpdateJson(Map<String, Object> paramMap, MultipartFile[] files) throws Exception {
+		 String itemFilePath = noticePath + File.separator;
+		 	
+		 NoticeModel orginFile = noticeDao.noticeDetail(paramMap);
+			if (orginFile.getFile_name() != null) {
+				File oldFile = new File(orginFile.getPhsycal_path());
+				oldFile.delete();
+			}
+	        FileUtilMultipartFile fileUpload = new FileUtilMultipartFile(files, rootPath, virtualRootPath, itemFilePath);
+	        Map<String, Object> fileInfo = fileUpload.uploadFiles();
+	        if (!fileInfo.isEmpty()) {
+	            paramMap.put("fileYn", "Y");
+	            paramMap.put("fileinfo", fileInfo);
+
+	        } else {
+	            paramMap.put("fileYn", "N");
+	            paramMap.put("fileinfo", null);
+	        }
+
+	        return noticeDao.noticeFileUpdateJson(paramMap, files);
 	}
 
 }

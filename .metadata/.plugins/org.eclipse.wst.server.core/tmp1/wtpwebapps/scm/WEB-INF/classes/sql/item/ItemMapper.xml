@@ -37,4 +37,8 @@
 		</if>
 	</where>
 </select>
+<select id="itemCode" resultType="kr.happyjob.study.item.vo.ItemVO">
+	SELECT item_code , estm_num
+	from tb_estm_detail
+</select>
 </mapper>

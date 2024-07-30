@@ -17,4 +17,6 @@ public interface ItemService {
 
 	List<ItemVO> itemList1(Map<String, Object> paramMap);
 
+	List<ItemVO> itemCode(Map<String, Object> paramMap);
+
 }

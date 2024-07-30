@@ -114,7 +114,7 @@
 			}
 		}
 		
-		callAjax("/board/noticeSave.do", "post", "json", false, param, callBackFunction);
+		callAjax("/board/noticeSave1.do", "post", "json", false, param, callBackFunction);
 	}
 	
 	function updateNotice(){
@@ -136,7 +136,7 @@
 			}
 		}
 		
-		callAjax("/board/noticeUpdate.do", "post", "json", false, param, callBackFunction);
+		callAjax("/board/noticeUpdate1.do", "post", "json", false, param, callBackFunction);
 	}
 	
 	function noticeDetailModal(seq){
@@ -160,7 +160,7 @@
 			gfModalPop("#noticeInsertModal");
 		}
 		
-		callAjax("/board/noticeDetail.do", "post", "json", false, param, callBackFunction);
+		callAjax("/board/noticeDetail1.do", "post", "json", false, param, callBackFunction);
 	}
 	
 
@@ -283,7 +283,7 @@
 			gfModalPop("#filePopUp");
 		}
 		
-		callAjax("/board/noticeDetail.do", "post", "json", false, param, callBackFunction);
+		callAjax("/board/noticeDetail1.do", "post", "json", false, param, callBackFunction);
 	}
 	
 	function detailModalSetting(detail){

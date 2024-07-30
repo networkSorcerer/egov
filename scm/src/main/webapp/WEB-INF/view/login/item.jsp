@@ -11,6 +11,9 @@ $(document).ready(function(){
 	$("#layer20").hide();
 	$("#layer30").hide();
 	$("#itemDetail").hide();
+	$("#layerNewItem").hide();
+	item_code();
+	filePreview();
 	var param ={};
 	$.ajax({
 		url:"/item/itemList1.do",
@@ -18,6 +21,7 @@ $(document).ready(function(){
 		dataType :"json",
 		data: param,
 		success : function(response) {
+			
 			var itemList = response.itemList;
 			var html ="";
 				
@@ -37,7 +41,10 @@ $(document).ready(function(){
 		var itemCode = $(this).val();
 		itemDetail(itemCode);
 	});
-	
+	$("#newItem").click(function(){
+		newItem();
+		console.log("확인");
+	})
 })
 
 function itemDetail(itemCode) {
@@ -134,6 +141,9 @@ $(document).ready(function() {
     	loadItemList();
     	console.log("검색");
     });
+    $("#insertNewItem").click(function(){
+    	InsertNewItem();
+    } )
 })
 
 // 전역 범위에 함수 정의
@@ -187,10 +197,98 @@ function loadItemList(cpage) {
 function itemOption(){
 	$("#main_item").show();
 	$("#layer30").hide();
+	$("#layerNewItem").hide();
 	
 }
 
+function newItem() {
+	console.log("확인2");
+	$("#layerNewItem").show();
+	$("#fileInput").empty();
+	$("#layer30").hide();
+	$("#layer20").hide();
+	$("#main_item").hide();
+}
+function InsertNewItem() {
+	$.ajax({
+		
+	})
+}
 
+function estm_detail (){
+	$.ajsx({
+		url:"",
+		
+	})
+}
+
+function filePreview() {
+    $("#fileInput").change(function(e) {
+        e.preventDefault();
+        
+        // 파일이 있는 경우
+        if (this.files && this.files[0]) {
+            var file = this.files[0];
+            var fileName = file.name;
+            var fileExtension = fileName.split('.').pop().toLowerCase();  // 파일 확장자 추출
+            
+            var imgPath = "";
+            var previewHtml = "";
+            
+            // 지원하는 이미지 형식인지 확인
+            if (fileExtension === "jpg" || fileExtension === "gif" || fileExtension === "png") {
+                imgPath = window.URL.createObjectURL(file);
+                previewHtml = "<img src='" + imgPath + "' id='imgFile' style='width: 100px; height: 100px;' />";
+                
+                // 이전 미리보기 이미지 URL 해제
+                if ($("#imgFile").length) {
+                    URL.revokeObjectURL($("#imgFile").attr('src'));
+                }
+            } else {
+                previewHtml = "<p>지원하지 않는 파일 형식입니다.</p>";
+            }
+            
+            // 미리보기 HTML 업데이트
+            $("#preview").empty().append(previewHtml);
+        }
+    });
+}
+function saveFileNotice(){
+	if(!fValidatefile()){
+		return;
+	}
+	
+	var getForm = document.getElementById("layerNewItem");
+	getForm.entype = 'multipart/form-data';
+	var fileData = new FormData(getForm);
+	
+	var callBackFunction = function(data){
+		if(data.result == "success"){
+			alert("저장이 되었습니다");
+			gfCloseModal();
+			noticeSearch();
+		}
+	}
+	
+	callAjaxFileUploadSetFormData("/board/noticeSaveFile.do", "post", "json", false, fileData, callBackFunction);
+}
+
+function item_code () {
+	$.ajax({
+		url:"/item/item_code.do",
+		type: "post",
+		dataType : "json",
+		success : function(response) {
+			var dataList = response.item_code;
+			var html ="";
+			
+			dataList.forEach(function(item){
+				html+="<option>"+item.item_code+"("+item.estm_num+")"+"</option>";
+			});
+			$("#item_code1").html(html);
+		}
+	})
+}
 </script>
 </head>
 <body>
@@ -200,6 +298,7 @@ function itemOption(){
         <div class="col-12">
             <h1 class="mb-3">상품 리스트</h1>
             <button class="btn btn-primary" id="itemList1">리스트로 보기</button>
+            <button class="btn btn-success" id="newItem" >아이템 신규등록</button>
         </div>
     </div>
 
@@ -215,7 +314,7 @@ function itemOption(){
                     <tr>
                         <td>
                             <select id="itemList" class="form-control">
-                            	<option>상품명을 선택하세요</option>
+                            	
                                 <!-- 옵션 항목이 동적으로 추가됨 -->
                             </select>
                         </td>
@@ -321,6 +420,51 @@ function itemOption(){
 			</div>
 			
 		</div>
+	</div>
+	
+	<div id="layerNewItem">
+		<div>
+			<h1>신규 item 등록</h1>
+			<a href="javascript:itemOption();" class="btn btn-success">옵션으로 보기</a>
+		</div>
+		<div>
+			<table class="col">
+				<tr>
+					<td>상품코드</td>
+					
+					<td>
+						<select id="item_code1"  class="form-control">
+							<!-- 아마도 여기에 나오는게 아닌가 싶다 ㄷㄷ  -->
+						</select>
+					</td>
+					
+				</tr>
+		
+				<tr>
+					<td>상품명</td>
+					<td><input  type='text' id="newItemName"></td>
+				</tr>
+				<tr>
+					<td>제조사</td>
+					<td><input  type='text' id="newManufac"></td>
+				</tr>
+				<tr>
+					<td>가격</td>
+					<td><input  type='text' id="newProvideValue"></td>
+				</tr>
+				<tr>
+					<td>상품 이미지</td>
+					<td><input type="file" name="fileInput" id="fileInput"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td >
+						<div id="preview"></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<button id="insertNewItem" class="btn btn-success">등록</button>
 	</div>
 </body>
 </html>

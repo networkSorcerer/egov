@@ -166,4 +166,57 @@
 		LIMIT 5;
 
 	</select>
+	<insert id="noticeSaveFileJson">
+    /* kr.happyjob.study.system.dao.NoticeDao.noticeSaveFileJson */
+    <selectKey resultType="int" keyProperty="noticeSeq" order="BEFORE">
+        SELECT IFNULL(max(noti_seq), 0) + 1 from tb_noti_info
+    </selectKey>
+    INSERT INTO tb_noti_info
+        (
+            noti_seq        , 
+            loginID            ,
+            noti_title        ,
+            noti_content    ,
+            noti_date
+            <if test="'Y'.toString() eq fileYn">
+            ,
+            file_name        ,
+            phsycal_path    ,
+            logical_path    ,
+            file_size        ,
+            file_ext
+            </if>
+        )
+    VALUES 
+        (
+            #{noticeSeq}    ,
+            #{loginId}        ,
+            #{title}    ,
+            #{content},
+            now()
+            <if test="'Y'.toString() eq fileYn">
+            ,
+            #{fileinfo.file_nm},
+            #{fileinfo.file_loc}    ,
+            #{fileinfo.vrfile_loc}    ,
+            #{fileinfo.file_size}    ,
+            #{fileinfo.fileExtension}
+            </if>
+        )
+    </insert>
+	<update id="noticeFileUpdateJson">
+	/* kr.happyjob.study.system.dao.NoticeDao.noticeSave */
+		update tb_noti_info
+		   set 
+		        noti_title = #{fileTitle} 						,
+		        noti_content = #{fileContent} 					,
+		       <if test="'Y'.toString() eq fileYn">
+		        file_name = #{fileinfo.file_nm}				,
+				phsycal_path = #{fileinfo.file_loc}			,
+				logical_path = #{fileinfo.vrfile_loc}		,
+				file_size = #{fileinfo.file_size}			,
+				file_ext = #{fileinfo.fileExtension}
+		       </if>
+		 where noti_seq = #{noticeSeq}
+	</update>
 </mapper>

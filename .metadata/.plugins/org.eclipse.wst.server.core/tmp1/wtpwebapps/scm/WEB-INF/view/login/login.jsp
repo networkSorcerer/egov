@@ -1831,7 +1831,7 @@ function item(){
     	 <jsp:include page="/WEB-INF/view/login/item.jsp" ></jsp:include>
     	 <div>
 			<a href="javascript:fcancleModal()" class="btn btn-secondary" id="btnCloseLsmCod" name="btn">취소</a>
-			<a href="javascript:menu();" id="menu"  class="btn btn-primary"><strong>뒤로</strong></a>
+			<a href="javascript:menu();" id="menu"  class="btn btn-primary"><strong>전체 목록</strong></a>
 		</div>
     </div>
   

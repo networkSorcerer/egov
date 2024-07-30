@@ -86,4 +86,13 @@ public class ItemCotroller {
 		return resultMap;
 	}
 	
+	@RequestMapping("item_code.do")
+	@ResponseBody
+	public Map<String, Object> item_code (@RequestParam Map<String , Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
+		Map<String , Object> resultMap = new HashMap<>();
+		List<ItemVO> item_code = is.itemCode(paramMap);
+		resultMap.put("item_code", item_code);
+		return resultMap;
+	}
 }

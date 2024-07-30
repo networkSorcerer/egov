@@ -19,7 +19,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.happyjob.study.board.model.NoticeModel;
 import kr.happyjob.study.board.service.NoticeService;
@@ -92,10 +94,10 @@ public class NoticeController {
 		paramMap.put("pageSize", pageSize);
 
 		List<NoticeModel> noticeList = noticeService.noticeList(paramMap);
-		int noticeCnt = noticeService.noticeListCnt(paramMap);
+		int listCount = noticeService.noticeListCnt(paramMap);
 		
 		resultMap.put("noticeList", noticeList);
-		resultMap.put("noticeCnt", noticeCnt);
+		resultMap.put("listCount", listCount);
 		/*model.addAttribute("notice", noticeList);
 		model.addAttribute("noticeCnt", noticeCnt);*/
 
@@ -104,14 +106,14 @@ public class NoticeController {
 
 	@RequestMapping("noticeSave.do")
 	@ResponseBody
-	public Map<String, Object> noticeSave(@RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+	public Map<String, Object> noticeSave(@RequestBody Map<String, Object> paramMap, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 		logger.info("+ Start " + className + ".noticeSave");
 		logger.info("   - paramMap : " + paramMap);
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		String loginId = (String) session.getAttribute("loginId");
-		paramMap.put("loginId", loginId);
+//		String loginId = (String) session.getAttribute("loginId");
+//		paramMap.put("loginId", loginId);
 		int result = 0;
 		String returnMsg = "";
 
@@ -128,17 +130,44 @@ public class NoticeController {
 		return resultMap;
 
 	}
+	
+	@RequestMapping("noticeSave1.do")
+	@ResponseBody
+	public Map<String, Object> noticeSave1(@RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		logger.info("+ Start " + className + ".noticeSave");
+		logger.info("   - paramMap : " + paramMap);
 
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+//		String loginId = (String) session.getAttribute("loginId");
+//		paramMap.put("loginId", loginId);
+		int result = 0;
+		String returnMsg = "";
+
+		result = noticeService.noticeSave(paramMap);
+
+		if (result > 0) {
+			returnMsg = "success";
+		} else {
+			returnMsg = "fail";
+		}
+
+		resultMap.put("result", returnMsg);
+
+		return resultMap;
+
+	}
+	
 	@RequestMapping("noticeUpdate.do")
 	@ResponseBody
-	public Map<String, Object> noticeUpdate(@RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+	public Map<String, Object> noticeUpdate(@RequestBody Map<String, Object> paramMap, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 		logger.info("+ Start " + className + ".noticeUpdate");
 		logger.info("   - paramMap : " + paramMap);
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		String loginId = (String) session.getAttribute("loginId");
-		paramMap.put("loginId", loginId);
+//		String loginId = (String) session.getAttribute("loginId");
+//		paramMap.put("loginId", loginId);
 		int result = 0;
 		String returnMsg = "";
 
@@ -155,7 +184,34 @@ public class NoticeController {
 		return resultMap;
 
 	}
+	
+	@RequestMapping("noticeUpdate1.do")
+	@ResponseBody
+	public Map<String, Object> noticeUpdate1(@RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		logger.info("+ Start " + className + ".noticeUpdate");
+		logger.info("   - paramMap : " + paramMap);
 
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+//		String loginId = (String) session.getAttribute("loginId");
+//		paramMap.put("loginId", loginId);
+		int result = 0;
+		String returnMsg = "";
+
+		result = noticeService.noticeUpdate(paramMap);
+
+		if (result > 0) {
+			returnMsg = "success";
+		} else {
+			returnMsg = "fail";
+		}
+
+		resultMap.put("result", returnMsg);
+
+		return resultMap;
+
+	}
+	
 	@RequestMapping("noticeDetail.do")
 	@ResponseBody
 	public Map<String, Object> noticeDetail(@RequestBody Map<String, Object> paramMap, HttpServletRequest request,
@@ -172,7 +228,23 @@ public class NoticeController {
 		return resultMap;
 
 	}
+	
+	@RequestMapping("noticeDetail1.do")
+	@ResponseBody
+	public Map<String, Object> noticeDetail1(@RequestParam Map<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+		logger.info("+ Start " + className + ".noticeDetail");
+		logger.info("   - paramMap : " + paramMap);
 
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		NoticeModel detail = noticeService.noticeDetail(paramMap);
+
+		resultMap.put("detailValue", detail);
+
+		return resultMap;
+
+	}
 	@RequestMapping("noticeDelete.do")
 	@ResponseBody
 	public Map<String, Object> noticeDelete(@RequestParam Map<String, Object> paramMap, HttpServletRequest request,
@@ -226,7 +298,54 @@ public class NoticeController {
 		return resultMap;
 
 	}
+	
+	@RequestMapping("noticeFileSaveJson")
+    @ResponseBody
+    public Map<String, Object> noticeFileSaveJson(@RequestPart(value = "file", required = false) MultipartFile[] files,
+            @RequestPart(value = "text", required = false) Map<String, Object> text) throws Exception {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        logger.info("+ Start " + className + ".noticeFileSaveJson");
+        logger.info("   - text : " + text);
+        logger.info("   - files : " + files);
+        String returnMsg = "";
 
+        int result = noticeService.noticeFileSaveJson(text, files);
+
+        if (result > 0) {
+            returnMsg = "success";
+        } else {
+            returnMsg = "fail";
+        }
+
+        resultMap.put("result", returnMsg);
+
+        return resultMap;
+    }
+	
+	@RequestMapping("noticeFileUpdateJson.do")
+    @ResponseBody
+    public Map<String, Object> noticeFileUpdateJson(@RequestPart(value = "file", required = false) MultipartFile[] files,
+            @RequestPart(value = "text", required = false) Map<String, Object> text) throws Exception {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        logger.info("+ Start " + className + ".noticeFileSaveJson");
+        logger.info("   - text : " + text);
+        logger.info("   - files : " + files);
+        String returnMsg = "";
+
+        int result = noticeService.noticeFileUpdateJson(text, files);
+
+        if (result > 0) {
+            returnMsg = "success";
+        } else {
+            returnMsg = "fail";
+        }
+
+        resultMap.put("result", returnMsg);
+
+        return resultMap;
+    }
+	
+	
 	@RequestMapping("noticeUpdateFile.do")
 	@ResponseBody
 	public Map<String, Object> noticeUpdateFile(@RequestParam Map<String, Object> paramMap, HttpServletRequest request,
@@ -255,7 +374,8 @@ public class NoticeController {
 		return resultMap;
 
 	}
-
+	
+	
 	@RequestMapping("noticeDownload.do")
 	public void downloadNotice(@RequestParam Map<String, Object> paramMap, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {

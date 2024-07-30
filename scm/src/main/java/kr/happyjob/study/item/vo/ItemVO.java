@@ -9,7 +9,21 @@ public class ItemVO {
 	private	int item_price;
 	private int item_surtax;
 	private int provide_value;
+	private int estm_num;
+	private String product_detail;
 	
+	public String getProduct_detail() {
+		return product_detail;
+	}
+	public void setProduct_detail(String product_detail) {
+		this.product_detail = product_detail;
+	}
+	public int getEstm_num() {
+		return estm_num;
+	}
+	public void setEstm_num(int estm_num) {
+		this.estm_num = estm_num;
+	}
 	public String getItem_code() {
 		return item_code;
 	}

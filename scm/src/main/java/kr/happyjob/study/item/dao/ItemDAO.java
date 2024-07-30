@@ -12,5 +12,6 @@ public interface ItemDAO {
 	int itemModify(Map<String, Object> paramMap);
 	int itemCnt(Map<String, Object> paramMap)throws Exception;
 	List<ItemVO> itemList1(Map<String, Object> paramMap);
+	List<ItemVO> itemCode(Map<String, Object> paramMap);
 
 }

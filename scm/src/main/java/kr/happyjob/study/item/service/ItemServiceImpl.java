@@ -44,4 +44,10 @@ public class ItemServiceImpl implements ItemService{
 		return id.itemList1(paramMap);
 	}
 
+	@Override
+	public List<ItemVO> itemCode(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return id.itemCode(paramMap);
+	}
+
 }
