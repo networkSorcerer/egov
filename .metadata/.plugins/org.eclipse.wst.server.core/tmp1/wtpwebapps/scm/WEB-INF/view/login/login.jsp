@@ -1427,6 +1427,10 @@ $(document).ready(function() {
 function item(){
 	gfModalPop("#layer10");	
 }
+function notice() {
+	gfModalPop("#layer40");
+	
+}
 </script>
 
 </head>
@@ -1806,7 +1810,7 @@ function item(){
     </div>
     
     <div id="layer5"  class="layerPosition layerPop layerType2" style="width: 600px; height : 600px;  position : fixed; top : 50%; left:50%"">
-    	  <a href="javascript:fcancleModal()" class="btn btn-dark" id="btnCloseLsmCod" name="btn">취소</a>
+    	  <a href="javascript:fcancleModal()" class="btn btn-warning" id="btnCloseLsmCod" name="btn">취소</a>
     	  <br><br><br>
     	  
     	  <a href="javascript:customer();"  class="btn btn-success"><strong>고객 tb_cust_info</strong></a><br><br>
@@ -1815,7 +1819,8 @@ function item(){
     	  <a href="javascript:customer();"  class="btn btn-danger"><strong>창고 tb_storage </strong></a><br><br>
     	  <a href="javascript:customer();"  class="btn btn-light"><strong>구매 tb_obtain</strong></a><br><br>
     	  <a href="javascript:customer();"  class="btn btn-warning"><strong>반품 tb_return</strong></a><br><br>
-    	  <a href="javascript:customer();"  class="btn btn-secondary"><strong>장바구니 tb_cart</strong></a>
+    	  <a href="javascript:customer();"  class="btn btn-secondary"><strong>장바구니 tb_cart</strong></a><br><br>
+    	  <a href="javascript:notice();"  class="btn btn-success"><strong>공지사항 tb_noti_info</strong></a>
     </div>
     
     
@@ -1823,12 +1828,19 @@ function item(){
     	 <jsp:include page="/WEB-INF/view/login/order.jsp" ></jsp:include>
     	 <div>
 			<a href="javascript:fcancleModal()" class="btn btn-secondary" id="btnCloseLsmCod" name="btn">취소</a>
-			<a href="javascript:menu();" id="menu"  class="btn btn-primary"><strong>뒤로</strong></a>
+			<a href="javascript:menu();" id="menu"  class="btn btn-primary"><strong>전체목록</strong></a>
 		</div>
     </div>
     
        <div id="layer10" class="layerPosition layerPop layerType2" style="width: 600px; height : 600px; position : fixed; top : 50%; left:50%">
     	 <jsp:include page="/WEB-INF/view/login/item.jsp" ></jsp:include>
+    	 <div>
+			<a href="javascript:fcancleModal()" class="btn btn-secondary" id="btnCloseLsmCod" name="btn">취소</a>
+			<a href="javascript:menu();" id="menu"  class="btn btn-primary"><strong>전체 목록</strong></a>
+		</div>
+		
+		 <div id="layer40" class="layerPosition layerPop layerType2" style="width: 600px; height : 600px; position : fixed; top : 50%; left:50%">
+    	 <jsp:include page="/WEB-INF/view/login/notice.jsp" ></jsp:include>
     	 <div>
 			<a href="javascript:fcancleModal()" class="btn btn-secondary" id="btnCloseLsmCod" name="btn">취소</a>
 			<a href="javascript:menu();" id="menu"  class="btn btn-primary"><strong>전체 목록</strong></a>

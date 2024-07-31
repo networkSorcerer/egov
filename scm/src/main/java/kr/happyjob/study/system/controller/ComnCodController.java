@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -287,16 +288,48 @@ public class ComnCodController {
 		
 		// 공통 상세코드 목록 카운트 조회
 		int totalCount = comnCodService.countListComnDtlCod(paramMap);
-		returnmap.put("totalCntComnDtlCod", totalCount);
+		returnmap.put("totalCount", totalCount);
 		
 		returnmap.put("pageSize", pageSize);
-		returnmap.put("currentPageComnDtlCod",currentPage);
+		returnmap.put("currentPage",currentPage);
 		
 		logger.info("+ End " + className + ".listComnDtlCodvue");
 
 		return returnmap;
 	}	
-  
+	
+	/*공통 그룹 코드 목록 조회*/@RequestMapping("listComnGrpCodJson.do")@ResponseBody
+	  public Map<String, Object> listComnGrpCodJson(Model model, @RequestBody Map<String, Object> paramMap)
+	          throws Exception {
+	      Map<String, Object> resultMap = new HashMap<>();
+	      logger.info("+ Start " + className + ".listComnGrpCod");
+	      logger.info("   - paramMap : " + paramMap);
+
+	        int currentPage = (int) paramMap.get("currentPage"); // 현재
+	                                                                // 페이지
+	                                                                // 번호
+	        int pageSize = (int) paramMap.get("pageSize"); // 페이지
+	                                                        // 사이즈
+	        int pageIndex = (currentPage - 1) * pageSize; // 페이지 시작 row 번호
+
+	        paramMap.put("pageIndex", pageIndex);
+	        paramMap.put("pageSize", pageSize);
+
+	        // 공통 그룹코드 목록 조회
+	        List<ComnGrpCodModel> listComnGrpCod = comnCodService.listComnGrpCod(paramMap);
+
+	        // 공통 그룹코드 목록 카운트 조회
+	        int totalCount = comnCodService.countListComnGrpCod(paramMap);
+
+	        resultMap.put("listComnGrpCod", listComnGrpCod);
+	        resultMap.put("totalCount", totalCount);
+
+	        logger.info("+ End " + className + ".listComnGrpCod");
+
+	        return resultMap;
+	    }
+	
+	
 	/**
 	 *  공통 상세 코드 단건 조회
 	 */
@@ -390,6 +423,100 @@ public class ComnCodController {
 		
 		return resultMap;
 	}
+	
+	
+	// Map 형태 redirect안할때 씀 즉 값만 바꾸겠다.라는 이야기
+    @RequestMapping("saveComnGrpCodJson.do")
+    @ResponseBody
+    public Map<String, Object> saveComnGrpCodJson(Model model, @RequestBody Map<String, Object> paramMap,
+            HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+
+        logger.info("+ Start " + className + ".saveComnGrpCod");
+        logger.info("   - paramMap : " + paramMap);
+
+        String result = "";
+        String resultMsg = "";
+
+        // 사용자 정보 설정
+        paramMap.put("fst_rgst_sst_id", session.getAttribute("loginId"));
+        paramMap.put("fnl_mdfr_sst_id", session.getAttribute("loginId"));
+
+        int resultInt = comnCodService.insertComnGrpCod(paramMap);
+
+        if (resultInt > 0) {
+            // 그룹코드 신규 저장
+            result = "SUCCESS";
+            resultMsg = "저장 되었습니다.";
+        } else {
+            result = "FALSE";
+            resultMsg = "알수 없는 요청 입니다.";
+        }
+
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("result", result);
+        resultMap.put("resultMsg", resultMsg);
+
+        logger.info("+ End " + className + ".saveComnGrpCod");
+
+        return resultMap;
+    }
+// Map 형태 redirect안할때 씀 즉 값만 바꾸겠다.라는 이야기
+    
+    @RequestMapping("updateComnGrpCodJson.do")
+    @ResponseBody
+    public Map<String, Object> updateComnGrpCodJson(Model model, @RequestBody Map<String, Object> paramMap,
+            HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+
+        logger.info("+ Start " + className + ".saveComnGrpCod");
+        logger.info("   - paramMap : " + paramMap);
+
+        String result = "";
+        String resultMsg = "";
+
+        // 사용자 정보 설정
+        paramMap.put("fst_rgst_sst_id", session.getAttribute("loginId"));
+        paramMap.put("fnl_mdfr_sst_id", session.getAttribute("loginId"));
+
+        int resultInt = comnCodService.updateComnGrpCod(paramMap);
+
+        if (resultInt > 0) {
+            // 그룹코드 신규 저장
+            result = "SUCCESS";
+            resultMsg = "저장 되었습니다.";
+        } else {
+            result = "FALSE";
+            resultMsg = "알수 없는 요청 입니다.";
+        }
+
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("result", result);
+        resultMap.put("resultMsg", resultMsg);
+
+        logger.info("+ End " + className + ".saveComnGrpCod");
+
+        return resultMap;
+    }
+   /* @RequestMapping("deleteComnGrpCod.do")@ResponseBody
+    public Map<String, Object> deleteComnGrpCod1(Model model, @RequestBody Map<String, Object> paramMap,
+            HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+
+          logger.info("+ Start " + className + ".deleteComnGrpCod");
+          logger.info("   - paramMap : " + paramMap);
+
+          String result = "SUCCESS";
+          String resultMsg = "삭제 되었습니다.";
+
+          // 그룹코드 삭제
+          comnCodService.deleteComnGrpCod(paramMap);
+
+          Map<String, Object> resultMap = new HashMap<String, Object>();
+          resultMap.put("result", result);
+          resultMap.put("resultMsg", resultMsg);
+
+          logger.info("+ End " + className + ".deleteComnGrpCod");
+
+          return resultMap;
+      }*/
 
 
 }

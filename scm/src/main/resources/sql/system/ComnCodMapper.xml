@@ -60,6 +60,7 @@
 			</if>
 		</where>
 	</select>
+
 	
 	<!-- 그룹코드 단건 조회 -->
 	<select id="selectComnGrpCod" resultType="kr.happyjob.study.system.model.ComnGrpCodModel">

@@ -393,6 +393,10 @@ function item_code () {
 				<p>상품명</p>
 			<input type="text" id="searchTitle" name="searchTitle" style="height: 25px; margin-right: 10px;"/>
 			<button id="search" class="btn btn-success">검색</button>
+			<div>
+				<a href="javascript:itemOption();" class="btn btn-success">옵션으로 보기</a>
+				
+			</div>
 			</div>
 			
 			
@@ -411,10 +415,7 @@ function item_code () {
 			</div>
 			<div class="paging_area" id="pagingNavi"></div>
 			<br>
-			<div>
-				<a href="javascript:itemOption();" class="btn btn-success">옵션으로 보기</a>
-				
-			</div>
+			
 			<div>
 				
 			</div>
@@ -422,7 +423,8 @@ function item_code () {
 		</div>
 	</div>
 	
-	<div id="layerNewItem">
+<form id="layerNewItem">
+	<div >
 		<div>
 			<h1>신규 item 등록</h1>
 			<a href="javascript:itemOption();" class="btn btn-success">옵션으로 보기</a>
@@ -466,5 +468,7 @@ function item_code () {
 		</div>
 		<button id="insertNewItem" class="btn btn-success">등록</button>
 	</div>
+</form>	
+	
 </body>
 </html>
