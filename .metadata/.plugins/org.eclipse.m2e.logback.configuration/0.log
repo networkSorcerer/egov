@@ -13390,3 +13390,17 @@ Caused by: org.eclipse.aether.transfer.ArtifactNotFoundException: Could not find
 2024-07-30 19:01:27,244 [Worker-276] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2024-07-30 19:01:27,254 [Worker-276] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 38 resources
 2024-07-30 19:01:27,265 [Worker-276] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-07-30 19:01:27,266 [Worker-276] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\user\git\egov\scm\src\test\resources
+2024-07-31 00:46:49,803 [Worker-3] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-07-31 00:47:10,628 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-07-31 00:47:10,641 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 18 resources
+2024-07-31 00:47:10,717 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-07-31 00:47:10,717 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\user\git\egov\erp\src\test\resources
+2024-07-31 00:47:25,861 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-07-31 00:47:25,861 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 48 resources
+2024-07-31 00:47:26,044 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-07-31 00:47:26,044 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\user\git\egov\marlmsone1\src\test\resources
+2024-07-31 00:47:39,104 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-07-31 00:47:39,105 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 38 resources
+2024-07-31 00:47:39,235 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-07-31 00:47:39,235 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\user\git\egov\scm\src\test\resources
